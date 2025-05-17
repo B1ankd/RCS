@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Engineering Protection Services | Security Solutions</title>
+    <style>
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0; /* Reduced padding from 10px to 5px */
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 60px; /* Reduced from 90px to 60px */
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px; /* Reduced from 30px */
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0; /* Further reduced padding */
+            font-size: 14px; /* Further reduced font size */
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 180px; /* Slightly reduced width */
+            border-radius: 3px; /* Smaller radius */
+            padding: 5px 0; /* Reduced padding */
+            display: none;
+            z-index: 100;
+        }
+        
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .dropdown-menu a {
+            padding: 5px 15px; /* Smaller padding */
+            font-size: 13px; /* Smaller font size */
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px; /* Further reduced padding */
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 3px; /* Smaller radius */
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 13px; /* Smaller font size */
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 80px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .service-content p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .stats-section {
+            background-color: var(--light-gray);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .stat-item p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .testimonials-section {
+            background-color: var(--white);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+        
+        .testimonial-content {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--light-gray);
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .author-info p {
+            color: var(--dark-gray);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .btn-white:hover {
+            background-color: #f0f0f0;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-right: 15px; /* Reduced margin */
+        }
+        
+        .search-input {
+            padding: 4px 10px; /* Even smaller padding */
+            border: 1px solid #ddd;
+            border-radius: 15px; /* Smaller radius */
+            font-size: 12px; /* Even smaller font */
+            width: 140px; /* Narrower */
+            transition: width 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .search-input:focus {
+            width: 180px; /* Reduced expanded width */
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .search-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Dropdown arrow positioning fix */
+        .nav-links a.has-dropdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links a.has-dropdown::after {
+            margin-left: 8px;
+        }
+        
+        /* Side Navigation Bar Styles - New Addition */
+        .side-nav-container {
+            position: fixed;
+            top: 0;
+            left: 25px;
+            padding-top: 0;
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: transparent;
+            padding: 10px 15px;
+            border-radius: 0;
+            box-shadow: none;
+            transition: all 0.5s ease;
+            opacity: 0;
+            visibility: hidden;
+            width: 140px; /* Set fixed width for nav to ensure content stays aligned */
+        }
+        
+        .side-nav-container.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .side-nav-container.active .side-nav-item {
+            pointer-events: auto;
+        }
+        
+        .side-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .side-nav-item {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 8px;
+            width: auto;
+            position: relative;
+        }
+        
+        .side-nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--dark-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .side-nav-label {
+            font-size: 14px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            opacity: 1;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+        
+        .side-nav-item.active .side-nav-label {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .side-nav-item:hover .side-nav-dot,
+        .side-nav-item.active .side-nav-dot {
+            background-color: var(--primary-color);
+            width: 12px;
+            height: 12px;
+        }
+        
+        .side-nav-container {
+            width: auto;
+        }
+        
+        .side-nav-item {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 8px;
+            width: auto;
+        }
+        
+        @media (max-width: 992px) {
+            .side-nav-container {
+                left: 20px;
+            }
+            
+            .side-nav-label {
+                left: 25px;
+            }
+        }
+        
+        /* Additional styles for the side navigation to work with header */
+        .side-nav {
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                margin-right: 0;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 15px;
+            }
+            
+            /* Hide side navigation on small screens */
+            .side-nav-container {
+                display: none;
+            }
+            
+            /* Reset the content margin on mobile */
+            .content-wrapper .section:not(.hero):not(.cta-section) .container {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                margin-right: 0;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 15px;
+            }
+            
+            /* Hide side navigation on small screens */
+            .side-nav-container {
+                display: none;
+            }
+        }
+        
+        /* Content layout for better side-nav integration */
+        .content-wrapper {
+            position: relative;
+            margin-left: 0; /* Remove left margin to blend with background */
+        }
+        
+        /* Adjust main content to make room for side nav */
+        @media (min-width: 768px) {
+            .content-wrapper .section:not(.hero):not(.cta-section) .container {
+                margin-left: 160px; /* Add margin to make room for side navigation text */
+                max-width: 1040px; /* Adjusted for the sidebar space */
+            }
+        }
+    </style>
+    <script>
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Also observe the hero section for initial animation
+            const heroSectionAnimate = document.querySelector('.hero');
+            if (heroSectionAnimate) {
+                heroSectionAnimate.style.opacity = '0';
+                heroSectionAnimate.style.transform = 'translateY(50px)';
+                heroSectionAnimate.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                
+                setTimeout(() => {
+                    heroSectionAnimate.style.opacity = '1';
+                    heroSectionAnimate.style.transform = 'translateY(0)';
+                }, 300);
+            }
+            
+            // Animate individual service cards with staggered delay
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                card.style.transitionDelay = (index * 0.15) + 's';
+            });
+            
+            const servicesObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const cards = entry.target.querySelectorAll('.service-card');
+                        cards.forEach(card => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+            
+            const servicesGrids = document.querySelectorAll('.services-grid');
+            servicesGrids.forEach(grid => {
+                servicesObserver.observe(grid);
+            });
+            
+            // Animate stats items with staggered delay
+            const statItems = document.querySelectorAll('.stat-item');
+            statItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                item.style.transitionDelay = (index * 0.15) + 's';
+            });
+            
+            const statsObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const items = entry.target.querySelectorAll('.stat-item');
+                        items.forEach(item => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+            
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                statsObserver.observe(statsGrid);
+            }
+            
+            // Add smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Side Navigation Functionality
+            const sideNavItems = document.querySelectorAll('.side-nav-item');
+            const sectionsForNav = document.querySelectorAll('.section, .hero');
+            const sideNavContainer = document.querySelector('.side-nav-container');
+            const servicesSection = document.getElementById('services');
+            const heroSection = document.getElementById('home');
+            let scrollTimeout;
+            let isScrolling = false;
+            
+            // Function to check if the services section is in viewport
+            function isServicesSectionVisible() {
+                if (!servicesSection) return false;
+                
+                const rect = servicesSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                
+                // Show sidebar when services section is at least partially visible
+                return (
+                    rect.top <= windowHeight * 0.75 && 
+                    rect.bottom >= windowHeight * 0.25
+                );
+            }
+            
+            // Function to toggle sidebar visibility based on scroll position
+            function toggleSidebarVisibility() {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                
+                if (window.scrollY > 100) {
+                    sideNavContainer.classList.add('visible');
+                    
+                    // Lock sidebar to the bottom of the header
+                    sideNavContainer.style.top = `${headerHeight}px`;
+                } else {
+                    sideNavContainer.classList.remove('visible');
+                    sideNavContainer.classList.remove('show-all-labels');
+                }
+            }
+            
+            // Function to update active side navigation based on scroll position
+            function updateSideNav() {
+                let currentSectionId = '';
+                let currentSectionTop = Number.MAX_SAFE_INTEGER;
+                
+                sectionsForNav.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    
+                    // Find the section closest to the top of the viewport
+                    if (sectionTop < 100 && sectionTop > -section.offsetHeight + 100) {
+                        if (Math.abs(sectionTop) < Math.abs(currentSectionTop)) {
+                            currentSectionId = section.id;
+                            currentSectionTop = sectionTop;
+                        }
+                    }
+                });
+                
+                // Update active state
+                sideNavItems.forEach(item => {
+                    const targetId = item.getAttribute('data-target');
+                    if (targetId === currentSectionId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // We're always showing labels now, so we don't need this logic
+                isScrolling = true;
+                
+                // Reset scrolling flag after a delay
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    isScrolling = false;
+                }, 1000);
+                
+                // Check sidebar visibility
+                toggleSidebarVisibility();
+            }
+            
+            // Add scroll event listener for side navigation
+            window.addEventListener('scroll', updateSideNav);
+            window.addEventListener('resize', toggleSidebarVisibility); // Update on resize too
+            
+            // Initial call to set correct position
+            toggleSidebarVisibility();
+            
+            // Add click event listeners to side nav items
+            sideNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Smooth scroll to target section
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active state
+                        sideNavItems.forEach(navItem => {
+                            navItem.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Initialize side navigation state
+            updateSideNav();
+        });
+    </script>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#services" class="has-dropdown">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Social Engineering Risk Assessment</a></li>
+                            <li><a href="#">Simulated Attack Exercises</a></li>
+                            <li><a href="#">Security Awareness Training</a></li>
+                            <li><a href="#">Vulnerability Management</a></li>
+                            <li><a href="#">Incident Response</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-dropdown">Solutions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Enterprise Security</a></li>
+                            <li><a href="#">Human Firewall Program</a></li>
+                            <li><a href="#">Compliance & Regulations</a></li>
+                            <li><a href="#">Managed Security Services</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-dropdown">Industries</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Financial Services</a></li>
+                            <li><a href="#">Healthcare</a></li>
+                            <li><a href="#">Government</a></li>
+                            <li><a href="#">Retail</a></li>
+                            <li><a href="#">Manufacturing</a></li>
+                            <li><a href="#">Technology</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-dropdown">Resources</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Whitepapers</a></li>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Webinars</a></li>
+                            <li><a href="#">Security Toolkit</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#testimonials" class="has-dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Company History</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Partners</a></li>
+                            <li><a href="#">Press Releases</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="#contact" class="btn">Contact Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Side Navigation -->
+    <div class="side-nav-container">
+        <ul class="side-nav">
+            <li class="side-nav-item" data-target="services">
+                <div class="side-nav-dot"></div>
+                <div class="side-nav-label">Services</div>
+            </li>
+            <li class="side-nav-item" data-target="impact">
+                <div class="side-nav-dot"></div>
+                <div class="side-nav-label">Why It Matters</div>
+            </li>
+            <li class="side-nav-item" data-target="approach">
+                <div class="side-nav-dot"></div>
+                <div class="side-nav-label">Our Approach</div>
+            </li>
+            <li class="side-nav-item" data-target="testimonials">
+                <div class="side-nav-dot"></div>
+                <div class="side-nav-label">Testimonials</div>
+            </li>
+            <li class="side-nav-item" data-target="contact">
+                <div class="side-nav-dot"></div>
+                <div class="side-nav-label">Contact</div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="content-wrapper">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Protect Your Business from Social Engineering Attacks</h1>
+                    <p>Human vulnerability is the most exploited security gap. Our comprehensive social engineering protection services help organizations identify, prevent, and respond to these sophisticated threats.</p>
+                    <a href="#services" class="btn">Explore Solutions</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Social Engineering Protection Services</h2>
+                    <p>Comprehensive solutions designed to strengthen your organization's human firewall and protect against sophisticated social engineering attacks.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="/api/placeholder/300/200" alt="Security Assessment">
+                        </div>
+                        <div class="service-content">
+                            <h3>Social Engineering Risk Assessment</h3>
+                            <p>Identify vulnerabilities in your organization through comprehensive evaluations of your people, processes, and protection measures.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="/api/placeholder/300/200" alt="Simulated Attacks">
+                        </div>
+                        <div class="service-content">
+                            <h3>Simulated Attack Exercises</h3>
+                            <p>Test your organization's resilience with realistic phishing, vishing, and physical social engineering simulations conducted by our experts.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="/api/placeholder/300/200" alt="Security Training">
+                        </div>
+                        <div class="service-content">
+                            <h3>Security Awareness Training</h3>
+                            <p>Empower your employees with customized training programs designed to recognize and respond to social engineering tactics.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="section stats-section" id="impact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Why Social Engineering Protection Matters</h2>
+                    <p>The human element remains the most vulnerable aspect of security. Our solutions address this critical vulnerability.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>82%</h3>
+                        <p>of breaches involve the human element</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>$4.35M</h3>
+                        <p>average cost of a data breach</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>65%</h3>
+                        <p>reduction in successful phishing attempts after training</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>300%</h3>
+                        <p>increase in social engineering attacks since 2020</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Approach Section -->
+        <section class="section" id="approach">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Comprehensive Approach</h2>
+                    <p>We combine technical expertise with psychological insights to create a robust defense against social engineering threats.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="/api/placeholder/300/200" alt="Assessment">
+                        </div>
+                        <div class="service-content">
+                            <h3>Assessment & Analysis</h3>
+                            <p>We identify your organization's unique vulnerabilities through comprehensive risk assessments and gap analysis.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="/api/placeholder/300/200" alt="Strategy">
+                        </div>
+                        <div class="service-content">
+                            <h3>Custom Strategy Development</h3>
+                            <p>We create tailored security strategies that address your specific risks and align with your business objectives.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="/api/placeholder/300/200" alt="Implementation">
+                        </div>
+                        <div class="service-content">
+                            <h3>Implementation & Training</h3>
+                            <p>We deploy proven solutions and provide engaging training that transforms your employees into security assets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section class="section testimonials-section" id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What Our Clients Say</h2>
+                    <p>Hear from organizations that have strengthened their security posture with our social engineering protection services.</p>
+                </div>
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "The simulated phishing campaign was eye-opening. We discovered vulnerabilities we never knew existed, and the follow-up training significantly improved our team's security awareness. We've seen a 70% reduction in successful phishing attempts since implementing their program."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="/api/placeholder/60/60" alt="Author">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>CISO, Global Financial Services</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="section cta-section" id="contact">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Strengthen Your Human Firewall?</h2>
+                    <p>Contact us today to schedule a free consultation and discover how our social engineering protection services can safeguard your organization.</p>
+                    <a href="#" class="btn btn-white">Schedule Consultation</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Risk Assessment</a></li>
+                            <li><a href="#">Simulated Attacks</a></li>
+                            <li><a href="#">Security Training</a></li>
+                            <li><a href="#">Vulnerability Management</a></li>
+                            <li><a href="#">Incident Response</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Partners</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Whitepapers</a></li>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Webinars</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <ul class="footer-links">
+                            <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                            <li><a href="mailto:info@rcsecurity.com">info@rcsecurity.com</a></li>
+                            <li><a href="#">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 RCS Security. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
