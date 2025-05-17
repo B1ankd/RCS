@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Engineering Risk Assessment | RCS Security</title>
+    <style>
+        /* Core styles from main page */
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 13px;
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+
+        .hero-inner {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-inner h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-inner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .content-image {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .content-text p {
+            margin-bottom: 15px;
+        }
+
+        .content-text ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .content-text li {
+            margin-bottom: 10px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .step-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .btn-white:hover {
+            background-color: #f0f0f0;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+        }
+
+        @media (max-width: 768px) {
+            .content-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-inner h1 {
+                font-size: 32px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <a href="V1.5.0.html" class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="width: 60px; height: 60px;">
+                    </div>
+                </a>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <a href="V1.5.0.html" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-inner">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Social Engineering Risk Assessment</h1>
+                <p>Identify vulnerabilities in your organization through comprehensive evaluations of your people, processes, and protection measures.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comprehensive Risk Assessment</h2>
+                <p>A detailed analysis of your organization's susceptibility to social engineering attacks</p>
+            </div>
+            <div class="content-columns">
+                <div class="content-text">
+                    <h3>Understanding Your Vulnerabilities</h3>
+                    <p>Our Social Engineering Risk Assessment provides a thorough evaluation of how vulnerable your organization is to various social engineering tactics. We identify where your human firewall has gaps and provide actionable recommendations to strengthen your defenses.</p>
+                    <p>Our expert team uses a combination of technical analysis, behavioral science, and industry best practices to deliver insights that matter.</p>
+                    <ul>
+                        <li>Identify vulnerable departments and individuals</li>
+                        <li>Evaluate current security awareness and training effectiveness</li>
+                        <li>Analyze past incidents and near-misses</li>
+                        <li>Review policies and procedures for gaps</li>
+                        <li>Assess physical security controls</li>
+                    </ul>
+                    <a href="#assessment-process" class="btn">Learn About Our Process</a>
+                </div>
+                <div class="content-image">
+                    <img src="/api/placeholder/500/350" alt="Risk Assessment" style="width: 100%; height: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" style="background-color: var(--light-gray);" id="assessment-process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Assessment Process</h2>
+                <p>A methodical approach to understanding and mitigating social engineering risks</p>
+            </div>
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Discovery & Analysis</h3>
+                    <p>We begin by gathering information about your organization, including structure, culture, and existing security controls. We review documentation, interview key stakeholders, and analyze past security incidents.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Testing & Evaluation</h3>
+                    <p>Our team conducts simulated social engineering tests tailored to your industry and organization. These may include phishing simulations, vishing calls, pretext scenarios, and physical security tests.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Reporting & Recommendations</h3>
+                    <p>We deliver a comprehensive report detailing findings, risk levels, and prioritized recommendations. This includes specific action items to address vulnerabilities and strengthen your human firewall.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefits of Our Assessment</h2>
+                <p>Strategic advantages that help protect your organization</p>
+            </div>
+            <div class="content-columns">
+                <div class="content-image">
+                    <img src="/api/placeholder/500/350" alt="Assessment Benefits" style="width: 100%; height: auto;">
+                </div>
+                <div class="content-text">
+                    <h3>Strategic Risk Reduction</h3>
+                    <p>Our risk assessment provides you with the insights needed to make informed security decisions and allocate resources effectively.</p>
+                    <ul>
+                        <li>Identify and prioritize your biggest human-factor vulnerabilities</li>
+                        <li>Receive customized recommendations aligned with your business goals</li>
+                        <li>Establish baseline metrics to measure improvement</li>
+                        <li>Meet compliance requirements with thorough documentation</li>
+                        <li>Demonstrate due diligence in protecting sensitive information</li>
+                    </ul>
+                    <p>Our assessments have helped organizations reduce successful social engineering attacks by up to 75% within the first year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Identify Your Vulnerabilities?</h2>
+                <p>Contact us today to schedule a consultation and learn how our Social Engineering Risk Assessment can strengthen your security posture.</p>
+                <a href="V1.5.0.html#contact" class="btn btn-white">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                        <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="V1.5.0.html#services">Vulnerability Management</a></li>
+                        <li><a href="V1.5.0.html#services">Incident Response</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="V1.5.0.html#testimonials">About Us</a></li>
+                        <li><a href="V1.5.0.html#testimonials">Our Team</a></li>
+                        <li><a href="V1.5.0.html#testimonials">Careers</a></li>
+                        <li><a href="V1.5.0.html#testimonials">Partners</a></li>
+                        <li><a href="V1.5.0.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                        <li><a href="mailto:info@rcsecurity.com">info@rcsecurity.com</a></li>
+                        <li><a href="V1.5.0.html#contact">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
