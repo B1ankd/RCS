@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | RCS Security</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Core styles from main page */
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 13px;
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+
+        .hero-inner {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-inner h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-inner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            background-color: var(--light-gray);
+            padding: 70px 0;
+        }
+        
+        .contact-columns {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .contact-info ul {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .contact-form-container {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .form-submit {
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #7a0916;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links h4 {
+            margin-bottom: 10px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+        }
+
+        @media (max-width: 768px) {
+            .contact-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-inner h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form validation and submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                // Form validation
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form elements
+                    const nameField = document.getElementById('name');
+                    const emailField = document.getElementById('email');
+                    const phoneField = document.getElementById('phone');
+                    const companyField = document.getElementById('company');
+                    const serviceField = document.getElementById('service');
+                    const messageField = document.getElementById('message');
+                    const consentField = document.getElementById('consent');
+                    
+                    // Reset error state
+                    [nameField, emailField, phoneField, companyField, serviceField, messageField].forEach(field => {
+                        field.style.borderColor = '#ddd';
+                    });
+                    consentField.parentElement.style.color = var(--secondary-color);
+                    
+                    let isValid = true;
+                    
+                    // Validate name (required)
+                    if (!nameField.value.trim()) {
+                        nameField.style.borderColor = '#dc3545';
+                        isValid = false;
+                    }
+                    
+                    // Validate email (required and format)
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailField.value.trim() || !emailRegex.test(emailField.value.trim())) {
+                        emailField.style.borderColor = '#dc3545';
+                        isValid = false;
+                    }
+                    
+                    // Validate phone (format if provided)
+                    if (phoneField.value.trim()) {
+                        const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+                        if (!phoneRegex.test(phoneField.value.trim())) {
+                            phoneField.style.borderColor = '#dc3545';
+                            isValid = false;
+                        }
+                    }
+                    
+                    // Validate service selection (required)
+                    if (serviceField.value === "" || serviceField.selectedIndex === 0) {
+                        serviceField.style.borderColor = '#dc3545';
+                        isValid = false;
+                    }
+                    
+                    // Validate consent (required)
+                    if (!consentField.checked) {
+                        consentField.parentElement.style.color = '#dc3545';
+                        isValid = false;
+                    }
+                    
+                    // If form is valid, submit it
+                    if (isValid) {
+                        submitForm();
+                    }
+                });
+            }
+            
+            // Function to handle form submission
+            function submitForm() {
+                const formStatus = document.getElementById('formStatus');
+                const successMessage = document.getElementById('successMessage');
+                const errorMessage = document.getElementById('errorMessage');
+                const submitButton = document.getElementById('submitContactForm');
+                const form = document.getElementById('contactForm');
+                
+                // Gather form data
+                const formData = new FormData(form);
+                const formDataJSON = {};
+                formData.forEach((value, key) => {
+                    formDataJSON[key] = value;
+                });
+                
+                // Disable submit button and show loading state
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                
+                // In a production environment, replace this setTimeout with a fetch or XMLHttpRequest
+                // to submit the form data to your server endpoint
+                
+                // Example of how to implement with fetch API:
+                /*
+                fetch('https://your-server-endpoint.com/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formDataJSON),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle success
+                    formStatus.style.display = 'block';
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    form.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formStatus.style.display = 'none';
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                })
+                .catch(error => {
+                    // Handle error
+                    formStatus.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                    console.error('Error:', error);
+                    
+                    // Hide error message after 5 seconds
+                    setTimeout(() => {
+                        formStatus.style.display = 'none';
+                        errorMessage.style.display = 'none';
+                    }, 5000);
+                })
+                .finally(() => {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Request';
+                });
+                */
+                
+                // For demonstration purposes, we'll use setTimeout to simulate a server request
+                setTimeout(() => {
+                    // Log form data to console (for development purposes)
+                    console.log('Form data:', formDataJSON);
+                    
+                    // Simulate successful submission
+                    const success = true;
+                    
+                    formStatus.style.display = 'block';
+                    
+                    if (success) {
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        errorMessage.style.display = 'none';
+                        
+                        // Reset form
+                        form.reset();
+                        
+                        // Store submission in localStorage (optional, for demo purposes)
+                        try {
+                            const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                            submissions.push({
+                                ...formDataJSON,
+                                timestamp: new Date().toISOString()
+                            });
+                            localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+                        } catch (e) {
+                            console.error('Error storing submission:', e);
+                        }
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            formStatus.style.display = 'none';
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        // Show error message
+                        successMessage.style.display = 'none';
+                        errorMessage.style.display = 'block';
+                        
+                        // Hide error message after 5 seconds
+                        setTimeout(() => {
+                            formStatus.style.display = 'none';
+                            errorMessage.style.display = 'none';
+                        }, 5000);
+                    }
+                    
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Request';
+                }, 1500); // Simulate network delay
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <a href="V1.5.0.html" class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="width: 60px; height: 60px;">
+                    </div>
+                </a>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <a href="V1.5.0.html" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-inner">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>Reach out to our team to learn how our social engineering protection services can safeguard your organization.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get in Touch</h2>
+                <p>Contact us today to schedule a free consultation or learn more about our services</p>
+            </div>
+            <div class="contact-columns">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>
+                            <i>📞</i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                <a href="tel:+18005551234" style="color: var(--secondary-color); text-decoration: none;">+1 (800) 555-1234</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i>✉️</i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <a href="mailto:info@rcsecurity.com" style="color: var(--secondary-color); text-decoration: none;">info@rcsecurity.com</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i>📍</i>
+                            <div>
+                                <strong>Office</strong><br>
+                                123 Security Ave, Suite 500<br>
+                                Cyber City, CS 12345
+                            </div>
+                        </li>
+                        <li>
+                            <i>🕒</i>
+                            <div>
+                                <strong>Hours</strong><br>
+                                Monday - Friday: 9:00 AM - 5:00 PM<br>
+                                Weekend: Closed
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#" title="LinkedIn">in</a>
+                            <a href="#" title="Twitter">𝕏</a>
+                            <a href="#" title="Facebook">f</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name*</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address*</label>
+                            <input type="email" id="email" name="email" placeholder="Your email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interest*</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="risk-assessment">Social Engineering Risk Assessment</option>
+                                <option value="simulated-attacks">Simulated Attack Exercises</option>
+                                <option value="security-training">Security Awareness Training</option>
+                                <option value="vulnerability-management">Vulnerability Management</option>
+                                <option value="incident-response">Incident Response</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your security needs" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent">I consent to having this website store my submitted information so they can respond to my inquiry.*</label>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" id="submitContactForm" class="btn-primary">Submit Request</button>
+                        </div>
+                        
+                        <div id="formStatus" style="margin-top: 15px; text-align: center; display: none;">
+                            <p id="successMessage" style="color: #198754; background-color: #d1e7dd; padding: 10px; border-radius: 4px; display: none;">Thank you for your message! We'll be in touch shortly.</p>
+                            <p id="errorMessage" style="color: #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 4px; display: none;">Something went wrong. Please try again later.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                        <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="V1.5.0.html#services">Vulnerability Management</a></li>
+                        <li><a href="V1.5.0.html#services">Incident Response</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="V1.5.0.html#testimonials">About Us</a></li>
+                        <li><a href="V1.5.0.html#testimonials">Our Team</a></li>
+                        <li><a href="V1.5.0.html#testimonials">Careers</a></li>
+                        <li><a href="V1.5.0.html#testimonials">Partners</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                        <li><a href="mailto:info@rcsecurity.com">info@rcsecurity.com</a></li>
+                        <li><a href="contact.html">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
