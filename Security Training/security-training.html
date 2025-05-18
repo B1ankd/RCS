@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Security Awareness Training | RCS Security</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         /* Core styles from main page */
         :root {
             --primary-color: #970c1c;
@@ -392,6 +395,27 @@
             }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -602,7 +626,7 @@
             <div class="cta-content">
                 <h2>Ready to Transform Your Security Culture?</h2>
                 <p>Contact us today to schedule a consultation and learn how our security awareness training can empower your employees to become your strongest security asset.</p>
-                <a href="V1.5.0.html#contact" class="btn btn-white">Schedule a Consultation</a>
+                <a href="contact.html" class="btn btn-white">Schedule a Consultation</a>
             </div>
         </div>
     </section>
@@ -628,7 +652,7 @@
                         <li><a href="V1.5.0.html#testimonials">Our Team</a></li>
                         <li><a href="V1.5.0.html#testimonials">Careers</a></li>
                         <li><a href="V1.5.0.html#testimonials">Partners</a></li>
-                        <li><a href="V1.5.0.html#contact">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -636,7 +660,7 @@
                     <ul class="footer-links">
                         <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
                         <li><a href="mailto:info@rcsecurity.com">info@rcsecurity.com</a></li>
-                        <li><a href="V1.5.0.html#contact">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
+                        <li><a href="contact.html">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
                     </ul>
                 </div>
             </div>
