@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Services Security Solutions | RCS Security</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Core styles from main page */
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+            --sidebar-fixed-top: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 180px;
+            border-radius: 3px;
+            padding: 5px 0;
+            display: none;
+            z-index: 100;
+        }
+        
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .dropdown-menu a {
+            padding: 5px 15px;
+            font-size: 13px;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 7.5px 15px; /* Increased by 1.25x */
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px; /* Increased by 1.25x */
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px; /* Increased by 1.25x */
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+
+        /* Dropdown arrow positioning fix */
+        .nav-links a.has-dropdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links a.has-dropdown::after {
+            margin-left: 8px;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-right: 15px;
+        }
+        
+        .search-input {
+            padding: 4px 10px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 12px;
+            width: 140px;
+            transition: width 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .search-input:focus {
+            width: 180px;
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .search-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .search-suggestions.show {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .search-suggestion-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .search-suggestion-item .suggestion-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .search-suggestion-item .suggestion-category {
+            font-size: 11px;
+            color: #777;
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                margin-right: 0;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 15px;
+            }
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 80px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        .content-text {
+            flex: 1;
+        }
+        
+        .content-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .content-text p {
+            margin-bottom: 20px;
+        }
+        
+        .content-text ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .content-text li {
+            margin-bottom: 10px;
+        }
+        
+        .content-image {
+            flex: 1;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .content-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-card h3 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            color: var(--dark-gray);
+        }
+        
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .btn-white:hover {
+            background-color: #f0f0f0;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+        }
+        
+        .vulnerability-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .vulnerability-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .solution-card {
+            background-color: var(--light-gray);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .solution-card h4 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+            }
+            
+            .content-image {
+                margin-top: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const initSearch = () => {
+                const searchInput = document.getElementById('searchInput');
+                const searchBtn = document.getElementById('searchBtn');
+                const searchSuggestions = document.getElementById('searchSuggestions');
+                
+                // Define searchable content with keywords and links
+                const searchContent = [
+                    {
+                        title: 'Social Engineering Risk Assessment',
+                        category: 'Service',
+                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
+                        url: '../risk-assessment.html'
+                    },
+                    {
+                        title: 'Simulated Attack Exercises',
+                        category: 'Service',
+                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
+                        url: '../simulated-attacks.html'
+                    },
+                    {
+                        title: 'Security Awareness Training',
+                        category: 'Service',
+                        keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
+                        url: '../security-training.html'
+                    },
+                    {
+                        title: 'Contact Us',
+                        category: 'Page',
+                        keywords: ['contact', 'email', 'phone', 'support', 'help', 'reach out'],
+                        url: '../contact.html'
+                    },
+                    {
+                        title: 'Enterprise Security',
+                        category: 'Solution',
+                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
+                        url: '#approach'
+                    },
+                    {
+                        title: 'Human Firewall Program',
+                        category: 'Solution',
+                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
+                        url: '#approach'
+                    },
+                    {
+                        title: 'Financial Services',
+                        category: 'Industry',
+                        keywords: ['finance', 'banking', 'financial', 'investment'],
+                        url: 'financial-services.html'
+                    },
+                    {
+                        title: 'Healthcare',
+                        category: 'Industry',
+                        keywords: ['health', 'medical', 'hospital', 'clinic', 'patient'],
+                        url: 'healthcare.html'
+                    },
+                    {
+                        title: 'Government',
+                        category: 'Industry',
+                        keywords: ['government', 'public sector', 'municipal', 'federal', 'state'],
+                        url: 'government.html'
+                    },
+                    {
+                        title: 'Educational Institutions',
+                        category: 'Industry',
+                        keywords: ['education', 'school', 'university', 'college', 'academic'],
+                        url: 'educational-institutions.html'
+                    },
+                    {
+                        title: 'Retail',
+                        category: 'Industry',
+                        keywords: ['retail', 'store', 'shop', 'ecommerce', 'merchant'],
+                        url: 'retail.html'
+                    },
+                    {
+                        title: 'Manufacturing',
+                        category: 'Industry',
+                        keywords: ['manufacturing', 'factory', 'production', 'industrial'],
+                        url: 'manufacturing.html'
+                    },
+                    {
+                        title: 'Technology',
+                        category: 'Industry',
+                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware'],
+                        url: 'technology.html'
+                    },
+                    {
+                        title: 'Law Firms',
+                        category: 'Industry',
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm'],
+                        url: 'law-firms.html'
+                    },
+                    {
+                        title: 'Non-profits',
+                        category: 'Industry',
+                        keywords: ['non-profit', 'ngo', 'charity', 'foundation', 'organization'],
+                        url: 'non-profits.html'
+                    },
+                    {
+                        title: 'Insurance',
+                        category: 'Industry',
+                        keywords: ['insurance', 'insurer', 'policy', 'coverage', 'risk'],
+                        url: 'insurance.html'
+                    },
+                    {
+                        title: 'Energy and Utility',
+                        category: 'Industry',
+                        keywords: ['energy', 'utility', 'power', 'electricity', 'infrastructure'],
+                        url: 'energy-and-utility.html'
+                    },
+                    {
+                        title: 'About Us',
+                        category: 'Company',
+                        keywords: ['about', 'company', 'history', 'mission', 'values'],
+                        url: '#testimonials'
+                    }
+                ];
+                
+                // Function to search and display results
+                const performSearch = (query) => {
+                    // Clear previous suggestions
+                    searchSuggestions.innerHTML = '';
+                    
+                    if (!query || query.length < 2) {
+                        searchSuggestions.classList.remove('show');
+                        return;
+                    }
+                    
+                    const normalizedQuery = query.toLowerCase().trim();
+                    const results = [];
+                    
+                    // Search in titles and keywords
+                    searchContent.forEach(item => {
+                        // Check title
+                        if (item.title.toLowerCase().includes(normalizedQuery)) {
+                            results.push(item);
+                            return;
+                        }
+                        
+                        // Check keywords
+                        for (const keyword of item.keywords) {
+                            if (keyword.toLowerCase().includes(normalizedQuery)) {
+                                results.push(item);
+                                return;
+                            }
+                        }
+                    });
+                    
+                    // Display results
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.className = 'search-suggestion-item';
+                            suggestionItem.innerHTML = `
+                                <span class="suggestion-title">${result.title}</span>
+                                <span class="suggestion-category">${result.category}</span>
+                            `;
+                            suggestionItem.addEventListener('click', () => {
+                                window.location.href = result.url;
+                            });
+                            searchSuggestions.appendChild(suggestionItem);
+                        });
+                        searchSuggestions.classList.add('show');
+                    } else {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'search-suggestion-item';
+                        noResults.textContent = 'No results found';
+                        searchSuggestions.appendChild(noResults);
+                        searchSuggestions.classList.add('show');
+                    }
+                };
+                
+                // Search input event listeners
+                if (searchInput) {
+                    searchInput.addEventListener('focus', () => {
+                        if (searchInput.value.length >= 2) {
+                            performSearch(searchInput.value);
+                        }
+                    });
+                    
+                    searchInput.addEventListener('input', () => {
+                        performSearch(searchInput.value);
+                    });
+                    
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            
+                            // If there's only one result, navigate to it
+                            const suggestionItems = searchSuggestions.querySelectorAll('.search-suggestion-item');
+                            if (suggestionItems.length === 1 && !suggestionItems[0].textContent.includes('No results found')) {
+                                suggestionItems[0].click();
+                            }
+                        }
+                    });
+                }
+                
+                // Search button event listener
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', () => {
+                        performSearch(searchInput.value);
+                    });
+                }
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.classList.remove('show');
+                    }
+                });
+            };
+            
+            // Initialize search when document is ready
+            initSearch();
+        });
+    </script>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#services" class="has-dropdown">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
+                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="../security-training.html">Security Awareness Training</a></li>
+                            <li><a href="#services">Vulnerability Management</a></li>
+                            <li><a href="#services">Incident Response</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#approach" class="has-dropdown">Solutions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#approach">Enterprise Security</a></li>
+                            <li><a href="#approach">Human Firewall Program</a></li>
+                            <li><a href="#approach">Compliance & Regulations</a></li>
+                            <li><a href="#approach">Managed Security Services</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#impact" class="has-dropdown">Industries</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="financial-services.html">Financial Services</a></li>
+                            <li><a href="healthcare.html">Healthcare</a></li>
+                            <li><a href="government.html">Government</a></li>
+                            <li><a href="educational-institutions.html">Educational Institutions</a></li>
+                            <li><a href="retail.html">Retail</a></li>
+                            <li><a href="manufacturing.html">Manufacturing</a></li>
+                            <li><a href="technology.html">Technology</a></li>
+                            <li><a href="law-firms.html">Law Firms</a></li>
+                            <li><a href="non-profits.html">Non-profits</a></li>
+                            <li><a href="insurance.html">Insurance</a></li>
+                            <li><a href="energy-and-utility.html">Energy and Utility</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#impact" class="has-dropdown">Resources</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#impact">Blog</a></li>
+                            <li><a href="#impact">Whitepapers</a></li>
+                            <li><a href="#impact">Case Studies</a></li>
+                            <li><a href="#impact">Webinars</a></li>
+                            <li><a href="#impact">Security Toolkit</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#testimonials" class="has-dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#testimonials">Our Team</a></li>
+                            <li><a href="#testimonials">Company History</a></li>
+                            <li><a href="#testimonials">Careers</a></li>
+                            <li><a href="#testimonials">Partners</a></li>
+                            <li><a href="#testimonials">Press Releases</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+                        <button class="search-btn" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <a href="../index.html" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Financial Services Security Solutions</h1>
+                <p>Protecting financial institutions from social engineering threats with specialized security strategies tailored to your unique challenges.</p>
+                <a href="#vulnerabilities" class="btn">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Industry Overview -->
+    <section id="overview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Financial Services Security Challenges</h2>
+                <p>Understanding the unique threats and vulnerabilities in the financial services sector</p>
+            </div>
+            <div class="content-section">
+                <div class="content-text">
+                    <h3>Why Financial Services Organizations Need Specialized Protection</h3>
+                    <p>In financial services, your greatest asset is also your greatest vulnerability: trust. Your employees are trained to be responsive and service-oriented, creating perfect targets for social engineers.</p>
+                    <p>At RCS Security, we understand the specific challenges that financial institutions face when it comes to cybersecurity and social engineering attacks.</p>
+                    <ul>
+                        <li><strong>Customer trust exploitation</strong>: Your employees are susceptible to social engineering attacks impersonating clients, regulators, or executives</li>
+                        <li><strong>Time-sensitive transaction pressure</strong>: Staff may bypass verification protocols when faced with "critical" requests, creating vulnerability to urgency-based manipulation</li>
+                        <li><strong>Complex regulatory compliance</strong>: Often distracts from operational security while creating opportunities for targeted attacks</li>
+                        <li><strong>Fintech integration</strong>: Creates security gaps between legacy systems and newer technologies</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <img src="/api/placeholder/500/300" alt="Financial Services Security">
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>$5.08M</h3>
+                    <p>Average breach cost for medium-sized financial institutions</p>
+                </div>
+                <div class="stat-card">
+                    <h3>51 days</h3>
+                    <p>Average recovery time, with reputation damage accounting for $1.47 million</p>
+                </div>
+                <div class="stat-card">
+                    <h3>130</h3>
+                    <p>Attempted security incidents daily for financial institutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Vulnerabilities Section -->
+    <section id="vulnerabilities" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Common Financial Services Vulnerabilities</h2>
+                <p>The social engineering attack vectors specifically targeting financial institutions</p>
+            </div>
+            
+            <div class="vulnerability-card">
+                <h3>Customer Trust Exploitation</h3>
+                <p>Social engineers specifically target your staff through customer trust relationships, leveraging the service-oriented nature of financial employees. Attackers impersonate clients, partners, or regulators to manipulate staff into taking actions that compromise security.</p>
+                <div class="solution-card">
+                    <h4>Our Solution</h4>
+                    <p>We conduct targeted spear-phishing campaigns using regulatory compliance notifications and client impersonation scenarios to test and strengthen your team's ability to verify identities even when under pressure to provide service.</p>
+                </div>
+            </div>
+            
+            <div class="vulnerability-card">
+                <h3>Urgency-Based Manipulation</h3>
+                <p>Time-sensitive transaction pressures lead staff to bypass verification protocols when faced with "critical" requests. Attackers create artificial urgency to force quick decisions that circumvent security procedures.</p>
+                <div class="solution-card">
+                    <h4>Our Solution</h4>
+                    <p>Our simulated financial transaction process testing attempts to bypass dual-control requirements, helping your team recognize and resist urgency-based manipulation tactics even under pressure.</p>
+                </div>
+            </div>
+            
+            <div class="vulnerability-card">
+                <h3>Executive Impersonation</h3>
+                <p>Authority bias makes financial employees vulnerable to executive impersonation attacks. These sophisticated social engineering tactics leverage organizational hierarchy to execute fraudulent transactions or extract sensitive information.</p>
+                <div class="solution-card">
+                    <h4>Our Solution</h4>
+                    <p>We conduct executive impersonation scenarios testing authority-based vulnerabilities, helping your team develop verification protocols that work even when requests appear to come from leadership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Solution Offerings -->
+    <section id="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Financial Services Security Solutions</h2>
+                <p>Customized services designed specifically for the financial sector</p>
+            </div>
+            <div class="content-section">
+                <div class="content-text">
+                    <h3>Tailored Protection for Financial Institutions</h3>
+                    <p>Our financial services security solutions are built on deep industry knowledge and extensive experience working with organizations in your sector.</p>
+                    <ul>
+                        <li><strong>Targeted Spear-Phishing Campaigns</strong>: Using regulatory compliance notifications and executive impersonation to test and strengthen your team's resilience</li>
+                        <li><strong>Vishing Assessments</strong>: Simulating clients requesting urgent account changes to evaluate your staff's adherence to verification protocols</li>
+                        <li><strong>Financial Transaction Process Testing</strong>: Attempting to bypass dual-control requirements to identify procedural weaknesses</li>
+                        <li><strong>New Client Onboarding Exploitation</strong>: Testing KYC verification procedures to ensure they're resistant to social engineering</li>
+                        <li><strong>Help Desk Testing</strong>: Attempting password resets through social engineering to verify your authentication protocols</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <img src="/api/placeholder/500/300" alt="Financial Services Solutions">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Protect Your Financial Institution</h2>
+                <p>Don't wait for criminals to exploit your team's trust-based vulnerabilities. Contact our team of financial security specialists to discuss your specific needs and challenges.</p>
+                <a href="contact.html" class="btn btn-white">Schedule Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                        <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="#services">Vulnerability Management</a></li>
+                        <li><a href="#services">Incident Response</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#testimonials">About Us</a></li>
+                        <li><a href="#testimonials">Our Team</a></li>
+                        <li><a href="#testimonials">Careers</a></li>
+                        <li><a href="#testimonials">Partners</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#impact">Blog</a></li>
+                        <li><a href="#impact">Whitepapers</a></li>
+                        <li><a href="#impact">Case Studies</a></li>
+                        <li><a href="#impact">Webinars</a></li>
+                        <li><a href="#impact">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                        <li><a href="mailto:info@rcsecurity.com">info@rcsecurity.com</a></li>
+                        <li><a href="contact.html">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
