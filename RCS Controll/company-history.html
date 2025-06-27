@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company History | RCS Security - Red Cell Legacy</title>
+    <style>
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 7.5px 15px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+        
+        .nav-links .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 180px;
+            border-radius: 3px;
+            padding: 5px 0;
+            display: none;
+            z-index: 100;
+        }
+        
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .dropdown-menu a {
+            padding: 5px 15px;
+            font-size: 13px;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-right: 15px;
+        }
+        
+        .search-input {
+            padding: 4px 10px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 12px;
+            width: 140px;
+            transition: width 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .search-input:focus {
+            width: 180px;
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .search-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .search-suggestions.show {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .search-suggestion-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .search-suggestion-item .suggestion-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .search-suggestion-item .suggestion-category {
+            font-size: 11px;
+            color: #777;
+            margin-left: 5px;
+        }
+        
+        .nav-links a.has-dropdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links a.has-dropdown::after {
+            margin-left: 8px;
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 100px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--dark-gray);
+        }
+        
+        /* Main layout structure */
+        .main-content-wrapper {
+            position: relative;
+        }
+        
+        .main-content {
+            max-width: 100%;
+        }
+        
+        
+        .timeline-content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 50px;
+        }
+        
+        .timeline-event {
+            padding: 30px 0;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            position: relative;
+        }
+        
+        .timeline-event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-event-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-event-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .timeline-event-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+        
+        .quote-section {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .quote-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .quote {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quote blockquote {
+            font-size: 28px;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .quote blockquote::before {
+            content: '"';
+            font-size: 60px;
+            color: var(--primary-color);
+            position: absolute;
+            left: -30px;
+            top: -10px;
+        }
+        
+        .quote blockquote::after {
+            content: '"';
+            font-size: 60px;
+            color: var(--primary-color);
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+        }
+        
+        .quote-author {
+            font-size: 18px;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .principle-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .principle-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .principle-card p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            
+            .timeline-content-wrapper {
+                padding-left: 0;
+                margin-bottom: 70px;
+            }
+            
+            .quote blockquote {
+                font-size: 22px;
+            }
+            
+            .quote blockquote::before,
+            .quote blockquote::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const initSearch = () => {
+                const searchInput = document.getElementById('searchInput');
+                const searchBtn = document.getElementById('searchBtn');
+                const searchSuggestions = document.getElementById('searchSuggestions');
+                
+                // Define searchable content with keywords and links
+                const searchContent = [
+                    // Main Pages
+                    {
+                        title: 'Home',
+                        category: 'Page',
+                        keywords: ['home', 'main', 'landing', 'social engineering', 'security'],
+                        url: 'index.html'
+                    },
+                    {
+                        title: 'Contact Us',
+                        category: 'Page',
+                        keywords: ['contact', 'email', 'support', 'help', 'reach out', 'get in touch'],
+                        url: 'contact.html'
+                    },
+                    {
+                        title: 'FAQ',
+                        category: 'Page',
+                        keywords: ['faq', 'questions', 'answers', 'help', 'frequently asked', 'support'],
+                        url: 'faq.html'
+                    },
+                    // Services
+                    {
+                        title: 'Social Engineering Risk Assessment',
+                        category: 'Service',
+                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
+                        url: 'risk-assessment.html'
+                    },
+                    {
+                        title: 'Simulated Attack Exercises',
+                        category: 'Service',
+                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
+                        url: 'simulated-attacks.html'
+                    },
+                    {
+                        title: 'Security Awareness Training',
+                        category: 'Service',
+                        keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
+                        url: 'security-training.html'
+                    },
+                    // Company Pages
+                    {
+                        title: 'Company History',
+                        category: 'Company',
+                        keywords: ['about', 'company', 'history', 'red cell', 'legacy', 'background'],
+                        url: 'company-history.html'
+                    },
+                    {
+                        title: 'Mission & Values',
+                        category: 'Company',
+                        keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
+                        url: 'mission-values.html'
+                    },
+                    // Active Industries
+                    {
+                        title: 'Healthcare Security',
+                        category: 'Industry',
+                        keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
+                        url: 'Industries/healthcare.html'
+                    },
+                    {
+                        title: 'Law Firm Security',
+                        category: 'Industry',
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
+                        url: 'Industries/law-firms.html'
+                    },
+                    {
+                        title: 'Educational Institutions Security',
+                        category: 'Industry',
+                        keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
+                        url: 'Industries/educational-institutions.html'
+                    },
+                    {
+                        title: 'Technology Security',
+                        category: 'Industry',
+                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'development'],
+                        url: 'Industries/technology.html'
+                    },
+                    // Solutions/Concepts
+                    {
+                        title: 'Enterprise Security',
+                        category: 'Solution',
+                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
+                        url: '#approach'
+                    },
+                    {
+                        title: 'Human Firewall Program',
+                        category: 'Solution',
+                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
+                        url: '#approach'
+                    }
+                ];
+                
+                // Function to search and display results
+                const performSearch = (query) => {
+                    // Clear previous suggestions
+                    searchSuggestions.innerHTML = '';
+                    
+                    if (!query || query.length < 2) {
+                        searchSuggestions.classList.remove('show');
+                        return;
+                    }
+                    
+                    const normalizedQuery = query.toLowerCase().trim();
+                    const results = [];
+                    
+                    // Search in titles and keywords
+                    searchContent.forEach(item => {
+                        // Check title
+                        if (item.title.toLowerCase().includes(normalizedQuery)) {
+                            results.push(item);
+                            return;
+                        }
+                        
+                        // Check keywords
+                        for (const keyword of item.keywords) {
+                            if (keyword.toLowerCase().includes(normalizedQuery)) {
+                                results.push(item);
+                                return;
+                            }
+                        }
+                    });
+                    
+                    // Display results
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.className = 'search-suggestion-item';
+                            suggestionItem.innerHTML = `
+                                <span class="suggestion-title">${result.title}</span>
+                                <span class="suggestion-category">${result.category}</span>
+                            `;
+                            suggestionItem.addEventListener('click', () => {
+                                window.location.href = result.url;
+                            });
+                            searchSuggestions.appendChild(suggestionItem);
+                        });
+                        searchSuggestions.classList.add('show');
+                    } else {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'search-suggestion-item';
+                        noResults.textContent = 'No results found';
+                        searchSuggestions.appendChild(noResults);
+                        searchSuggestions.classList.add('show');
+                    }
+                };
+                
+                // Search input event listeners
+                if (searchInput) {
+                    searchInput.addEventListener('focus', () => {
+                        if (searchInput.value.length >= 2) {
+                            performSearch(searchInput.value);
+                        }
+                    });
+                    
+                    searchInput.addEventListener('input', () => {
+                        performSearch(searchInput.value);
+                    });
+                    
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            
+                            // If there's only one result, navigate to it
+                            const suggestionItems = searchSuggestions.querySelectorAll('.search-suggestion-item');
+                            if (suggestionItems.length === 1 && !suggestionItems[0].textContent.includes('No results found')) {
+                                suggestionItems[0].click();
+                            }
+                        }
+                    });
+                }
+                
+                // Search button event listener
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', () => {
+                        performSearch(searchInput.value);
+                    });
+                }
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.classList.remove('show');
+                    }
+                });
+            };
+            
+            // Initialize search
+            initSearch();
+        });
+    </script>
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="index.html#services" class="has-dropdown">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="risk-assessment.html">Social Engineering Risk Assessment</a></li>
+                            <li><a href="simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="security-training.html">Security Awareness Training</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="index.html#impact" class="has-dropdown">Industries</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Industries/healthcare.html">Healthcare</a></li>
+                            <li><a href="Industries/law-firms.html">Law Firms</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="company-history.html" class="has-dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="company-history.html">Company History</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="mission-values.html">Mission & Values</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+                        <button class="search-btn" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <a href="index.html" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Our Legacy: Born from Naval Excellence</h1>
+            <p>The story of RCS Security begins with the revolutionary Naval Red Cell unit that transformed security testing in the 1980s, establishing principles that guide our mission today.</p>
+        </div>
+    </section>
+
+    <div class="main-content-wrapper">
+        
+        <div class="main-content">
+            <section class="content-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>The Red Cell Legacy</h2>
+                        <p>Understanding our foundation in military excellence and security innovation</p>
+                    </div>
+                    
+                    <div class="timeline-content-wrapper">
+                        <div id="event-1983" class="timeline-event">
+                            <div class="timeline-event-content">
+                                <h3>A Critical Moment (1983)</h3>
+                                <p>Following the devastating Marine barracks bombing in Beirut that killed 241 American servicemen, Vice Admiral James "Ace" Lyons recognized the Navy's dangerous complacency toward terrorist threats. This tragedy sparked the need for a revolutionary approach to security testing.</p>
+                            </div>
+                        </div>
+
+                        <div id="event-1984" class="timeline-event">
+                            <div class="timeline-event-content">
+                                <h3>Red Cell Formation (1984)</h3>
+                                <p>Commander Richard "Demo Dick" Marcinko was tasked with creating an elite unit that would expose security vulnerabilities before real terrorists could exploit them. Red Cell was born—14 elite operators who would think like the enemy to protect American interests.</p>
+                            </div>
+                        </div>
+
+                        <div id="event-1984-1986" class="timeline-event">
+                            <div class="timeline-event-content">
+                                <h3>Revolutionary Operations (1984-1986)</h3>
+                                <p>Red Cell pioneered modern red teaming by combining physical penetration, social engineering, and psychological warfare. Their operations exposed critical vulnerabilities at Naval facilities, including successfully "attacking" bases housing nuclear submarines and even Air Force One.</p>
+                            </div>
+                        </div>
+
+                        <div id="event-1990s-2000s" class="timeline-event">
+                            <div class="timeline-event-content">
+                                <h3>Commercial Evolution (1990s-2000s)</h3>
+                                <p>As the internet commercialized, former military operators brought their expertise to the private sector. Companies founded by Red Cell alumni pioneered physical penetration testing as a commercial service, establishing the foundation for today's cybersecurity industry.</p>
+                            </div>
+                        </div>
+
+                        <div id="event-present" class="timeline-event">
+                            <div class="timeline-event-content">
+                                <h3>RCS Security (Present Day)</h3>
+                                <p>Today, RCS Security carries forward the Red Cell legacy, applying proven military methodologies to protect healthcare facilities, law firms, and organizations handling sensitive information. We maintain the warrior ethos while operating within professional ethical frameworks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="quote-section">
+                <div class="container">
+                    <div class="quote">
+                        <blockquote>The best defense comes from understanding the offense</blockquote>
+                        <div class="quote-author">— Core principle from Naval Red Cell operations</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <div class="content-wrapper">
+                        <div class="section-title">
+                            <h2>Founding Principles That Guide Us</h2>
+                            <p>The warrior ethos and operational excellence that defined Red Cell continue to shape our approach</p>
+                        </div>
+
+                        <div class="principles-grid">
+                            <div class="principle-card">
+                                <h4 style="color: var(--primary-color);">Mission-First Mentality</h4>
+                                <p>"We were mission oriented and would do what we had to do to achieve it." This dedication to protecting our clients drives every assessment and training program we deliver.</p>
+                            </div>
+
+                            <div class="principle-card">
+                                <h4 style="color: var(--primary-color);">Realistic Testing</h4>
+                                <p>"The more you sweat in training, the less you bleed in combat." We create exercises so realistic they expose vulnerabilities that checkbox compliance miss, because comfortable training produces vulnerable organizations.</p>
+                            </div>
+
+                            <div class="principle-card">
+                                <h4 style="color: var(--primary-color);">Think Like the Enemy</h4>
+                                <p>Red Cell's revolutionary approach combined physical infiltration, social manipulation, and technical exploitation—proving that effective security requires understanding human psychology, not just technical vulnerabilities.</p>
+                            </div>
+
+                            <div class="principle-card">
+                                <h4 style="color: var(--primary-color);">Lead from the Front</h4>
+                                <p>"I will always lead you from the front, not the rear." Our consultants personally conduct assessments and training, bringing decades of experience to protect what matters most to your organization.</p>
+                            </div>
+
+                            <div class="principle-card">
+                                <h4 style="color: var(--primary-color);">Never Assume</h4>
+                                <p>"Thou shalt never assume" drives our continuous testing mentality. Security isn't a state achieved but a process maintained through vigilant assessment and adaptation to evolving threats.</p>
+                            </div>
+
+                            <div class="principle-card">
+                                <h4 style="color: var(--primary-color);">Professional Integrity</h4>
+                                <p>"Before the Warrior can face the enemy, the Warrior must face himself." We maintain the self-discipline and ethical grounding required to think like criminals while operating with professional integrity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="content-section" style="background-color: var(--primary-color); color: var(--white); text-align: center;">
+                <div class="container">
+                    <div class="content-wrapper">
+                        <h2 style="color: var(--white); margin-bottom: 20px;">Ready to Strengthen Your Human Firewall?</h2>
+                        <p style="color: var(--white); font-size: 18px; margin-bottom: 30px;">Contact us today to schedule a free consultation and discover how our social engineering protection services can safeguard your organization.</p>
+                        <a href="contact.html" class="btn" style="background-color: var(--white); color: var(--primary-color);">Schedule Consultation</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                        <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="security-training.html">Security Training</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Industries</h4>
+                    <ul class="footer-links">
+                        <li><a href="Industries/healthcare.html">Healthcare</a></li>
+                        <li><a href="Industries/law-firms.html">Law Firms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="company-history.html">Company History</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="mission-values.html">Mission & Values</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <!-- Phone number removed -->
+                        <li><a href="mailto:chris@redcellsecurity.com">chris@redcellsecurity.com</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hero section initial animation
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.opacity = '0';
+                hero.style.transform = 'translateY(50px)';
+                hero.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                
+                setTimeout(() => {
+                    hero.style.opacity = '1';
+                    hero.style.transform = 'translateY(0)';
+                }, 300);
+            }
+            
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            // Observe content sections
+            const sections = document.querySelectorAll('.content-section, .quote-section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Timeline events with staggered animation
+            const timelineEvents = document.querySelectorAll('.timeline-event');
+            const timelineObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = Array.from(timelineEvents).indexOf(entry.target) * 0.15;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, delay * 1000);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            timelineEvents.forEach(item => {
+                timelineObserver.observe(item);
+            });
+            
+            // Principle cards animation
+            const principleCards = document.querySelectorAll('.principle-card');
+            const cardsObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const cards = entry.target.parentElement.querySelectorAll('.principle-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 150);
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+            
+            if (principleCards.length > 0) {
+                // Set initial state for principle cards
+                principleCards.forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                });
+                
+                // Observe the container
+                const principlesGrid = document.querySelector('.principles-grid');
+                if (principlesGrid) {
+                    cardsObserver.observe(principlesGrid);
+                }
+            }
+            
+        });
+    </script>
+</body>
+</html>
