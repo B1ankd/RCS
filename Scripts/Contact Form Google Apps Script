@@ -1,0 +1,766 @@
+// Google Apps Script for RCS Contact Form
+// This script handles form submissions, saves to Google Sheets, and sends emails
+
+// Configuration
+const SPREADSHEET_ID = '1PxscgTQUlz-UVLHHEaeoWBeDxknDjteMyfid0Oie_N4';
+const SHEET_NAME = 'Sheet1'; // Update if your sheet has a different name
+const SENDER_EMAIL = 'mgmt.rcs@gmail.com';
+
+// Color configuration for lead age
+const LEAD_COLORS = {
+  NEW: '#00ff00',        // Green - 10 mins or newer
+  RECENT: '#00ffff',     // Cyan - 10-30 mins
+  MODERATE: '#ff00ff',   // Magenta - 30-60 mins
+  OLD: '#dc143c'         // Red berry - 60+ mins
+};
+
+// Web App entry point - handles POST requests
+function doPost(e) {
+  try {
+    // Parse the JSON data from the request
+    const data = JSON.parse(e.postData.contents);
+    
+    // Save to spreadsheet
+    saveToSpreadsheet(data);
+    
+    // Sort and color code leads
+    sortAndColorCodeLeads();
+    
+    // Send confirmation emails to the user
+    sendConfirmationEmail(data.email, data);
+    if (data.businessEmail && data.businessEmail !== data.email) {
+      sendConfirmationEmail(data.businessEmail, data);
+    } else if (data.businessEmail === data.email) {
+      // Still send two emails even if they're the same
+      sendConfirmationEmail(data.businessEmail, data);
+    }
+    
+    // Send notification email to management
+    sendNotificationEmail(data);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({status: 'success', message: 'Form submitted successfully'}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    console.error('Error processing form:', error);
+    return ContentService
+      .createTextOutput(JSON.stringify({status: 'error', message: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Save form data to Google Sheets
+function saveToSpreadsheet(data) {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  
+  // If this is the first entry, add headers
+  if (sheet.getLastRow() === 0) {
+    const headers = [
+      'Timestamp',
+      'First Name',
+      'Last Name',
+      'Phone',
+      'Email',
+      'Company Name',
+      'Business Email',
+      'Street Address',
+      'City',
+      'State',
+      'Country',
+      'Zip',
+      'Business Description',
+      'Employees',
+      'Services'
+    ];
+    sheet.appendRow(headers);
+  }
+  
+  // Prepare row data
+  const row = [
+    new Date(), // Timestamp
+    data.firstName || '',
+    data.lastName || '',
+    data.phone || '',
+    data.email || '',
+    data.companyName || '',
+    data.businessEmail || '',
+    data.streetAddress || '',
+    data.city || '',
+    data.state || '',
+    data.country || '',
+    data.zip || '',
+    data.businessJourney || '',
+    data.employees || '',
+    data.services ? data.services.join(', ') : ''
+  ];
+  
+  // Append the row
+  sheet.appendRow(row);
+}
+
+// Sort leads by timestamp (newest first) and apply color coding
+function sortAndColorCodeLeads() {
+  try {
+    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+    
+    // Get all data (excluding header row)
+    const lastRow = sheet.getLastRow();
+    if (lastRow <= 1) return; // No data to sort
+    
+    const lastCol = sheet.getLastColumn();
+    const dataRange = sheet.getRange(2, 1, lastRow - 1, lastCol);
+    const data = dataRange.getValues();
+    
+    // Sort data by timestamp (column A, index 0) in descending order
+    data.sort((a, b) => {
+      const dateA = new Date(a[0]);
+      const dateB = new Date(b[0]);
+      return dateB - dateA; // Newest first
+    });
+    
+    // Write sorted data back to sheet
+    dataRange.setValues(data);
+    
+    // Apply color coding
+    applyColorCoding(sheet);
+  } catch (error) {
+    console.error('Error in sortAndColorCodeLeads:', error);
+  }
+}
+
+// Apply color coding based on lead age
+function applyColorCoding(sheet) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return; // No data to color
+  
+  const now = new Date();
+  const timestampRange = sheet.getRange(2, 1, lastRow - 1, 1); // Column A only
+  const timestamps = timestampRange.getValues();
+  const backgrounds = [];
+  
+  timestamps.forEach(([timestamp]) => {
+    if (!timestamp || timestamp === '') {
+      backgrounds.push([null]); // No color for empty cells
+      return;
+    }
+    
+    const leadTime = new Date(timestamp);
+    const ageInMinutes = (now - leadTime) / (1000 * 60);
+    
+    let color;
+    if (ageInMinutes <= 10) {
+      color = LEAD_COLORS.NEW;
+    } else if (ageInMinutes <= 30) {
+      color = LEAD_COLORS.RECENT;
+    } else if (ageInMinutes <= 60) {
+      color = LEAD_COLORS.MODERATE;
+    } else {
+      color = LEAD_COLORS.OLD;
+    }
+    
+    backgrounds.push([color]);
+  });
+  
+  timestampRange.setBackgrounds(backgrounds);
+  
+  // Clean up any stray formatting
+  cleanupEmptyRows();
+}
+
+// Function to refresh colors (called by time-based trigger)
+function refreshLeadColors() {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  applyColorCoding(sheet);
+}
+
+// Function to handle manual row deletion (connected to onEdit trigger)
+function onEdit(e) {
+  // Check if we have valid event object
+  if (!e || !e.source) return;
+  
+  const sheet = e.source.getActiveSheet();
+  if (sheet.getName() !== SHEET_NAME) return;
+  
+  // Only process edits in the data area (row 2 and below)
+  const row = e.range.getRow();
+  if (row < 2) return;
+  
+  // Check if the timestamp cell (column A) was cleared
+  const col = e.range.getColumn();
+  if (col === 1 && (e.value === '' || e.value === null || e.value === undefined)) {
+    // Clear the background color of the edited cell
+    e.range.setBackground(null);
+  }
+  
+  // Check if entire row is cleared
+  const lastCol = sheet.getLastColumn();
+  const rowData = sheet.getRange(row, 1, 1, lastCol).getValues()[0];
+  const isRowEmpty = rowData.every(cell => cell === '' || cell === null);
+  
+  if (isRowEmpty) {
+    // Clear formatting for the entire row if it's empty
+    sheet.getRange(row, 1, 1, lastCol).setBackground(null);
+  } else {
+    // Re-sort and re-color after any edit to maintain order
+    sortAndColorCodeLeads();
+  }
+}
+
+// Function to handle row insertions/deletions (connected to onChange trigger)
+function onChange(e) {
+  // For onChange events, we don't get detailed info about what changed
+  // So we'll just re-sort and re-color the entire sheet
+  try {
+    sortAndColorCodeLeads();
+  } catch (error) {
+    console.error('Error in onChange:', error);
+  }
+}
+
+// Function to clean up any stray formatting in empty rows
+function cleanupEmptyRows() {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  const lastRow = sheet.getLastRow();
+  const maxRows = sheet.getMaxRows();
+  
+  // Clear formatting from any rows beyond the last row with data
+  if (lastRow < maxRows) {
+    const emptyRange = sheet.getRange(lastRow + 1, 1, maxRows - lastRow, 1);
+    emptyRange.setBackground(null);
+  }
+  
+  // Also check for empty rows within the data range
+  if (lastRow > 1) {
+    const dataRange = sheet.getRange(2, 1, lastRow - 1, 1);
+    const values = dataRange.getValues();
+    const backgrounds = dataRange.getBackgrounds();
+    
+    for (let i = 0; i < values.length; i++) {
+      if (values[i][0] === '' || values[i][0] === null) {
+        backgrounds[i][0] = null;
+      }
+    }
+    
+    dataRange.setBackgrounds(backgrounds);
+  }
+}
+
+// Send confirmation email to the user (RCS Security branded email)
+function sendConfirmationEmail(recipientEmail, data) {
+  const fullName = `${data.firstName} ${data.lastName}`;
+  const firstName = data.firstName;
+  
+  const subject = 'Welcome to RCS Security - Your Free Security Roadmap';
+  
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+    .email-wrapper {
+      background-color: #f4f4f4;
+      padding: 40px 20px;
+    }
+    .email-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .header {
+      background-color: #970c1c;
+      color: #ffffff;
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .content {
+      padding: 40px 40px;
+      color: #171717;
+    }
+    .greeting {
+      font-size: 24px;
+      color: #970c1c;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+      color: #393939;
+      margin-bottom: 20px;
+    }
+    .info-section {
+      background-color: #f4f4f4;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 8px;
+    }
+    .info-section h3 {
+      margin: 0 0 20px 0;
+      color: #171717;
+      font-size: 18px;
+    }
+    .info-row {
+      margin: 10px 0;
+      font-size: 15px;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #393939;
+    }
+    .info-value {
+      color: #171717;
+    }
+    .next-steps {
+      background-color: #171717;
+      color: #ffffff;
+      padding: 30px;
+      margin: 30px -40px;
+    }
+    .next-steps h3 {
+      margin: 0 0 20px 0;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .next-steps ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .next-steps li {
+      margin: 12px 0;
+      line-height: 1.8;
+    }
+    .cta-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #970c1c;
+      color: #ffffff !important;
+      padding: 15px 40px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .cta-button:visited {
+      color: #ffffff !important;
+    }
+    .footer {
+      background-color: #171717;
+      color: #f4f4f4;
+      padding: 25px 30px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .footer p {
+      color: #f4f4f4;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 600px) {
+      .email-wrapper {
+        padding: 20px 10px;
+      }
+      .content {
+        padding: 30px 20px;
+      }
+      .next-steps {
+        margin: 30px -20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-container">
+      <div class="header">
+        <h1>RCS Security</h1>
+      </div>
+      
+      <div class="content">
+        <h2 class="greeting">Welcome, ${firstName}!</h2>
+        
+        <p>Thank you for contacting RCS Security. We've received your information and will be in touch within 24-48 hours.</p>
+        
+        <div class="info-section">
+          <h3>Your Information</h3>
+          <div class="info-row">
+            <span class="info-label">Name:</span> <span class="info-value">${fullName}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Company:</span> <span class="info-value">${data.companyName}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email:</span> <span class="info-value">${data.businessEmail}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Phone:</span> <span class="info-value">${data.phone}</span>
+          </div>
+          ${data.services && data.services.length > 0 ? `
+          <div class="info-row">
+            <span class="info-label">Services Interested:</span> <span class="info-value">${data.services.join(', ')}</span>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="next-steps">
+          <h3>Next Steps</h3>
+          <ol>
+            <li>Check your email for your Free Security Roadmap</li>
+            <li>A security expert will contact you within 24-48 hours</li>
+            <li>We'll schedule a consultation to discuss your needs</li>
+          </ol>
+        </div>
+        
+        <div class="cta-section">
+          <a href="https://redcellsecurity.com" class="cta-button">Visit Our Website</a>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>RCS Security</p>
+        <p>chris@redcellsecurity.com</p>
+        <p style="opacity: 0.7; font-size: 12px;">This is an automated email. Please do not reply directly.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+  
+  // Send the email
+  MailApp.sendEmail({
+    to: recipientEmail,
+    subject: subject,
+    htmlBody: htmlBody,
+    name: 'RCS Security'
+  });
+}
+
+// Send notification email to management
+function sendNotificationEmail(data) {
+  const subject = `New Contact Form Submission - ${data.companyName}`;
+  
+  // Format the full address
+  const fullAddress = `${data.streetAddress}, ${data.city}, ${data.state} ${data.zip}, ${data.country}`;
+  
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+    .email-wrapper {
+      background-color: #f4f4f4;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .header {
+      background-color: #171717;
+      padding: 30px;
+      color: #ffffff;
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    .header .timestamp {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 8px;
+    }
+    .content {
+      padding: 30px;
+    }
+    .summary-section {
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+    .summary-section h3 {
+      margin: 0 0 15px 0;
+      font-size: 18px;
+      color: #171717;
+    }
+    .summary-item {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+    .summary-label {
+      font-weight: 600;
+      color: #393939;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      table-layout: auto;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #f4f4f4;
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .field-label {
+      font-weight: 600;
+      color: #393939;
+      width: 25%;
+      font-size: 14px;
+    }
+    .field-value {
+      color: #171717;
+      font-size: 15px;
+    }
+    .description-box {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 8px;
+      font-style: italic;
+    }
+    .footer {
+      background-color: #f4f4f4;
+      padding: 25px 30px;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+    }
+    .action-button {
+      display: inline-block;
+      background-color: #970c1c;
+      color: #ffffff !important;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      margin: 8px;
+    }
+    .action-button:visited {
+      color: #ffffff !important;
+    }
+    @media screen and (max-width: 600px) {
+      .email-wrapper {
+        padding: 20px 10px;
+      }
+      .action-button {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="container">
+      <div class="header">
+        <h2>New Contact Form Submission</h2>
+        <div class="timestamp">${new Date().toLocaleString()}</div>
+      </div>
+      
+      <div class="content">
+        <div class="summary-section">
+          <h3>Quick Summary</h3>
+          <div class="summary-item">
+            <span class="summary-label">Company:</span> ${data.companyName}
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Contact:</span> ${data.firstName} ${data.lastName}
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Employee Size:</span> ${data.employees}
+          </div>
+        </div>
+        
+        <table>
+          <tr>
+            <td class="field-label">Full Name</td>
+            <td class="field-value">${data.firstName} ${data.lastName}</td>
+          </tr>
+          <tr>
+            <td class="field-label">Company</td>
+            <td class="field-value">${data.companyName}</td>
+          </tr>
+          <tr>
+            <td class="field-label">Personal Email</td>
+            <td class="field-value">${data.email}</td>
+          </tr>
+          <tr>
+            <td class="field-label">Business Email</td>
+            <td class="field-value">${data.businessEmail}</td>
+          </tr>
+          <tr>
+            <td class="field-label">Phone</td>
+            <td class="field-value">${data.phone}</td>
+          </tr>
+          <tr>
+            <td class="field-label">Address</td>
+            <td class="field-value">${fullAddress}</td>
+          </tr>
+          <tr>
+            <td class="field-label">Services</td>
+            <td class="field-value">
+              ${data.services && data.services.length > 0 ? 
+                data.services.join(', ') : 
+                '<em>No services selected</em>'
+              }
+            </td>
+          </tr>
+          <tr>
+            <td class="field-label">Description</td>
+            <td class="field-value">
+              ${data.businessJourney ? 
+                `<div class="description-box">${data.businessJourney}</div>` : 
+                '<em>Not provided</em>'
+              }
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="footer">
+        <a href="https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}" class="action-button">View in Spreadsheet</a>
+        <a href="mailto:${data.businessEmail}" class="action-button">Contact Lead</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+  
+  // Send the notification email
+  MailApp.sendEmail({
+    to: SENDER_EMAIL,
+    subject: subject,
+    htmlBody: htmlBody,
+    name: 'RCS Contact Form System'
+  });
+}
+
+// Test function for development
+function testEmailFunctions() {
+  const testData = {
+    firstName: 'Test',
+    lastName: 'User',
+    phone: '(555) 123-4567',
+    email: 'test@example.com',
+    companyName: 'Test Company',
+    businessEmail: 'test@testcompany.com',
+    streetAddress: '123 Main St',
+    city: 'Testville',
+    state: 'FL',
+    country: 'United States',
+    zip: '12345',
+    businessJourney: 'We need security consulting services',
+    employees: '51-200',
+    services: ['Risk Assessment', 'Security Training', 'Simulated Attacks']
+  };
+  
+  // Test saving to spreadsheet
+  saveToSpreadsheet(testData);
+  
+  // Test sending emails (comment out to avoid sending test emails)
+  // sendConfirmationEmail(testData.email, testData);
+  // sendNotificationEmail(testData);
+  
+  console.log('Test completed');
+}
+
+// Function to set up all triggers automatically
+function setupAllTriggers() {
+  // Delete existing triggers to avoid duplicates
+  const triggers = ScriptApp.getProjectTriggers();
+  triggers.forEach(trigger => {
+    const handlerFunction = trigger.getHandlerFunction();
+    if (handlerFunction === 'refreshLeadColors' || 
+        handlerFunction === 'onEdit' || 
+        handlerFunction === 'onChange') {
+      ScriptApp.deleteTrigger(trigger);
+    }
+  });
+  
+  // Set up time-based trigger for color refresh (every minute)
+  ScriptApp.newTrigger('refreshLeadColors')
+    .timeBased()
+    .everyMinutes(1)
+    .create();
+  
+  // Set up onEdit trigger
+  ScriptApp.newTrigger('onEdit')
+    .forSpreadsheet(SPREADSHEET_ID)
+    .onEdit()
+    .create();
+  
+  // Set up onChange trigger for row deletions
+  ScriptApp.newTrigger('onChange')
+    .forSpreadsheet(SPREADSHEET_ID)
+    .onChange()
+    .create();
+  
+  console.log('All triggers set up successfully!');
+}
+
+// Manual function to initialize colors and sorting for existing data
+function initializeLeadManagement() {
+  sortAndColorCodeLeads();
+  setupAllTriggers();
+  console.log('Lead management initialized! Colors will refresh every minute.');
+}
+
+// SETUP INSTRUCTIONS:
+// 1. Save this script
+// 2. Run initializeLeadManagement() once - this will:
+//    - Sort and color-code existing data
+//    - Set up all triggers automatically (onEdit, onChange, and time-based refresh)
+// 3. Deploy as web app for form submissions (if not already done)
+// 
+// The script will now:
+// - Color code leads every minute
+// - Re-sort when new submissions come in
+// - Clear colors when rows are deleted
+// - Handle all edits properly
+// 
+// Color coding legend:
+// - Green: Leads 10 minutes or newer
+// - Cyan: Leads 10-30 minutes old
+// - Magenta: Leads 30-60 minutes old
+// - Red: Leads 60+ minutes old

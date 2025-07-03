@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Awareness Training | RCS Security</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Core styles from main page */
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+            --sidebar-fixed-top: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 180px;
+            border-radius: 3px;
+            padding: 5px 0;
+            display: none;
+            z-index: 100;
+        }
+        
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .dropdown-menu a {
+            padding: 5px 15px;
+            font-size: 13px;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 7.5px 15px; /* Increased by 1.25x */
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px; /* Increased by 1.25x */
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px; /* Increased by 1.25x */
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+
+        /* Dropdown arrow positioning fix */
+        .nav-links a.has-dropdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links a.has-dropdown::after {
+            margin-left: 8px;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-right: 15px;
+        }
+        
+        .search-input {
+            padding: 4px 10px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 12px;
+            width: 140px;
+            transition: width 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .search-input:focus {
+            width: 180px;
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .search-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .search-suggestions.show {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .search-suggestion-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .search-suggestion-item .suggestion-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .search-suggestion-item .suggestion-category {
+            font-size: 11px;
+            color: #777;
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                margin-right: 0;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 15px;
+            }
+        }
+
+        .hero-inner {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-inner h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-inner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            padding: 70px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .content-image {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .content-text p {
+            margin-bottom: 15px;
+        }
+
+        .content-text ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .content-text li {
+            margin-bottom: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: var(--dark-gray);
+            font-size: 15px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        .testimonial-content {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+            position: relative;
+        }
+        
+        .testimonial-content::before {
+            content: """;
+            font-size: 60px;
+            position: absolute;
+            left: -20px;
+            top: -20px;
+            color: rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--light-gray);
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--dark-gray);
+        }
+
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .btn-white:hover {
+            background-color: #f0f0f0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: var(--dark-gray);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+        }
+
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-inner h1 {
+                font-size: 32px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+    </head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Initial animation for hero section
+            const heroSectionAnimate = document.querySelector('.hero-inner');
+            if (heroSectionAnimate) {
+                heroSectionAnimate.style.opacity = '0';
+                heroSectionAnimate.style.transform = 'translateY(50px)';
+                heroSectionAnimate.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                
+                setTimeout(() => {
+                    heroSectionAnimate.style.opacity = '1';
+                    heroSectionAnimate.style.transform = 'translateY(0)';
+                }, 300);
+            }
+            
+            // Animate content columns with fade in effect
+            const contentColumns = document.querySelectorAll('.content-columns');
+            contentColumns.forEach(column => {
+                const contentImage = column.querySelector('.content-image');
+                const contentText = column.querySelector('.content-text');
+                
+                if (contentImage) {
+                    contentImage.style.opacity = '0';
+                    contentImage.style.transform = 'translateX(-30px)';
+                    contentImage.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                }
+                
+                if (contentText) {
+                    contentText.style.opacity = '0';
+                    contentText.style.transform = 'translateX(30px)';
+                    contentText.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                }
+            });
+            
+            const contentColumnsObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const contentImage = entry.target.querySelector('.content-image');
+                        const contentText = entry.target.querySelector('.content-text');
+                        
+                        if (contentImage) {
+                            contentImage.style.opacity = '1';
+                            contentImage.style.transform = 'translateX(0)';
+                        }
+                        
+                        if (contentText) {
+                            contentText.style.opacity = '1';
+                            contentText.style.transform = 'translateX(0)';
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+            
+            contentColumns.forEach(column => {
+                contentColumnsObserver.observe(column);
+            });
+            
+            // Search functionality
+            const initSearch = () => {
+                const searchInput = document.getElementById('searchInput');
+                const searchBtn = document.getElementById('searchBtn');
+                const searchSuggestions = document.getElementById('searchSuggestions');
+                
+                // Define searchable content with keywords and links
+                const searchContent = [
+                    // Main Pages
+                    {
+                        title: 'Home',
+                        category: 'Page',
+                        keywords: ['home', 'main', 'landing', 'social engineering', 'security'],
+                        url: 'index.html'
+                    },
+                    {
+                        title: 'Contact Us',
+                        category: 'Page',
+                        keywords: ['contact', 'email', 'support', 'help', 'reach out', 'get in touch'],
+                        url: 'contact.html'
+                    },
+                    {
+                        title: 'FAQ',
+                        category: 'Page',
+                        keywords: ['faq', 'questions', 'answers', 'help', 'frequently asked', 'support'],
+                        url: 'faq.html'
+                    },
+                    // Services
+                    {
+                        title: 'Social Engineering Risk Assessment',
+                        category: 'Service',
+                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
+                        url: 'risk-assessment.html'
+                    },
+                    {
+                        title: 'Simulated Attack Exercises',
+                        category: 'Service',
+                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
+                        url: 'simulated-attacks.html'
+                    },
+                    {
+                        title: 'Security Awareness Training',
+                        category: 'Service',
+                        keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
+                        url: 'security-training.html'
+                    },
+                    // Company Pages
+                    {
+                        title: 'Company History',
+                        category: 'Company',
+                        keywords: ['about', 'company', 'history', 'red cell', 'legacy', 'background'],
+                        url: 'company-history.html'
+                    },
+                    {
+                        title: 'Mission & Values',
+                        category: 'Company',
+                        keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
+                        url: 'mission-values.html'
+                    },
+                    // Active Industries
+                    {
+                        title: 'Healthcare Security',
+                        category: 'Industry',
+                        keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
+                        url: 'Industries/healthcare.html'
+                    },
+                    {
+                        title: 'Law Firm Security',
+                        category: 'Industry',
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
+                        url: 'Industries/law-firms.html'
+                    },
+                    {
+                        title: 'Educational Institutions Security',
+                        category: 'Industry',
+                        keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
+                        url: 'Industries/educational-institutions.html'
+                    },
+                    {
+                        title: 'Technology Security',
+                        category: 'Industry',
+                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'development'],
+                        url: 'Industries/technology.html'
+                    },
+                    // Solutions/Concepts
+                    {
+                        title: 'Enterprise Security',
+                        category: 'Solution',
+                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
+                        url: '#approach'
+                    },
+                    {
+                        title: 'Human Firewall Program',
+                        category: 'Solution',
+                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
+                        url: '#approach'
+                    }
+                ];
+                
+                // Function to search and display results
+                const performSearch = (query) => {
+                    // Clear previous suggestions
+                    searchSuggestions.innerHTML = '';
+                    
+                    if (!query || query.length < 2) {
+                        searchSuggestions.classList.remove('show');
+                        return;
+                    }
+                    
+                    const normalizedQuery = query.toLowerCase().trim();
+                    const results = [];
+                    
+                    // Search in titles and keywords
+                    searchContent.forEach(item => {
+                        // Check title
+                        if (item.title.toLowerCase().includes(normalizedQuery)) {
+                            results.push(item);
+                            return;
+                        }
+                        
+                        // Check keywords
+                        for (const keyword of item.keywords) {
+                            if (keyword.toLowerCase().includes(normalizedQuery)) {
+                                results.push(item);
+                                return;
+                            }
+                        }
+                    });
+                    
+                    // Display results
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.className = 'search-suggestion-item';
+                            suggestionItem.innerHTML = `
+                                <span class="suggestion-title">${result.title}</span>
+                                <span class="suggestion-category">${result.category}</span>
+                            `;
+                            suggestionItem.addEventListener('click', () => {
+                                window.location.href = result.url;
+                            });
+                            searchSuggestions.appendChild(suggestionItem);
+                        });
+                        searchSuggestions.classList.add('show');
+                    } else {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'search-suggestion-item';
+                        noResults.textContent = 'No results found';
+                        searchSuggestions.appendChild(noResults);
+                        searchSuggestions.classList.add('show');
+                    }
+                };
+                
+                // Search input event listeners
+                if (searchInput) {
+                    searchInput.addEventListener('focus', () => {
+                        if (searchInput.value.length >= 2) {
+                            performSearch(searchInput.value);
+                        }
+                    });
+                    
+                    searchInput.addEventListener('input', () => {
+                        performSearch(searchInput.value);
+                    });
+                    
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            
+                            // If there's only one result, navigate to it
+                            const suggestionItems = searchSuggestions.querySelectorAll('.search-suggestion-item');
+                            if (suggestionItems.length === 1 && !suggestionItems[0].textContent.includes('No results found')) {
+                                suggestionItems[0].click();
+                            }
+                        }
+                    });
+                }
+                
+                // Search button event listener
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', () => {
+                        performSearch(searchInput.value);
+                    });
+                }
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.classList.remove('show');
+                    }
+                });
+            };
+            
+            // Initialize search
+            initSearch();
+
+            // Add smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#services" class="has-dropdown">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="risk-assessment.html">Social Engineering Risk Assessment</a></li>
+                            <li><a href="simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="security-training.html">Security Awareness Training</a></li>
+                        </ul>
+                    </li>
+                    <!-- Solutions tab removed -->
+                    <li>
+                        <a href="#impact" class="has-dropdown">Industries</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Industries/healthcare.html">Healthcare</a></li>
+                            <li><a href="Industries/law-firms.html">Law Firms</a></li>
+                        </ul>
+                    </li>
+                    <!-- Resources tab removed -->
+                    <li>
+                        <a href="#testimonials" class="has-dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="company-history.html">Company History</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="mission-values.html">Mission & Values</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+                        <button class="search-btn" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <a href="index.html" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-inner">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Security Awareness Training</h1>
+                <p>Empower your employees with customized training programs designed to recognize and respond to social engineering tactics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Building Your Human Firewall</h2>
+                <p>Transform your employees from security vulnerabilities into your strongest defense</p>
+            </div>
+            <div class="content-columns">
+                <div class="content-text">
+                    <h3>Beyond Basic Awareness</h3>
+                    <p>Our Security Awareness Training goes beyond generic presentations to provide immersive, engaging education that changes security behavior. We help your employees understand not only what social engineering threats look like, but why they work and how to respond effectively.</p>
+                    <p>All programs are tailored to your organization's specific risks, industry, and culture to maximize relevance and retention.</p>
+                    <ul>
+                        <li>Customized curriculum based on your risk assessment</li>
+                        <li>Engaging delivery methods that accommodate different learning styles</li>
+                        <li>Real-world examples and interactive exercises</li>
+                        <li>Progressive learning paths for different roles and responsibilities</li>
+                        <li>Regular reinforcement and knowledge checks</li>
+                    </ul>
+                    <a href="#training-programs" class="btn">Explore Our Programs</a>
+                </div>
+                <div class="content-image">
+                    <img src="/api/placeholder/500/350" alt="Security Training" style="width: 100%; height: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs Section -->
+    <section class="section" style="background-color: var(--light-gray);" id="training-programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Training Approach</h2>
+                <p>Comprehensive programs designed for maximum effectiveness and engagement</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/60/60" alt="Baseline Training">
+                    </div>
+                    <h3>Core Awareness Program</h3>
+                    <p>Our foundation curriculum covers essential security awareness topics including phishing recognition, social engineering tactics, password security, physical security, and data protection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/60/60" alt="Microlearning">
+                    </div>
+                    <h3>Microlearning Modules</h3>
+                    <p>Bite-sized training materials delivered regularly to reinforce key concepts without overwhelming employees. These quick-reference materials maintain awareness with minimal disruption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/60/60" alt="Role-Based">
+                    </div>
+                    <h3>Role-Based Training</h3>
+                    <p>Specialized modules for high-risk positions like executives, IT staff, and customer service. These address the unique threats and responsibilities of different roles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/60/60" alt="Hands-On">
+                    </div>
+                    <h3>Hands-On Workshops</h3>
+                    <p>Interactive sessions where employees practice identifying and responding to social engineering scenarios in a safe, guided environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/60/60" alt="Simulations">
+                    </div>
+                    <h3>Integrated Simulations</h3>
+                    <p>Regular phishing and social engineering exercises that provide immediate educational feedback and measure improvement over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/60/60" alt="Team Activities">
+                    </div>
+                    <h3>Team-Based Activities</h3>
+                    <p>Collaborative security exercises and team challenges that foster engagement and create a culture of security awareness across your organization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Methods Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Flexible Delivery Options</h2>
+                <p>Training solutions that adapt to your organization's needs and culture</p>
+            </div>
+            <div class="content-columns">
+                <div class="content-image">
+                    <img src="/api/placeholder/500/350" alt="Training Delivery" style="width: 100%; height: auto;">
+                </div>
+                <div class="content-text">
+                    <h3>Multiple Formats for Maximum Impact</h3>
+                    <p>We offer various delivery methods to accommodate different learning preferences, organizational structures, and technical environments.</p>
+                    <ul>
+                        <li><strong>In-Person Workshops</strong> - Engaging sessions led by our security experts</li>
+                        <li><strong>Live Virtual Training</strong> - Interactive remote sessions with real-time Q&A</li>
+                        <li><strong>Executive Briefings</strong> - Condensed sessions tailored for leadership teams</li>
+                        <li><strong>Department-Specific Training</strong> - Customized content for different business units</li>
+                        <li><strong>Train-the-Trainer Programs</strong> - Equipping your internal champions to deliver ongoing education</li>
+                    </ul>
+                    <p>All delivery methods include comprehensive reporting to track completion, knowledge retention, and behavioral improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Proven Results</h2>
+                <p>Measurable outcomes from our training programs</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>65%</h3>
+                    <p>Reduction in successful phishing attempts</p>
+                </div>
+                <div class="stat-item">
+                    <h3>87%</h3>
+                    <p>Increase in security incident reporting</p>
+                </div>
+                <div class="stat-item">
+                    <h3>92%</h3>
+                    <p>Employee satisfaction with training content</p>
+                </div>
+                <div class="stat-item">
+                    <h3>23%</h3>
+                    <p>Decrease in overall security incidents</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear from organizations that have strengthened their human firewall</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "The security awareness training from RCS completely transformed our organization's security culture. What sets them apart is how they tailor the content to our specific industry challenges and make it engaging. Our employees went from viewing security as IT's problem to taking personal ownership of protecting our organization."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-img">
+                        <img src="/api/placeholder/60/60" alt="Author">
+                    </div>
+                    <div class="author-info">
+                        <h4>Michael Chen</h4>
+                        <p>CIO, National Healthcare Provider</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "What impressed us most was the measurable improvement. After implementing their program, we saw our phishing test failure rate drop from 24% to just 4% in six months. Their microlearning approach meant minimal disruption to our operations while still delivering maximum impact."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-img">
+                        <img src="/api/placeholder/60/60" alt="Author">
+                    </div>
+                    <div class="author-info">
+                        <h4>Jennifer Williams</h4>
+                        <p>Security Director, Regional Financial Institution</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Security Culture?</h2>
+                <p>Contact us today to schedule a consultation and learn how our security awareness training can empower your employees to become your strongest security asset.</p>
+                <a href="contact.html" class="btn btn-white">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                        <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="security-training.html">Security Training</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Industries</h4>
+                    <ul class="footer-links">
+                        <li><a href="Industries/healthcare.html">Healthcare</a></li>
+                        <li><a href="Industries/law-firms.html">Law Firms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="company-history.html">Company History</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="mission-values.html">Mission & Values</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <!-- Phone number removed -->
+                        <li><a href="mailto:chris@redcellsecurity.com">chris@redcellsecurity.com</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
