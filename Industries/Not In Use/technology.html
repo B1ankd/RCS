@@ -590,24 +590,6 @@
                 // Define searchable content with keywords and links
                 const searchContent = [
                     {
-                        title: 'Home',
-                        category: 'Page',
-                        keywords: ['home', 'main', 'start', 'homepage'],
-                        url: '../index.html'
-                    },
-                    {
-                        title: 'Contact Us',
-                        category: 'Page',
-                        keywords: ['contact', 'email', 'phone', 'support', 'help', 'reach out'],
-                        url: '../contact.html'
-                    },
-                    {
-                        title: 'FAQ',
-                        category: 'Page',
-                        keywords: ['faq', 'questions', 'answers', 'help', 'support'],
-                        url: '../faq.html'
-                    },
-                    {
                         title: 'Social Engineering Risk Assessment',
                         category: 'Service',
                         keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
@@ -626,16 +608,28 @@
                         url: '../security-training.html'
                     },
                     {
-                        title: 'Company History',
-                        category: 'Company',
-                        keywords: ['history', 'company', 'background', 'story', 'founding'],
-                        url: '../company-history.html'
+                        title: 'Contact Us',
+                        category: 'Page',
+                        keywords: ['contact', 'email', 'phone', 'support', 'help', 'reach out'],
+                        url: '../contact.html'
                     },
                     {
-                        title: 'Mission & Values',
-                        category: 'Company',
-                        keywords: ['mission', 'values', 'purpose', 'principles', 'culture'],
-                        url: '../mission-values.html'
+                        title: 'Enterprise Security',
+                        category: 'Solution',
+                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
+                        url: '#approach'
+                    },
+                    {
+                        title: 'Human Firewall Program',
+                        category: 'Solution',
+                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
+                        url: '#approach'
+                    },
+                    {
+                        title: 'Financial Services',
+                        category: 'Industry',
+                        keywords: ['finance', 'banking', 'financial', 'investment'],
+                        url: 'financial-services.html'
                     },
                     {
                         title: 'Healthcare',
@@ -644,10 +638,10 @@
                         url: 'healthcare.html'
                     },
                     {
-                        title: 'Law Firms',
+                        title: 'Government',
                         category: 'Industry',
-                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm'],
-                        url: 'law-firms.html'
+                        keywords: ['government', 'public sector', 'municipal', 'federal', 'state'],
+                        url: 'government.html'
                     },
                     {
                         title: 'Educational Institutions',
@@ -656,22 +650,52 @@
                         url: 'educational-institutions.html'
                     },
                     {
+                        title: 'Retail',
+                        category: 'Industry',
+                        keywords: ['retail', 'store', 'shop', 'ecommerce', 'merchant'],
+                        url: 'retail.html'
+                    },
+                    {
+                        title: 'Manufacturing',
+                        category: 'Industry',
+                        keywords: ['manufacturing', 'factory', 'production', 'industrial'],
+                        url: 'manufacturing.html'
+                    },
+                    {
                         title: 'Technology',
                         category: 'Industry',
                         keywords: ['technology', 'tech', 'IT', 'software', 'hardware'],
                         url: 'technology.html'
                     },
                     {
-                        title: 'Enterprise Security',
-                        category: 'Solution',
-                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
-                        url: '../index.html#approach'
+                        title: 'Law Firms',
+                        category: 'Industry',
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm'],
+                        url: 'law-firms.html'
                     },
                     {
-                        title: 'Human Firewall Program',
-                        category: 'Solution',
-                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
-                        url: '../index.html#approach'
+                        title: 'Non-profits',
+                        category: 'Industry',
+                        keywords: ['non-profit', 'ngo', 'charity', 'foundation', 'organization'],
+                        url: 'non-profits.html'
+                    },
+                    {
+                        title: 'Insurance',
+                        category: 'Industry',
+                        keywords: ['insurance', 'insurer', 'policy', 'coverage', 'risk'],
+                        url: 'insurance.html'
+                    },
+                    {
+                        title: 'Energy and Utility',
+                        category: 'Industry',
+                        keywords: ['energy', 'utility', 'power', 'electricity', 'infrastructure'],
+                        url: 'energy-and-utility.html'
+                    },
+                    {
+                        title: 'About Us',
+                        category: 'Company',
+                        keywords: ['about', 'company', 'history', 'mission', 'values'],
+                        url: '#testimonials'
                     }
                 ];
                 
@@ -789,6 +813,7 @@
                             <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
                             <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
                             <li><a href="../security-training.html">Security Awareness Training</a></li>
+                            <li><a href="#services">Reports</a></li>
                         </ul>
                     </li>
                     <!-- Solutions tab removed -->
@@ -803,11 +828,11 @@
                     </li>
                     <!-- Resources tab removed -->
                     <li>
-                        <a href="../../company-history.html" class="has-dropdown">About Us</a>
+                        <a href="#testimonials" class="has-dropdown">About Us</a>
                         <ul class="dropdown-menu">
                             <li><a href="../company-history.html">Company History</a></li>
-                            <li><a href="../../company-history.html">FAQ</a></li>
-                            <li><a href="../mission-values.html">Mission <li><a href="../../company-history.html">Mission & Values</a></li> Values</a></li>
+                            <li><a href="#testimonials">FAQ</a></li>
+                            <li><a href="../mission-values.html">Mission <li><a href="#testimonials">Mission & Values</a></li> Values</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -963,14 +988,15 @@
                         <li><a href="../risk-assessment.html">Risk Assessment</a></li>
                         <li><a href="../simulated-attacks.html">Simulated Attacks</a></li>
                         <li><a href="../security-training.html">Security Training</a></li>
+                        <li><a href="#services">Reports</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul class="footer-links">
                         <li><a href="../company-history.html">Company History</a></li>
-                        <li><a href="../../company-history.html">FAQ</a></li>
-                        <li><a href="../mission-values.html">Mission <li><a href="../../company-history.html">Mission & Values</a></li> Values</a></li>
+                        <li><a href="#testimonials">FAQ</a></li>
+                        <li><a href="../mission-values.html">Mission <li><a href="#testimonials">Mission & Values</a></li> Values</a></li>
                         <li><a href="../contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -988,7 +1014,7 @@
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
                         <!-- Phone number removed -->
-                        <li><a href="mailto:chris@redcellsecurity.com">chris@redcellsecurity.com</a></li>
+                        <li><a href="mailto:mgmt.rcs@gmail.com">mgmt.rcs@gmail.com</a></li>
                         <li><a href="../contact.html">Contact Us</a></li>
                     </ul>
                 </div>

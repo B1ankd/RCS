@@ -75,6 +75,36 @@
             list-style: none;
         }
         
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-9px, 6px);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-8px, -8px);
+        }
+        
         .nav-links li {
             margin-left: 20px;
             position: relative;
@@ -243,7 +273,7 @@
             background-color: var(--secondary-color);
             color: var(--white);
             padding: 80px 0;
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600');
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../Images/Web Banner Canyon Swoosh.png');
             background-size: cover;
             background-position: center;
         }
@@ -481,13 +511,22 @@
             
             .nav-container {
                 flex-wrap: wrap;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+            }
+            
+            /* Logo positioning - center */
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(35%);
+                z-index: 98;
             }
             
             .search-container {
-                order: 3;
-                width: 100%;
-                margin-top: 15px;
-                margin-right: 0;
+                display: none; /* Hide search on mobile for cleaner UI */
             }
             
             .search-input {
@@ -500,10 +539,170 @@
                 display: none;
                 padding-left: 15px;
             }
+            
+            .mobile-menu-toggle {
+                display: block;
+                z-index: 102;
+                order: 2; /* Position hamburger on the right */
+                margin-left: auto;
+                margin-right: 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 99;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .nav-links a {
+                padding: 15px 10px;
+                font-size: 16px;
+                min-height: 44px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-links .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+                background: var(--light-gray);
+                min-width: 100%;
+            }
+            
+            .nav-links li.dropdown-open .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-menu a {
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+            
+            .nav-right-section {
+                order: 1;
+                width: auto;
+                margin-right: 0;
+                margin-left: 0;
+                flex: 1;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .cta-content h2 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="../index.html#services" class="has-dropdown">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
+                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="../security-training.html">Security Awareness Training</a></li>
+                        </ul>
+                    </li>
+                    <!-- Solutions tab removed -->
+                    <li>
+                        <a href="#impact" class="has-dropdown">Industries</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="healthcare.html">Healthcare</a></li>
+                            <li><a href="law-firms.html">Law Firms</a></li>
+                        </ul>
+                    </li>
+                    <!-- Resources tab removed -->
+                    <li>
+                        <a href="../company-history.html" class="has-dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../company-history.html">Company History</a></li>
+                            <li><a href="../faq.html">FAQ</a></li>
+                            <li><a href="../mission-values.html">Mission & Values</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+                        <button class="search-btn" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <a href="../index.html" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Intersection Observer for scroll animations
@@ -522,6 +721,73 @@
             
             sections.forEach(section => {
                 observer.observe(section);
+            });
+            
+            // Mobile menu toggle functionality
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
+            
+            // Toggle mobile menu
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Handle dropdown menus on mobile
+            const dropdownLinks = document.querySelectorAll('.nav-links .has-dropdown');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parentLi = this.parentElement;
+                        const wasOpen = parentLi.classList.contains('dropdown-open');
+                        
+                        // Close all dropdowns
+                        document.querySelectorAll('.nav-links li').forEach(li => {
+                            li.classList.remove('dropdown-open');
+                        });
+                        
+                        // Toggle current dropdown
+                        if (!wasOpen) {
+                            parentLi.classList.add('dropdown-open');
+                        }
+                    }
+                });
+            });
+            
+            // Close mobile menu when clicking on a link
+            const navLinksItems = document.querySelectorAll('.nav-links a:not(.has-dropdown)');
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close mobile menu when resizing to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    body.style.overflow = '';
+                    document.querySelectorAll('.nav-links li').forEach(li => {
+                        li.classList.remove('dropdown-open');
+                    });
+                }
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                    if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        body.style.overflow = '';
+                    }
+                }
             });
             
             // Initial animation for hero section
@@ -773,59 +1039,6 @@
             initSearch();
         });
     </script>
-    <!-- Header and Navigation -->
-    <header>
-        <div class="container">
-            <nav class="nav-container">
-                <div class="logo">
-                    <div class="logo-img">
-                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
-                    </div>
-                </div>
-                <ul class="nav-links">
-                    <li>
-                        <a href="#services" class="has-dropdown">Services</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
-                            <li><a href="../security-training.html">Security Awareness Training</a></li>
-                        </ul>
-                    </li>
-                    <!-- Solutions tab removed -->
-                    <li>
-                        <a href="#impact" class="has-dropdown">Industries</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="healthcare.html">Healthcare</a></li>
-                            <li><a href="law-firms.html">Law Firms</a></li>
-                        </ul>
-                    </li>
-                    <!-- Resources tab removed -->
-                    <li>
-                        <a href="../company-history.html" class="has-dropdown">About Us</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../company-history.html">Company History</a></li>
-                            <li><a href="../faq.html">FAQ</a></li>
-                            <li><a href="../mission-values.html">Mission & Values</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="nav-right-section" style="display: flex; align-items: center;">
-                    <div class="search-container">
-                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
-                        <button class="search-btn" id="searchBtn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                        </button>
-                        <div class="search-suggestions" id="searchSuggestions"></div>
-                    </div>
-                    <a href="../index.html" class="btn">Back to Home</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
