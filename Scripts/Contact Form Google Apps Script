@@ -4,7 +4,7 @@
 // Configuration
 const SPREADSHEET_ID = '1PxscgTQUlz-UVLHHEaeoWBeDxknDjteMyfid0Oie_N4';
 const SHEET_NAME = 'Sheet1'; // Update if your sheet has a different name
-const SENDER_EMAIL = 'mgmt.rcs@gmail.com';
+const SENDER_EMAIL = 'no-reply@redcellsolutions.com';
 
 // Color configuration for lead age
 const LEAD_COLORS = {
@@ -448,13 +448,17 @@ function sendConfirmationEmail(recipientEmail, data) {
 </html>
   `;
   
-  // Send the email
-  MailApp.sendEmail({
-    to: recipientEmail,
-    subject: subject,
-    htmlBody: htmlBody,
-    name: 'RCS Security'
-  });
+  // Send the email using GmailApp to support aliases
+  GmailApp.sendEmail(
+    recipientEmail,
+    subject,
+    '', // Plain text body (empty since we're using HTML)
+    {
+      htmlBody: htmlBody,
+      name: 'RCS Security',
+      from: SENDER_EMAIL // This will work if alias is configured
+    }
+  );
 }
 
 // Send notification email to management
@@ -667,13 +671,19 @@ function sendNotificationEmail(data) {
 </html>
   `;
   
-  // Send the notification email
-  MailApp.sendEmail({
-    to: SENDER_EMAIL,
-    subject: subject,
-    htmlBody: htmlBody,
-    name: 'RCS Contact Form System'
-  });
+  // Send the notification email to management
+  const MANAGEMENT_EMAIL = 'contact@redcellsolutions.com'; // Or another management email
+  
+  GmailApp.sendEmail(
+    MANAGEMENT_EMAIL,
+    subject,
+    '', // Plain text body (empty since we're using HTML)
+    {
+      htmlBody: htmlBody,
+      name: 'RCS Contact Form System',
+      from: SENDER_EMAIL // This will work if alias is configured
+    }
+  );
 }
 
 // Test function for development

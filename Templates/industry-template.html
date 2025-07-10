@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDUSTRY_NAME Security Solutions | RCS Security</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Core styles from main page */
+        :root {
+            --primary-color: #970c1c;
+            --secondary-color: #171717;
+            --light-gray: #f4f4f4;
+            --dark-gray: #393939;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--secondary-color);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 180px;
+            border-radius: 3px;
+            padding: 5px 0;
+            display: none;
+            z-index: 100;
+        }
+        
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .dropdown-menu a {
+            padding: 5px 15px;
+            font-size: 13px;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 13px;
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 80px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        .content-text {
+            flex: 1;
+        }
+        
+        .content-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .content-text p {
+            margin-bottom: 20px;
+        }
+        
+        .content-text ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .content-text li {
+            margin-bottom: 10px;
+        }
+        
+        .content-image {
+            flex: 1;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .content-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-card h3 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            color: var(--dark-gray);
+        }
+        
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .btn-white:hover {
+            background-color: #f0f0f0;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+        }
+        
+        .vulnerability-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .vulnerability-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .solution-card {
+            background-color: var(--light-gray);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .solution-card h4 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+            }
+            
+            .content-image {
+                margin-top: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#services" class="has-dropdown">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/home/christopher/Downloads/RCS Edit/risk-assessment.html">Social Engineering Risk Assessment</a></li>
+                            <li><a href="/home/christopher/Downloads/RCS Edit/simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="/home/christopher/Downloads/RCS Edit/security-training.html">Security Awareness Training</a></li>
+                            <li><a href="#services">Vulnerability Management</a></li>
+                            <li><a href="#services">Incident Response</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#approach" class="has-dropdown">Solutions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#approach">Enterprise Security</a></li>
+                            <li><a href="#approach">Human Firewall Program</a></li>
+                            <li><a href="#approach">Compliance & Regulations</a></li>
+                            <li><a href="#approach">Managed Security Services</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#impact" class="has-dropdown">Industries</a>
+                        <ul class="dropdown-menu">
+                            <!-- Industry dropdown items will be populated based on the PDF content -->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#impact" class="has-dropdown">Resources</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#impact">Blog</a></li>
+                            <li><a href="#impact">Whitepapers</a></li>
+                            <li><a href="#impact">Case Studies</a></li>
+                            <li><a href="#impact">Webinars</a></li>
+                            <li><a href="#impact">Security Toolkit</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#testimonials" class="has-dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#testimonials">Our Team</a></li>
+                            <li><a href="#testimonials">Company History</a></li>
+                            <li><a href="#testimonials">Careers</a></li>
+                            <li><a href="#testimonials">Partners</a></li>
+                            <li><a href="#testimonials">Press Releases</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <a href="/home/christopher/Downloads/RCS Edit/contact.html" class="btn">Contact Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>INDUSTRY_NAME Security Solutions</h1>
+                <p>Protecting INDUSTRY_NAME organizations from social engineering threats with specialized security strategies tailored to your unique challenges.</p>
+                <a href="#vulnerabilities" class="btn">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Industry Overview -->
+    <section id="overview">
+        <div class="container">
+            <div class="section-title">
+                <h2>INDUSTRY_NAME Security Challenges</h2>
+                <p>Understanding the unique threats and vulnerabilities in the INDUSTRY_NAME sector</p>
+            </div>
+            <div class="content-section">
+                <div class="content-text">
+                    <h3>Why INDUSTRY_NAME Organizations Need Specialized Protection</h3>
+                    <p>INDUSTRY_DESCRIPTION</p>
+                    <p>At RCS Security, we understand the specific challenges that INDUSTRY_NAME organizations face when it comes to cybersecurity and social engineering attacks.</p>
+                    <ul>
+                        <li><strong>CHALLENGE_1</strong>: DESCRIPTION_1</li>
+                        <li><strong>CHALLENGE_2</strong>: DESCRIPTION_2</li>
+                        <li><strong>CHALLENGE_3</strong>: DESCRIPTION_3</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <img src="/api/placeholder/500/300" alt="INDUSTRY_NAME Security">
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>STAT_1</h3>
+                    <p>STAT_DESCRIPTION_1</p>
+                </div>
+                <div class="stat-card">
+                    <h3>STAT_2</h3>
+                    <p>STAT_DESCRIPTION_2</p>
+                </div>
+                <div class="stat-card">
+                    <h3>STAT_3</h3>
+                    <p>STAT_DESCRIPTION_3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Vulnerabilities Section -->
+    <section id="vulnerabilities" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Common INDUSTRY_NAME Vulnerabilities</h2>
+                <p>The social engineering attack vectors specifically targeting INDUSTRY_NAME organizations</p>
+            </div>
+            
+            <div class="vulnerability-card">
+                <h3>VULNERABILITY_1</h3>
+                <p>VULNERABILITY_DESCRIPTION_1</p>
+                <div class="solution-card">
+                    <h4>Our Solution</h4>
+                    <p>SOLUTION_1</p>
+                </div>
+            </div>
+            
+            <div class="vulnerability-card">
+                <h3>VULNERABILITY_2</h3>
+                <p>VULNERABILITY_DESCRIPTION_2</p>
+                <div class="solution-card">
+                    <h4>Our Solution</h4>
+                    <p>SOLUTION_2</p>
+                </div>
+            </div>
+            
+            <div class="vulnerability-card">
+                <h3>VULNERABILITY_3</h3>
+                <p>VULNERABILITY_DESCRIPTION_3</p>
+                <div class="solution-card">
+                    <h4>Our Solution</h4>
+                    <p>SOLUTION_3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Solution Offerings -->
+    <section id="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our INDUSTRY_NAME Security Solutions</h2>
+                <p>Customized services designed specifically for the INDUSTRY_NAME sector</p>
+            </div>
+            <div class="content-section">
+                <div class="content-text">
+                    <h3>Tailored Protection for INDUSTRY_NAME Organizations</h3>
+                    <p>Our INDUSTRY_NAME security solutions are built on deep industry knowledge and extensive experience working with organizations in your sector.</p>
+                    <ul>
+                        <li><strong>INDUSTRY_SPECIFIC_SERVICE_1</strong>: SERVICE_DESCRIPTION_1</li>
+                        <li><strong>INDUSTRY_SPECIFIC_SERVICE_2</strong>: SERVICE_DESCRIPTION_2</li>
+                        <li><strong>INDUSTRY_SPECIFIC_SERVICE_3</strong>: SERVICE_DESCRIPTION_3</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <img src="/api/placeholder/500/300" alt="INDUSTRY_NAME Solutions">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Protect Your INDUSTRY_NAME Organization</h2>
+                <p>Contact our team of INDUSTRY_NAME security specialists to discuss your specific needs and challenges.</p>
+                <a href="/home/christopher/Downloads/RCS Edit/contact.html" class="btn btn-white">Schedule Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="/home/christopher/Downloads/RCS Edit/risk-assessment.html">Risk Assessment</a></li>
+                        <li><a href="/home/christopher/Downloads/RCS Edit/simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="/home/christopher/Downloads/RCS Edit/security-training.html">Security Training</a></li>
+                        <li><a href="#services">Vulnerability Management</a></li>
+                        <li><a href="#services">Incident Response</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#testimonials">About Us</a></li>
+                        <li><a href="#testimonials">Our Team</a></li>
+                        <li><a href="#testimonials">Careers</a></li>
+                        <li><a href="#testimonials">Partners</a></li>
+                        <li><a href="/home/christopher/Downloads/RCS Edit/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#impact">Blog</a></li>
+                        <li><a href="#impact">Whitepapers</a></li>
+                        <li><a href="#impact">Case Studies</a></li>
+                        <li><a href="#impact">Webinars</a></li>
+                        <li><a href="#impact">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                        <li><a href="mailto:info@rcsecurity.com">info@rcsecurity.com</a></li>
+                        <li><a href="/home/christopher/Downloads/RCS Edit/contact.html">123 Security Ave, Suite 500<br>Cyber City, CS 12345</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

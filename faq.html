@@ -7,6 +7,7 @@
     <style>
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: var(--scroll-offset, 120px); /* Dynamic offset based on screen size */
         }
         /* Core styles from main page */
         :root {
@@ -15,7 +16,9 @@
             --light-gray: #f4f4f4;
             --dark-gray: #393939;
             --white: #ffffff;
-            --sidebar-fixed-top: 70px;
+            --sidebar-fixed-top: 0px;
+            --header-height: 0px;
+            --scroll-offset: 80px; /* Dynamic scroll offset for navigation */
         }
         
         * {
@@ -101,15 +104,24 @@
             left: 0;
             background-color: var(--white);
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            min-width: 180px;
-            border-radius: 3px;
-            padding: 5px 0;
-            display: none;
+            min-width: 180px; /* Slightly reduced width */
+            border-radius: 3px; /* Smaller radius */
+            padding: 5px 0; /* Reduced padding */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0.3s;
+            transform-origin: top center;
             z-index: 100;
         }
         
-        .nav-links li:hover .dropdown-menu {
-            display: block;
+        /* Show dropdown when clicked (for desktop) */
+        .nav-links li.dropdown-open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
         }
         
         .dropdown-menu li {
@@ -155,7 +167,7 @@
             background-color: var(--secondary-color);
             color: var(--white);
             padding: 80px 0;
-            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('Images/Web Banner Canyon Swoosh.png');
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('Images/Web Banner - Canyon Corner Emboss.png');
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -513,44 +525,77 @@
         footer {
             background-color: var(--secondary-color);
             color: var(--white);
-            padding: 60px 0 20px;
+            padding: clamp(40px, 8vw, 80px) 0 clamp(15px, 3vw, 30px);
+            min-height: 20vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(20px, 3vw, 35px);
+            margin-bottom: clamp(20px, 4vw, 50px);
+            align-items: start;
+        }
+        
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            min-height: clamp(120px, 15vh, 200px);
+            justify-content: flex-start;
         }
         
         .footer-col h4 {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: clamp(16px, 3.5vw, 22px);
+            margin-bottom: clamp(12px, 2.5vw, 25px);
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
         }
         
         .footer-links {
             list-style: none;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(8px, 1.5vw, 15px);
         }
         
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
         
         .footer-links a {
             color: #b3b3b3;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-size: clamp(13px, 2.8vw, 16px);
+            line-height: 1.5;
+            display: block;
+            padding: clamp(4px, 1vw, 8px) 0;
+            border-radius: 4px;
         }
         
         .footer-links a:hover {
             color: var(--white);
+            transform: translateX(5px);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding-left: clamp(8px, 2vw, 12px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: clamp(15px, 3vw, 25px);
             border-top: 1px solid #444;
             color: #b3b3b3;
+            font-family: 'Arial', sans-serif;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin-top: auto;
+            line-height: 1.4;
         }
         
         @media (max-width: 768px) {
@@ -563,52 +608,17 @@
                 padding: 15px;
             }
             
-            /* Sticky sidebar mobile styles - HIDDEN on mobile */
+            /* Hide sidebar on mobile for FAQ page */
             .sticky-sidebar {
-                display: none;
+                display: none !important;
             }
             
-            .sticky-sidebar ul {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-            }
-            
-            .sticky-sidebar li {
-                margin: 0;
-                flex: 1;
-                text-align: center;
-            }
-            
-            .sticky-sidebar a {
-                font-size: 11px;
-                padding: 5px 2px;
-                text-align: center;
-                white-space: nowrap;
-                padding-left: 10px;
-                display: inline-block;
-            }
-            
-            .sticky-sidebar a::before {
-                content: "•";
-                position: relative;
-                left: -3px;
-                display: inline-block;
-                font-size: 30px;
-                line-height: 0;
-                vertical-align: middle;
-                color: var(--dark-gray);
-            }
-            
-            .sticky-sidebar a:hover, .sticky-sidebar a.active {
-                color: var(--primary-color);
-            }
-            
-            .sticky-sidebar a:hover::before, .sticky-sidebar a.active::before {
-                color: var(--primary-color);
+            /* Remove bottom padding since no bottom nav on mobile */
+            .main-content {
+                padding-bottom: 0;
             }
         }
-        /* Mobile Navigation Toggle Button */
+        /* Mobile Navigation Toggle */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -617,9 +627,8 @@
             cursor: pointer;
             padding: 5px;
             color: var(--secondary-color);
-            z-index: 101;
         }
-
+        
         .mobile-menu-toggle span {
             display: block;
             width: 25px;
@@ -651,6 +660,107 @@
                 gap: 30px;
             }
         }
+        
+        /* Handle sidebar overlap on smaller desktop screens */
+        @media (min-width: 769px) and (max-width: 1640px) {
+            :root {
+                --scroll-offset: 140px; /* Header + horizontal sidebar nav */
+            }
+            
+            /* Convert sidebar to top navigation on smaller desktop screens to prevent content overlap */
+            .sticky-sidebar {
+                position: fixed;
+                top: var(--header-height, 70px);
+                bottom: auto;
+                right: 0;
+                left: 0;
+                width: 100%;
+                transform: none;
+                border-radius: 0;
+                margin: 0;
+                padding: 5px 5px 8px 5px;
+                background-color: var(--white);
+                box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+                z-index: 90;
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                display: block;
+            }
+            
+            .sticky-sidebar.fixed {
+                position: fixed;
+                top: var(--header-height, 70px);
+            }
+            
+            .sticky-sidebar ul {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .sticky-sidebar li {
+                margin: 0;
+                flex: 1 1 0;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .sticky-sidebar a {
+                font-size: clamp(12px, 2vw, 14px);
+                padding: 4px 3px;
+                text-align: center;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                border-radius: 8px;
+            }
+            
+            .sticky-sidebar a::before {
+                content: "•";
+                position: relative;
+                left: 0;
+                display: inline-block;
+                font-size: clamp(20px, 3vw, 28px);
+                line-height: 0;
+                vertical-align: middle;
+                color: var(--dark-gray);
+                margin-right: clamp(2px, 0.5vw, 5px);
+                transition: color 0.2s ease;
+            }
+            
+            .sticky-sidebar a:hover, .sticky-sidebar a.active {
+                color: var(--primary-color);
+                background-color: rgba(151, 12, 28, 0.05);
+            }
+            
+            .sticky-sidebar a:hover::before, .sticky-sidebar a.active::before {
+                color: var(--primary-color);
+            }
+            
+            /* Add spacing to account for fixed top navigation */
+            .main-content .section:first-child {
+                margin-top: 60px;
+            }
+            
+            .main-content .section {
+                scroll-margin-top: 60px;
+            }
+            
+            /* Ensure container has enough margin to avoid sidebar overlap */
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
 
         /* Small devices (landscape phones, 481px - 768px) */
         @media (max-width: 768px) {
@@ -679,6 +789,37 @@
                 overflow-y: auto;
             }
             
+            /* Add close button for mobile menu */
+            .nav-links::before {
+                content: "✕";
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 24px;
+                color: var(--dark-gray);
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+                z-index: 101;
+                user-select: none;
+            }
+            
+            .nav-links::before:hover {
+                background: var(--light-gray);
+                color: var(--primary-color);
+                transform: scale(1.1);
+            }
+            
+            .nav-links::before:active {
+                transform: scale(0.95);
+                background: rgba(151, 12, 28, 0.1);
+            }
+            
             .nav-links.active {
                 right: 0;
             }
@@ -686,33 +827,104 @@
             .nav-links li {
                 margin: 0;
                 width: 100%;
-                border-bottom: 1px solid var(--light-gray);
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                position: relative;
             }
             
-            .nav-links a {
-                padding: 15px 10px;
-                font-size: 16px;
-                min-height: 44px;
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links > li > a {
+                padding: 18px 20px;
+                font-size: 17px;
+                min-height: 56px;
                 width: 100%;
                 justify-content: space-between;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                transition: all 0.2s ease;
+                position: relative;
+            }
+            
+            .nav-links > li > a:hover {
+                background: rgba(151, 12, 28, 0.03);
+            }
+            
+            .nav-links > li > a.has-dropdown {
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            
+            .nav-links > li > a.has-dropdown::after {
+                content: "▼";
+                font-size: 12px;
+                margin-left: auto;
+                color: var(--primary-color);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links > li.dropdown-open > a.has-dropdown::after {
+                transform: rotate(180deg);
+            }
+            
+            .nav-links > li.dropdown-open > a {
+                background: rgba(151, 12, 28, 0.04);
+                color: var(--primary-color);
+                border-bottom: 2px solid var(--primary-color);
             }
             
             .nav-links .dropdown-menu {
                 position: static;
                 box-shadow: none;
-                display: none;
-                padding-left: 20px;
-                background: var(--light-gray);
+                max-height: 0;
+                padding-left: 0;
+                background: #f8f8f8;
                 min-width: 100%;
+                margin: 0;
+                border-radius: 6px;
+                overflow: hidden;
+                border-left: 3px solid var(--primary-color);
+                opacity: 0;
+                visibility: hidden;
+                transform: none;
+                transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                            margin 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                            opacity 0.3s ease-out,
+                            visibility 0.3s;
             }
             
             .nav-links li.dropdown-open .dropdown-menu {
-                display: block;
+                max-height: 400px;
+                margin: 8px 20px;
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            
+            .dropdown-menu li {
+                position: relative;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            .dropdown-menu li:last-child {
+                border-bottom: none;
             }
             
             .dropdown-menu a {
-                font-size: 14px;
-                padding: 12px 15px;
+                font-size: 15px;
+                padding: 14px 20px 14px 30px;
+                display: block;
+                transition: background-color 0.2s ease, color 0.2s ease;
+                position: relative;
+                color: var(--secondary-color);
+                background: transparent;
+            }
+            
+            .dropdown-menu a:hover {
+                background: rgba(151, 12, 28, 0.05);
+                color: var(--primary-color);
             }
             
             /* Header adjustments */
@@ -837,19 +1049,30 @@
                 align-items: center;
             }
             
-            /* Footer */
+            /* Footer adjustments */
             footer {
-                padding: 40px 0 20px;
+                padding: clamp(30px, 6vw, 60px) 0 clamp(15px, 3vw, 25px);
+                min-height: 25vh;
             }
             
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: clamp(12px, 3vw, 20px);
+                margin-bottom: clamp(15px, 3vw, 30px);
+            }
+            
+            .footer-col {
+                min-height: clamp(100px, 12vh, 150px);
             }
             
             .footer-col h4 {
-                font-size: 16px;
-                margin-bottom: 15px;
+                font-size: clamp(15px, 4vw, 18px);
+                margin-bottom: clamp(10px, 2vw, 18px);
+            }
+            
+            .footer-links a {
+                font-size: clamp(13px, 3.2vw, 15px);
+                padding: clamp(6px, 1.5vw, 10px) 0;
             }
             
             /* CTA sections */
@@ -874,36 +1097,7 @@
                 grid-template-columns: 1fr;
             }
             
-            /* Sticky sidebar for mobile - HIDDEN */
-            .sticky-sidebar {
-                display: none;
-            }
-            
-            .sticky-sidebar ul {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-            }
-            
-            .sticky-sidebar li {
-                margin: 0;
-                flex: 1;
-                text-align: center;
-            }
-            
-            .sticky-sidebar a {
-                font-size: 13px;
-                padding: 5px 2px;
-                text-align: center;
-                white-space: nowrap;
-                padding-left: 10px;
-                display: inline-block;
-            }
-            
-            /* Main content padding removed since sidebar is hidden */
-            .main-content {
-                padding-bottom: 0;
-            }
+            /* Remove duplicate styles since they're already defined above */
         }
 
         /* Extra small devices (phones, 320px - 480px) */
@@ -1047,6 +1241,138 @@
                 font-size: 12px;
             }
         }
+        
+        /* Medium devices (tablets, 769px - 992px) */
+        @media (max-width: 992px) {
+            /* Ensure footer uses horizontal space on tablets */
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: clamp(15px, 2.5vw, 25px);
+            }
+        }
+        
+        /* Large tablets and small desktops (993px - 1200px) */
+        @media (min-width: 993px) and (max-width: 1200px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: clamp(20px, 2vw, 30px);
+            }
+            
+            .footer-col h4 {
+                font-size: clamp(17px, 1.8vw, 20px);
+            }
+            
+            .footer-links a {
+                font-size: clamp(14px, 1.4vw, 16px);
+            }
+        }
+        
+        /* Medium desktops (1201px - 1400px) */
+        @media (min-width: 1201px) and (max-width: 1400px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: clamp(25px, 2.2vw, 35px);
+            }
+        }
+        
+        /* Large desktops (1401px and above) */
+        @media (min-width: 1401px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: clamp(30px, 2vw, 50px);
+                max-width: 1200px;
+                margin: 0 auto clamp(20px, 4vw, 50px) auto;
+            }
+            
+            .footer-col h4 {
+                font-size: clamp(18px, 1.5vw, 22px);
+            }
+            
+            .footer-links a {
+                font-size: clamp(15px, 1.2vw, 17px);
+            }
+            
+            .copyright {
+                font-size: clamp(14px, 1.1vw, 16px);
+            }
+        }
+        
+        /* Medium mobile devices footer optimization */
+        @media (min-width: 376px) and (max-width: 600px) {
+            footer {
+                padding: clamp(35px, 7vw, 50px) 0 clamp(15px, 3vw, 25px);
+                min-height: 28vh;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: clamp(18px, 4vw, 28px);
+                align-items: stretch;
+            }
+            
+            .footer-col {
+                min-height: clamp(90px, 14vh, 140px);
+                text-align: left;
+            }
+            
+            .footer-col h4 {
+                font-size: clamp(15px, 4.2vw, 17px);
+                margin-bottom: clamp(10px, 2.5vw, 15px);
+            }
+            
+            .footer-links a {
+                font-size: clamp(13px, 3.5vw, 15px);
+                padding: clamp(6px, 1.8vw, 9px) 0;
+            }
+            
+            .copyright {
+                font-size: clamp(12px, 3.2vw, 14px);
+            }
+        }
+        
+        /* Extra mobile optimizations for smallest screens */
+        @media (max-width: 375px) {
+            /* Extra small footer optimizations */
+            footer {
+                padding: clamp(25px, 8vw, 40px) 0 clamp(12px, 4vw, 20px);
+                min-height: 30vh;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(12px, 5vw, 20px);
+                text-align: center;
+            }
+            
+            .footer-col {
+                min-height: clamp(80px, 15vh, 120px);
+                align-items: center;
+            }
+            
+            .footer-col h4 {
+                font-size: clamp(16px, 5vw, 20px);
+                margin-bottom: clamp(8px, 3vw, 15px);
+                text-align: center;
+            }
+            
+            .footer-links {
+                align-items: center;
+                width: 100%;
+            }
+            
+            .footer-links a {
+                font-size: clamp(14px, 4vw, 16px);
+                text-align: center;
+                padding: clamp(8px, 2vw, 12px) clamp(10px, 3vw, 20px);
+                margin: 0 auto;
+                width: fit-content;
+            }
+            
+            .copyright {
+                font-size: clamp(13px, 4vw, 15px);
+                padding-top: clamp(12px, 4vw, 20px);
+            }
+        }
 
 
     </style>
@@ -1058,12 +1384,12 @@
             <nav class="nav-container">
                 <div class="logo">
                     <div class="logo-img">
-                        <img src="/api/placeholder/60/60" alt="RCS Logo" style="content: url('/api/placeholder/60/60'); width: 60px; height: 60px;">
+                        <img src="Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
                     </div>
                 </div>
                 <ul class="nav-links">
                     <li>
-                        <a href="#services" class="has-dropdown">Services</a>
+                        <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
                             <li><a href="risk-assessment.html">Social Engineering Risk Assessment</a></li>
                             <li><a href="simulated-attacks.html">Simulated Attack Exercises</a></li>
@@ -1071,14 +1397,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#impact" class="has-dropdown">Industries</a>
+                        <a href="#impact" class="has-dropdown" data-mobile-no-nav>Industries</a>
                         <ul class="dropdown-menu">
                             <li><a href="Industries/healthcare.html">Healthcare</a></li>
                             <li><a href="Industries/law-firms.html">Law Firms</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="company-history.html" class="has-dropdown">About Us</a>
+                        <a href="company-history.html" class="has-dropdown" data-mobile-no-nav>About Us</a>
                         <ul class="dropdown-menu">
                             <li><a href="company-history.html">Company History</a></li>
                             <li><a href="faq.html">FAQ</a></li>
@@ -1116,7 +1442,12 @@
                 <p>Find answers to common questions about our social engineering security services</p>
                 <div class="hero-search-container">
                     <input type="text" class="hero-search-input" id="faqSearch" placeholder="Search for answers...">
-                    <button class="hero-search-btn" id="heroSearchBtn">🔍</button>
+                    <button class="hero-search-btn" id="heroSearchBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1530,7 +1861,7 @@
                     <div class="faq-answer">
                         <p>When considering security service investments, it's important to compare costs to potential breach impacts:</p>
                         <ul>
-                            <li>The <strong>average data breach cost</strong> for small businesses is approximately $120,000-$1.24 million</li>
+                            <li><strong>Average data breach cost</strong> for small businesses is approximately $120,000-$1.24 million</li>
                             <li><strong>Business disruption costs</strong> from ransomware average $274,200</li>
                             <li><strong>Regulatory fines</strong> for compliance failures can range from $100 to $50,000+ per violation</li>
                             <li><strong>Legal costs</strong> from breaches average $60,000 for small businesses</li>
@@ -1604,7 +1935,7 @@
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
                         <!-- Phone number removed -->
-                        <li><a href="mailto:mgmt.rcs@gmail.com">mgmt.rcs@gmail.com</a></li>
+                        <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
@@ -1878,7 +2209,7 @@
                 });
             });
             
-            // Add smooth scroll for anchor links (matching index.html behavior)
+            // Add smooth scroll for anchor links with dynamic offset calculation
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1887,9 +2218,35 @@
                     if (targetId !== '#') {
                         const targetElement = document.querySelector(targetId);
                         if (targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
+                            // Calculate dynamic offset based on current screen size
+                            const header = document.querySelector('header');
+                            const sidebar = document.querySelector('.sticky-sidebar');
+                            let offset = -350; // Moderate negative offset to scroll down
+                            
+                            // Add header height
+                            if (header) {
+                                offset += header.offsetHeight;
+                            }
+                            
+                            // Add sidebar height if it's in top navigation mode
+                            if (sidebar && window.getComputedStyle(sidebar).position === 'fixed' && 
+                                (window.innerWidth <= 768 || (window.innerWidth >= 769 && window.innerWidth <= 1640))) {
+                                offset += sidebar.offsetHeight;
+                                offset += 0; // No extra spacing when sidebar is in top nav mode
+                            }
+                            
+                            // Add extra offset specifically for FAQ sections
+                            const isFaqSection = targetElement.classList.contains('faq-section');
+                            if (isFaqSection) {
+                                offset += -150; // Additional 150px further down for FAQ sections
+                            }
+                            
+                            // Calculate target position with dynamic offset
+                            const targetPosition = targetElement.offsetTop - offset;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
                             });
                         }
                     }
@@ -1936,6 +2293,32 @@
                 const header = document.querySelector('header');
                 const sidebar = document.querySelector('.sticky-sidebar');
                 const ctaSection = document.getElementById('contact'); // "Ready to Strengthen..." section
+                
+                if (!sidebar || !header || !ctaSection) return;
+                
+                // Check if we're in the intermediate breakpoint where sidebar should be top nav
+                if (window.innerWidth >= 769 && window.innerWidth <= 1640) {
+                    // Ensure sidebar is visible and properly positioned as top nav
+                    sidebar.classList.remove('fixed');
+                    const headerHeight = header.offsetHeight;
+                    document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+                    sidebar.style.top = '';
+                    sidebar.style.display = 'block';
+                    sidebar.style.visibility = 'visible';
+                    return;
+                }
+                
+                // Hide sidebar on mobile for FAQ page
+                if (window.innerWidth <= 768) {
+                    sidebar.style.display = 'none';
+                    sidebar.style.visibility = 'hidden';
+                    return;
+                }
+                
+                // For large desktop screens (>1640px), ensure sidebar is visible for normal side positioning
+                sidebar.style.display = 'block';
+                sidebar.style.visibility = 'visible';
+                
                 const sidebarTop = sidebarConfig.initialPosition; // Get from config
                 const headerHeight = header.offsetHeight;
                 const scrollPosition = window.scrollY;
@@ -1982,12 +2365,46 @@
             // Call initially to set correct state
             stickyNavigation();
             
+            // Dynamic scroll offset adjustment
+            const updateScrollOffset = () => {
+                const header = document.querySelector('header');
+                const sidebar = document.querySelector('.sticky-sidebar');
+                let offset = -350; // Moderate negative offset to scroll down
+                
+                // Add header height
+                if (header) {
+                    offset += header.offsetHeight;
+                }
+                
+                // Add sidebar height if it's in top navigation mode
+                if (sidebar && window.getComputedStyle(sidebar).position === 'fixed' && 
+                    (window.innerWidth <= 768 || (window.innerWidth >= 769 && window.innerWidth <= 1640))) {
+                    offset += sidebar.offsetHeight;
+                    offset += 0; // No extra spacing when sidebar is in top nav mode
+                }
+                
+                // Update CSS variable
+                document.documentElement.style.setProperty('--scroll-offset', offset + 'px');
+            };
+            
+            // Update scroll offset on resize
+            window.addEventListener('resize', updateScrollOffset);
+            window.addEventListener('scroll', updateScrollOffset);
+            
+            // Initial call
+            updateScrollOffset();
+            
             // Highlight active section in sidebar
             const highlightSidebarLinks = () => {
                 // Only look for sections that are in the sidebar navigation
                 const sidebarSectionIds = ['evaluation', 'implementation', 'daily-use', 'optimization', 'compliance', 'pricing'];
                 const sections = sidebarSectionIds.map(id => document.getElementById(id)).filter(section => section);
                 const navLinks = document.querySelectorAll('.sticky-sidebar a');
+                
+                let lastClickedSection = null;
+                let clickTimeout = null;
+                let lastScrollY = window.pageYOffset;
+                let scrollDirection = 'down';
                 
                 // Set initial active state based on URL hash if present
                 if (window.location.hash) {
@@ -2000,48 +2417,132 @@
                     });
                 }
                 
+                // Track clicks on navigation links (both sidebar and regular links)
+                document.addEventListener('click', function(e) {
+                    const clickedLink = e.target.closest('a[href^="#"]');
+                    if (clickedLink) {
+                        const targetId = clickedLink.getAttribute('href').substring(1);
+                        if (sidebarSectionIds.includes(targetId)) {
+                            lastClickedSection = targetId;
+                            
+                            // Clear any existing timeout
+                            if (clickTimeout) {
+                                clearTimeout(clickTimeout);
+                            }
+                            
+                            // Set timeout to clear click priority after smooth scroll completes
+                            clickTimeout = setTimeout(() => {
+                                lastClickedSection = null;
+                            }, 1500);
+                        }
+                    }
+                });
+                
+                // Main scroll event for highlighting
                 window.addEventListener('scroll', () => {
-                    let current = '';
                     const scrollY = window.pageYOffset;
                     const viewportHeight = window.innerHeight;
-                    const headerHeight = 200; // Buffer for header
-                    const viewportShift = 300; // Shift viewport consideration upward
-                    const topViewportArea = scrollY + headerHeight - viewportShift; // Top area of visible content (shifted up)
-                    const bottomViewportArea = scrollY + viewportHeight - viewportShift;
+                    const header = document.querySelector('header');
+                    const sidebar = document.querySelector('.sticky-sidebar');
                     
-                    let maxVisibleArea = 0;
-                    let mostVisibleSection = '';
+                    // Detect scroll direction
+                    if (scrollY > lastScrollY) {
+                        scrollDirection = 'down';
+                    } else if (scrollY < lastScrollY) {
+                        scrollDirection = 'up';
+                    }
+                    lastScrollY = scrollY;
                     
-                    // Find the section with the most visible content towards the top
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop;
-                        const sectionBottom = sectionTop + section.offsetHeight;
-                        const sectionId = section.getAttribute('id');
-                        
-                        // Calculate how much of this section is visible in the viewport
-                        const visibleTop = Math.max(sectionTop, topViewportArea);
-                        const visibleBottom = Math.min(sectionBottom, bottomViewportArea);
-                        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-                        
-                        // Give more weight to content that appears closer to the top of the viewport
-                        const distanceFromTop = Math.max(0, visibleTop - topViewportArea);
-                        const topWeight = Math.max(0, viewportHeight - distanceFromTop) / viewportHeight;
-                        const weightedVisibleArea = visibleHeight * topWeight;
-                        
-                        // Track the section with the most weighted visible area
-                        if (weightedVisibleArea > maxVisibleArea) {
-                            maxVisibleArea = weightedVisibleArea;
-                            mostVisibleSection = sectionId;
+                    // Calculate the offset based on fixed elements
+                    let fixedElementsHeight = 0;
+                    if (header) {
+                        fixedElementsHeight += header.offsetHeight;
+                    }
+                    
+                    // Add sidebar height if it's in top navigation mode
+                    if (sidebar && window.getComputedStyle(sidebar).position === 'fixed' && 
+                        (window.innerWidth >= 769 && window.innerWidth <= 1640)) {
+                        fixedElementsHeight += sidebar.offsetHeight;
+                    }
+                    
+                    let currentSection = '';
+                    
+                    // PRIORITY 1: If a navigation link was recently clicked, prioritize that section
+                    if (lastClickedSection) {
+                        const clickedSectionElement = document.getElementById(lastClickedSection);
+                        if (clickedSectionElement) {
+                            const sectionTop = clickedSectionElement.offsetTop;
+                            const sectionBottom = sectionTop + clickedSectionElement.offsetHeight;
+                            const viewportTop = scrollY + fixedElementsHeight;
+                            const viewportBottom = scrollY + viewportHeight;
+                            
+                            // If any part of the clicked section is visible, keep it highlighted
+                            if (sectionBottom >= viewportTop && sectionTop <= viewportBottom) {
+                                currentSection = lastClickedSection;
+                            } else {
+                                // Section is no longer visible, clear click priority
+                                lastClickedSection = null;
+                            }
                         }
-                    });
+                    }
                     
-                    current = mostVisibleSection;
+                    // PRIORITY 2: If no clicked section, use scroll direction-aware detection
+                    if (!currentSection) {
+                        const viewportTop = scrollY + fixedElementsHeight;
+                        
+                        if (scrollDirection === 'up') {
+                            // When scrolling UP: More sensitive detection (30% viewport)
+                            // Users expect quicker changes when glancing back at previous content
+                            const targetAreaBottom = viewportTop + (viewportHeight * 0.3);
+                            
+                            for (const section of sections) {
+                                const sectionTop = section.offsetTop;
+                                const sectionBottom = sectionTop + section.offsetHeight;
+                                const sectionId = section.getAttribute('id');
+                                
+                                // Check if section top is in the upper 30% OR if section contains viewport top
+                                if ((sectionTop >= viewportTop && sectionTop <= targetAreaBottom) ||
+                                    (sectionTop <= viewportTop && sectionBottom >= viewportTop)) {
+                                    currentSection = sectionId;
+                                    break;
+                                }
+                            }
+                        } else {
+                            // When scrolling DOWN: Less sensitive detection (10% viewport)
+                            // Users are progressing through content, want stable highlighting
+                            const targetAreaBottom = viewportTop + (viewportHeight * 0.1);
+                            
+                            for (const section of sections) {
+                                const sectionTop = section.offsetTop;
+                                const sectionId = section.getAttribute('id');
+                                
+                                if (sectionTop >= viewportTop && sectionTop <= targetAreaBottom) {
+                                    currentSection = sectionId;
+                                    break;
+                                }
+                            }
+                            
+                            // Fallback for downward scrolling
+                            if (!currentSection) {
+                                for (const section of sections) {
+                                    const sectionTop = section.offsetTop;
+                                    const sectionBottom = sectionTop + section.offsetHeight;
+                                    const sectionId = section.getAttribute('id');
+                                    
+                                    if (sectionTop <= viewportTop && sectionBottom >= viewportTop) {
+                                        currentSection = sectionId;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     
-                    // Highlight the appropriate nav link
-                    if (current) {
+                    // Update active states
+                    if (currentSection) {
                         navLinks.forEach(link => {
                             link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${current}`) {
+                            if (link.getAttribute('href') === `#${currentSection}`) {
                                 link.classList.add('active');
                             }
                         });
@@ -2056,81 +2557,136 @@
             const navLinks = document.querySelector('.nav-links');
             const body = document.body;
             
-            if (mobileMenuToggle && navLinks) {
-                // Toggle mobile menu
-                mobileMenuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                    body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-                });
-                
-                // Handle dropdown menus on mobile
-                const dropdownLinks = document.querySelectorAll('.nav-links .has-dropdown');
+            // Toggle mobile menu
+            mobileMenuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+                // Hide hamburger button when menu is active
+                this.style.display = navLinks.classList.contains('active') ? 'none' : 'block';
+            });
+            
+            // Handle dropdown menus on mobile
+            const dropdownLinks = document.querySelectorAll('.nav-links .has-dropdown');
+            
+            // Store original hrefs and remove them on mobile
+            const originalHrefs = new Map();
+            
+            function updateDropdownLinks() {
                 dropdownLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            const parentLi = this.parentElement;
-                            const wasOpen = parentLi.classList.contains('dropdown-open');
-                            
-                            // Close all dropdowns
-                            document.querySelectorAll('.nav-links li').forEach(li => {
-                                li.classList.remove('dropdown-open');
-                            });
-                            
-                            // Toggle current dropdown
-                            if (!wasOpen) {
-                                parentLi.classList.add('dropdown-open');
-                            }
-                        }
-                    });
-                });
-                
-                // Close mobile menu when clicking on a link
-                const navLinksItems = document.querySelectorAll('.nav-links a:not(.has-dropdown)');
-                navLinksItems.forEach(link => {
-                    link.addEventListener('click', function() {
-                        if (window.innerWidth <= 768) {
-                            navLinks.classList.remove('active');
-                            body.style.overflow = '';
-                        }
-                    });
-                });
-                
-                // Close mobile menu when resizing to desktop
-                window.addEventListener('resize', function() {
-                    if (window.innerWidth > 768) {
-                        navLinks.classList.remove('active');
-                        body.style.overflow = '';
-                        document.querySelectorAll('.nav-links li').forEach(li => {
-                            li.classList.remove('dropdown-open');
-                        });
-                    }
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
-                        if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                            navLinks.classList.remove('active');
-                            body.style.overflow = '';
-                        }
+                    // Always remove href for click-only behavior on all screen sizes
+                    if (link.hasAttribute('href') && !originalHrefs.has(link)) {
+                        originalHrefs.set(link, link.getAttribute('href'));
+                        link.removeAttribute('href');
+                        link.style.cursor = 'pointer';
                     }
                 });
             }
             
-            // Update sticky sidebar behavior for mobile
-            const updateStickyNavigation = () => {
-                const sidebar = document.querySelector('.sticky-sidebar');
-                if (sidebar && window.innerWidth <= 768) {
-                    // Remove any desktop-specific classes on mobile
-                    sidebar.classList.remove('fixed');
-                    sidebar.style.top = '';
-                }
-            };
+            // Initial setup
+            updateDropdownLinks();
             
-            // Run on load and resize
-            updateStickyNavigation();
-            window.addEventListener('resize', updateStickyNavigation);
+            // Update on resize
+            window.addEventListener('resize', updateDropdownLinks);
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    
+                    const parentLi = this.parentElement;
+                    const wasOpen = parentLi.classList.contains('dropdown-open');
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.nav-links li').forEach(li => {
+                        if (li !== parentLi) {
+                            li.classList.remove('dropdown-open');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (!wasOpen) {
+                        parentLi.classList.add('dropdown-open');
+                    } else {
+                        parentLi.classList.remove('dropdown-open');
+                    }
+                    
+                    // Prevent any navigation
+                    return false;
+                });
+            });
+            
+            // Close mobile menu when clicking on a link
+            const navLinksItems = document.querySelectorAll('.nav-links a:not(.has-dropdown)');
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        body.style.overflow = '';
+                        // Show hamburger button again
+                        mobileMenuToggle.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Close mobile menu when resizing to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    body.style.overflow = '';
+                    document.querySelectorAll('.nav-links li').forEach(li => {
+                        li.classList.remove('dropdown-open');
+                    });
+                    mobileMenuToggle.style.display = ''; // Reset display property
+                } else {
+                    // Ensure hamburger is visible on mobile if menu is not active
+                    if (!navLinks.classList.contains('active')) {
+                        mobileMenuToggle.style.display = 'block';
+                    }
+                }
+            });
+            
+            // Handle clicks on mobile nav menu (including X button)
+            navLinks.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768 && this.classList.contains('active')) {
+                    const rect = this.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const clickY = e.clientY - rect.top;
+                    
+                    // Check if click is in the X button area (top-right corner)
+                    if (clickX >= rect.width - 60 && clickX <= rect.width && clickY >= 0 && clickY <= 60) {
+                        // Close menu when X is clicked
+                        this.classList.remove('active');
+                        body.style.overflow = '';
+                        mobileMenuToggle.style.display = 'block';
+                        
+                        // Close any open dropdowns
+                        document.querySelectorAll('.nav-links li').forEach(li => {
+                            li.classList.remove('dropdown-open');
+                        });
+                    }
+                }
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                    // Check if click is outside the menu and not on the toggle button
+                    if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        body.style.overflow = '';
+                        mobileMenuToggle.style.display = 'block';
+                    }
+                }
+                
+                // Close all dropdowns when clicking outside
+                if (!e.target.closest('.nav-links')) {
+                    document.querySelectorAll('.nav-links li').forEach(li => {
+                        li.classList.remove('dropdown-open');
+                    });
+                }
+            });
+            
         });
     </script>
 </body>
