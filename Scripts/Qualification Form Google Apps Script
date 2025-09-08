@@ -1,0 +1,877 @@
+// Google Apps Script for RCS Qualification Form
+// This script handles qualification form submissions, saves to Google Sheets, and sends emails
+
+// Configuration - IMPORTANT: Update these values for your setup
+const SPREADSHEET_ID = '1PxscgTQUlz-UVLHHEaeoWBeDxknDjteMyfid0Oie_N4'; // Use same spreadsheet as contact form
+const SHEET_NAME = 'Sheet1'; // Use same sheet as contact form
+const SENDER_EMAIL = 'no-reply@redcellsolutions.com';
+const MANAGEMENT_EMAIL = 'mgmt.rcs@gmail.com'; // As requested
+
+// Color configuration for lead age
+const LEAD_COLORS = {
+  NEW: '#00ff00',        // Green - 10 mins or newer
+  RECENT: '#00ffff',     // Cyan - 10-30 mins
+  MODERATE: '#ff00ff',   // Magenta - 30-60 mins
+  OLD: '#dc143c'         // Red berry - 60+ mins
+};
+
+// Web App entry point - handles POST requests
+function doPost(e) {
+  try {
+    console.log('Received request:', e);
+    
+    // Check if we have postData
+    if (!e || !e.postData) {
+      console.error('No postData received');
+      return ContentService
+        .createTextOutput(JSON.stringify({status: 'error', message: 'No data received'}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    console.log('Raw postData:', e.postData.contents);
+    
+    // Parse the JSON data from the request
+    const data = JSON.parse(e.postData.contents);
+    console.log('Parsed data:', data);
+    
+    // Validate required fields
+    if (!data.firstName || !data.lastName || !data.email || !data.companyName) {
+      console.error('Missing required fields:', data);
+      return ContentService
+        .createTextOutput(JSON.stringify({status: 'error', message: 'Missing required fields'}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Save to spreadsheet
+    console.log('Saving to spreadsheet...');
+    saveToSpreadsheet(data);
+    
+    // Sort and color code leads
+    console.log('Sorting and color coding...');
+    sortAndColorCodeLeads();
+    
+    // Send confirmation email to the user
+    console.log('Sending user email...');
+    sendUserConfirmationEmail(data.email, data);
+    
+    // Send notification email to management
+    console.log('Sending management email...');
+    sendManagementNotificationEmail(data);
+    
+    console.log('All operations completed successfully');
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({status: 'success', message: 'Qualification form submitted successfully'}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    console.error('Error processing qualification form:', error);
+    console.error('Error stack:', error.stack);
+    return ContentService
+      .createTextOutput(JSON.stringify({status: 'error', message: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Save form data to Google Sheets - using same format as contact form
+function saveToSpreadsheet(data) {
+  try {
+    console.log('Opening spreadsheet with ID:', SPREADSHEET_ID);
+    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+    
+    if (!sheet) {
+      console.error('Sheet not found:', SHEET_NAME);
+      throw new Error('Sheet not found: ' + SHEET_NAME);
+    }
+    
+    console.log('Sheet found:', SHEET_NAME);
+    
+    // Check if headers exist (same format as contact form)
+    if (sheet.getLastRow() === 0) {
+      console.log('Adding headers to match contact form format');
+      const headers = [
+        'Timestamp',
+        'First Name',
+        'Last Name',
+        'Phone',
+        'Email',
+        'Company Name',
+        'Business Email',
+        'Street Address',
+        'City',
+        'State',
+        'Country',
+        'Zip',
+        'Business Description',
+        'Employees',
+        'Services'
+      ];
+      sheet.appendRow(headers);
+    }
+    
+    // Prepare qualification data in simplified contact form format
+    console.log('Preparing simplified qualification data for:', data.firstName, data.lastName);
+    
+    // Prepare row data with only essential information - leave other fields blank
+    const row = [
+      new Date(), // Timestamp
+      data.firstName || '',
+      data.lastName || '',
+      data.phone || '',
+      data.email || '', // Personal email
+      data.companyName || '',
+      data.email || '', // Business email (same as personal for qualification)
+      '', // Street Address - BLANK
+      '', // City - BLANK
+      '', // State - BLANK
+      '', // Country - BLANK
+      '', // Zip - BLANK
+      '', // Business Description - BLANK
+      '', // Employees - BLANK
+      '' // Services - BLANK
+    ];
+    
+    // Append the row
+    console.log('Appending qualification row to contact sheet:', row);
+    sheet.appendRow(row);
+    console.log('Qualification data saved successfully to contact sheet');
+    
+  } catch (error) {
+    console.error('Error in saveToSpreadsheet:', error);
+    throw error; // Re-throw to be caught by doPost
+  }
+}
+
+// Sort leads by timestamp (newest first) and apply color coding
+function sortAndColorCodeLeads() {
+  try {
+    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+    if (!sheet) return;
+    
+    // Get all data (excluding header row)
+    const lastRow = sheet.getLastRow();
+    if (lastRow <= 1) return; // No data to sort
+    
+    const lastCol = sheet.getLastColumn();
+    const dataRange = sheet.getRange(2, 1, lastRow - 1, lastCol);
+    const data = dataRange.getValues();
+    
+    // Sort data by timestamp (column A, index 0) in descending order
+    data.sort((a, b) => {
+      const dateA = new Date(a[0]);
+      const dateB = new Date(b[0]);
+      return dateB - dateA; // Newest first
+    });
+    
+    // Write sorted data back to sheet
+    dataRange.setValues(data);
+    
+    // Apply color coding
+    applyColorCoding(sheet);
+  } catch (error) {
+    console.error('Error in sortAndColorCodeLeads:', error);
+  }
+}
+
+// Apply color coding based on lead age
+function applyColorCoding(sheet) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return; // No data to color
+  
+  const now = new Date();
+  const timestampRange = sheet.getRange(2, 1, lastRow - 1, 1); // Column A only
+  const timestamps = timestampRange.getValues();
+  const backgrounds = [];
+  
+  timestamps.forEach(([timestamp]) => {
+    if (!timestamp || timestamp === '') {
+      backgrounds.push([null]); // No color for empty cells
+      return;
+    }
+    
+    const leadTime = new Date(timestamp);
+    const ageInMinutes = (now - leadTime) / (1000 * 60);
+    
+    let color;
+    if (ageInMinutes <= 10) {
+      color = LEAD_COLORS.NEW;
+    } else if (ageInMinutes <= 30) {
+      color = LEAD_COLORS.RECENT;
+    } else if (ageInMinutes <= 60) {
+      color = LEAD_COLORS.MODERATE;
+    } else {
+      color = LEAD_COLORS.OLD;
+    }
+    
+    backgrounds.push([color]);
+  });
+  
+  timestampRange.setBackgrounds(backgrounds);
+}
+
+// Send confirmation email to the user
+function sendUserConfirmationEmail(recipientEmail, data) {
+  const fullName = `${data.firstName} ${data.lastName}`;
+  const firstName = data.firstName;
+  
+  const subject = 'Your Free $2,500 Security Analysis - RCS Security';
+  
+  // Determine risk level for personalized message
+  let riskLevel = 'MODERATE';
+  let riskColor = '#ffc107';
+  let riskMessage = 'Your organization has some security vulnerabilities that need attention.';
+  
+  if (data.totalRiskScore >= 75) {
+    riskLevel = 'CRITICAL';
+    riskColor = '#970c1c'; // Website crimson red
+    riskMessage = 'Your organization faces significant security risks that require immediate attention.';
+  } else if (data.totalRiskScore >= 50) {
+    riskLevel = 'HIGH';
+    riskColor = '#970c1c'; // Website crimson red
+    riskMessage = 'Your organization has several security vulnerabilities that should be addressed soon.';
+  } else if (data.totalRiskScore < 25) {
+    riskLevel = 'LOW';
+    riskColor = '#28a745';
+    riskMessage = 'Your organization has relatively good security practices, but there\'s always room for improvement.';
+  }
+  
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+    .email-wrapper {
+      background-color: #f4f4f4;
+      padding: 40px 20px;
+    }
+    .email-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .header {
+      background-color: #970c1c;
+      color: #ffffff;
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .value-banner {
+      background-color: #171717;
+      color: #ffffff;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .content {
+      padding: 40px 40px;
+      color: #171717;
+    }
+    .greeting {
+      font-size: 24px;
+      color: #970c1c;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+      color: #393939;
+      margin-bottom: 20px;
+    }
+    .risk-score-section {
+      background-color: #f4f4f4;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .risk-score {
+      font-size: 48px;
+      font-weight: bold;
+      color: ${riskColor};
+      margin-bottom: 10px;
+    }
+    .risk-level {
+      font-size: 24px;
+      font-weight: bold;
+      color: ${riskColor};
+      margin-bottom: 15px;
+    }
+    .risk-message {
+      font-size: 16px;
+      color: #393939;
+    }
+    .next-steps {
+      background-color: #171717;
+      color: #ffffff;
+      padding: 30px;
+      margin: 30px -40px;
+    }
+    .next-steps h3 {
+      margin: 0 0 20px 0;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .next-steps ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .next-steps li {
+      margin: 12px 0;
+      line-height: 1.8;
+    }
+    .cta-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #970c1c;
+      color: #ffffff !important;
+      padding: 15px 40px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .footer {
+      background-color: #171717;
+      color: #f4f4f4;
+      padding: 25px 30px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .footer p {
+      color: #f4f4f4;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 600px) {
+      .email-wrapper {
+        padding: 20px 10px;
+      }
+      .content {
+        padding: 30px 20px;
+      }
+      .next-steps {
+        margin: 30px -20px;
+      }
+      .risk-score {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-container">
+      <div class="header">
+        <h1>RCS Security</h1>
+      </div>
+      
+      <div class="value-banner">
+        Your $2,500 FREE Security Analysis
+      </div>
+      
+      <div class="content">
+        <h2 class="greeting">Thank You, ${firstName}!</h2>
+        
+        <p>Your security qualification assessment has been completed. Based on your responses, we've prepared a comprehensive analysis of your organization's security posture.</p>
+        
+        <div class="risk-score-section">
+          <div class="risk-score">${data.totalRiskScore}%</div>
+          <div class="risk-level">${riskLevel} RISK</div>
+          <div class="risk-message">${riskMessage}</div>
+        </div>
+        
+        ${data.questionsAnswered && Array.isArray(data.questionsAnswered) ? `
+        <div style="background-color: #f4f4f4; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 4px solid #970c1c;">
+          <h3 style="margin: 0 0 20px 0; color: #171717; font-size: 18px;">Key Vulnerabilities Identified:</h3>
+          <ul style="margin: 0; padding-left: 20px; list-style: none;">
+            ${data.questionsAnswered
+              .map((qa, index) => {
+                if (qa.score < 3) return ''; // Only show high-risk answers
+                
+                const vulnerabilityMessages = {
+                  0: "Multiple unmonitored entry points",
+                  1: "Weak badge replacement procedures", 
+                  2: "Delayed access termination process",
+                  3: "Excessive server room access",
+                  4: "Uniform-based access vulnerability",
+                  5: "Poor stranger challenging culture",
+                  6: "Unsecured visitor management",
+                  7: "Inadequate sensitive area protection",
+                  8: "Unscreened package delivery process",
+                  9: "Unknown security incident history"
+                };
+                
+                const vulnerability = vulnerabilityMessages[index] || "Security vulnerability identified";
+                
+                return `<li style="padding: 8px 0; padding-left: 15px; position: relative;">
+                  <span style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: #970c1c; font-size: 16px; font-weight: bold;">•</span>
+                  ${vulnerability}
+                </li>`;
+              })
+              .filter(item => item !== '') // Remove empty items
+              .join('')}
+          </ul>
+        </div>
+        ` : ''}
+        
+        <div class="next-steps">
+          <h3>What Happens Next</h3>
+          <ol>
+            <li>Our security experts will review your detailed assessment results</li>
+            <li>We'll prepare a customized security roadmap for ${data.companyName}</li>
+            <li>A senior security consultant will contact you within 24 hours</li>
+            <li>We'll schedule a consultation to discuss your specific vulnerabilities and solutions</li>
+          </ol>
+        </div>
+        
+        <p>This analysis normally costs $2,500, but we're providing it at no charge to help organizations like yours improve their security posture.</p>
+        
+        <div class="cta-section">
+          <a href="https://redcellsecurity.com" class="cta-button">Learn More About Our Services</a>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>RCS Security</p>
+        <p>Protecting Organizations Through Social Engineering Defense</p>
+        <p style="opacity: 0.7; font-size: 12px;">This is an automated email. Please do not reply directly.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+  
+  // Send the email using GmailApp
+  GmailApp.sendEmail(
+    recipientEmail,
+    subject,
+    '', // Plain text body (empty since we're using HTML)
+    {
+      htmlBody: htmlBody,
+      name: 'RCS Security',
+      from: SENDER_EMAIL
+    }
+  );
+}
+
+// Send notification email to management
+function sendManagementNotificationEmail(data) {
+  const subject = `New Qualification Lead - ${data.companyName} (${data.totalRiskScore}% Risk Score)`;
+  
+  // Determine risk level
+  let riskLevel = 'MODERATE';
+  let riskColor = '#ffc107';
+  
+  if (data.totalRiskScore >= 75) {
+    riskLevel = 'CRITICAL';
+    riskColor = '#970c1c'; // Website crimson red
+  } else if (data.totalRiskScore >= 50) {
+    riskLevel = 'HIGH';
+    riskColor = '#970c1c'; // Website crimson red
+  } else if (data.totalRiskScore < 25) {
+    riskLevel = 'LOW';
+    riskColor = '#28a745';
+  }
+  
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+    .email-wrapper {
+      background-color: #f4f4f4;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background-color: #171717;
+      padding: 30px;
+      color: #ffffff;
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    .header .timestamp {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 8px;
+    }
+    .content {
+      padding: 30px;
+    }
+    .priority-alert {
+      background-color: ${riskColor};
+      color: white;
+      padding: 20px;
+      margin: -30px -30px 30px -30px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .summary-section {
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+    .summary-section h3 {
+      margin: 0 0 15px 0;
+      font-size: 18px;
+      color: #171717;
+    }
+    .risk-score {
+      font-size: 36px;
+      font-weight: bold;
+      color: ${riskColor};
+      text-align: center;
+      margin: 20px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #f4f4f4;
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .field-label {
+      font-weight: 600;
+      color: #393939;
+      width: 25%;
+      font-size: 14px;
+    }
+    .field-value {
+      color: #171717;
+      font-size: 15px;
+    }
+    .questions-section {
+      margin-top: 30px;
+    }
+    .question-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+    .question-text {
+      font-weight: bold;
+      color: #393939;
+    }
+    .answer-text {
+      color: #171717;
+      margin-top: 5px;
+    }
+    .score-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      float: right;
+    }
+    .score-low { background-color: #28a745; color: white; }
+    .score-medium { background-color: #ffc107; color: black; }
+    .score-high { background-color: #970c1c; color: white; }
+    .footer {
+      background-color: #f4f4f4;
+      padding: 25px 30px;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+    }
+    .action-button {
+      display: inline-block;
+      background-color: #970c1c;
+      color: #ffffff !important;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      margin: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="container">
+      <div class="header">
+        <h2>New Qualification Lead</h2>
+        <div class="timestamp">${new Date().toLocaleString()}</div>
+      </div>
+      
+      <div class="content">
+        <div class="priority-alert">
+          ${riskLevel} RISK LEAD - ${data.totalRiskScore}%
+        </div>
+        
+        <div class="summary-section">
+          <h3>Lead Summary</h3>
+          <p><strong>Company:</strong> ${data.companyName}</p>
+          <p><strong>Contact:</strong> ${data.firstName} ${data.lastName}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Phone:</strong> ${data.phone}</p>
+        </div>
+        
+${data.questionsAnswered && Array.isArray(data.questionsAnswered) && data.questionsAnswered.some(qa => qa.score >= 3) ? `
+        <div style="background-color: #f4f4f4; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 4px solid #970c1c;">
+          <h3 style="margin: 0 0 20px 0; color: #171717; font-size: 18px;">Critical Vulnerabilities Identified</h3>
+          <ul style="margin: 0; padding-left: 20px; list-style: none;">
+            ${data.questionsAnswered
+              .map((qa, index) => {
+                if (qa.score < 3) return '';
+                
+                const vulnerabilityMessages = {
+                  0: "Multiple unmonitored entry points",
+                  1: "Weak badge replacement procedures", 
+                  2: "Delayed access termination process",
+                  3: "Excessive server room access",
+                  4: "Uniform-based access vulnerability",
+                  5: "Poor stranger challenging culture",
+                  6: "Unsecured visitor management",
+                  7: "Inadequate sensitive area protection",
+                  8: "Unscreened package delivery process",
+                  9: "Unknown security incident history"
+                };
+                
+                const vulnerability = vulnerabilityMessages[index] || "Security vulnerability identified";
+                
+                return `<li style="padding: 8px 0; padding-left: 15px; position: relative;">
+                  <span style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: #970c1c; font-size: 16px; font-weight: bold;">•</span>
+                  ${vulnerability}
+                </li>`;
+              })
+              .filter(item => item !== '')
+              .join('')}
+          </ul>
+        </div>
+        ` : ''}
+
+        <div class="questions-section">
+          <h3>Detailed Assessment Results</h3>
+          ${data.questionsAnswered && Array.isArray(data.questionsAnswered) ? 
+            data.questionsAnswered.map((qa, index) => {
+              let scoreClass = 'score-low';
+              if (qa.score >= 3) scoreClass = 'score-high';
+              else if (qa.score >= 2) scoreClass = 'score-medium';
+              
+              return `
+                <div class="question-item">
+                  <div class="score-badge ${scoreClass}">Score: ${qa.score}/4</div>
+                  <div class="question-text">Q${index + 1}: ${qa.question}</div>
+                  <div class="answer-text">Answer: ${qa.answer}</div>
+                </div>
+              `;
+            }).join('') : 
+            '<p>No assessment data available</p>'
+          }
+        </div>
+      </div>
+      
+      <div class="footer">
+        <a href="https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}" class="action-button">View in Spreadsheet</a>
+        <a href="mailto:${data.email}" class="action-button">Contact Lead</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+  
+  // Send the notification email to management
+  GmailApp.sendEmail(
+    MANAGEMENT_EMAIL,
+    subject,
+    '', // Plain text body (empty since we're using HTML)
+    {
+      htmlBody: htmlBody,
+      name: 'RCS Qualification System',
+      from: SENDER_EMAIL
+    }
+  );
+}
+
+// Test function for development - simplified data
+function testQualificationForm() {
+  const testData = {
+    firstName: 'John',
+    lastName: 'Doe',
+    companyName: 'Test Company Inc.',
+    email: 'john.doe@testcompany.com',
+    phone: '(555) 123-4567',
+    totalRiskScore: 75,
+    submissionType: 'qualification',
+    questionsAnswered: [
+      { question: 'How many employee entrances does your facility have?', answer: '6+', score: 4, risk: 'high' },
+      { question: 'What happens when someone forgets their badge?', answer: 'Coworker lets them in', score: 4, risk: 'high' },
+      { question: 'How long does IT take to disable access after termination?', answer: 'Within 24 hours', score: 2, risk: 'medium' },
+      { question: 'Who has access to your server room?', answer: 'Cleaning crew too', score: 4, risk: 'high' },
+      { question: 'What uniform would guarantee access to your building?', answer: 'IT contractor', score: 4, risk: 'high' },
+      { question: 'How often do employees challenge strangers without badges?', answer: 'Sometimes', score: 3, risk: 'high' },
+      { question: 'Where do visitors wait while being processed?', answer: 'Reception area', score: 2, risk: 'medium' },
+      { question: 'What\'s your most sensitive area\'s security?', answer: 'Keycard only', score: 3, risk: 'high' },
+      { question: 'How do packages get delivered?', answer: 'Left at reception', score: 2, risk: 'medium' },
+      { question: 'When was your last security incident?', answer: 'Never', score: 4, risk: 'high' }
+    ]
+  };
+  
+  console.log('Starting simplified test with data:', testData);
+  
+  try {
+    // Test saving to spreadsheet (only saves name, email, phone, company)
+    console.log('Testing saveToSpreadsheet...');
+    saveToSpreadsheet(testData);
+    
+    // Test sending emails (uncomment to test)
+    console.log('Testing user email...');
+    // sendUserConfirmationEmail(testData.email, testData);
+    
+    console.log('Testing management email...');
+    // sendManagementNotificationEmail(testData);
+    
+    console.log('Test completed successfully - check spreadsheet for simplified entry');
+  } catch (error) {
+    console.error('Test failed:', error);
+    console.error('Error stack:', error.stack);
+  }
+}
+
+// Simple test to verify spreadsheet access
+function testSpreadsheetAccess() {
+  try {
+    console.log('Testing spreadsheet access...');
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    console.log('Spreadsheet opened successfully:', spreadsheet.getName());
+    
+    const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      console.error('Sheet not found:', SHEET_NAME);
+      return 'Sheet not found: ' + SHEET_NAME + '. Make sure Sheet1 exists in your spreadsheet.';
+    }
+    console.log('Sheet accessed successfully:', sheet.getName());
+    
+    console.log('Sheet has', sheet.getLastRow(), 'rows');
+    
+    return 'Spreadsheet access test passed! Sheet found with ' + sheet.getLastRow() + ' rows.';
+  } catch (error) {
+    console.error('Spreadsheet access test failed:', error);
+    return 'Spreadsheet access test failed: ' + error.toString();
+  }
+}
+
+// Function to refresh colors (called by time-based trigger)
+function refreshLeadColors() {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  if (sheet) {
+    applyColorCoding(sheet);
+  }
+}
+
+// Function to set up triggers for the qualification sheet
+function setupQualificationTriggers() {
+  // Delete existing triggers to avoid duplicates
+  const triggers = ScriptApp.getProjectTriggers();
+  triggers.forEach(trigger => {
+    const handlerFunction = trigger.getHandlerFunction();
+    if (handlerFunction === 'refreshLeadColors') {
+      ScriptApp.deleteTrigger(trigger);
+    }
+  });
+  
+  // Set up time-based trigger for color refresh (every minute)
+  ScriptApp.newTrigger('refreshLeadColors')
+    .timeBased()
+    .everyMinutes(1)
+    .create();
+  
+  console.log('Qualification form triggers set up successfully!');
+}
+
+// Manual function to initialize the qualification system
+function initializeQualificationSystem() {
+  try {
+    // Verify the sheet exists (should be same as contact form)
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      console.error('Sheet not found:', SHEET_NAME);
+      console.log('Make sure your Google Sheet has a tab named "' + SHEET_NAME + '"');
+      return 'Error: Sheet not found. Make sure Sheet1 exists in your spreadsheet.';
+    }
+    
+    console.log('Using existing sheet:', sheet.getName(), 'with', sheet.getLastRow(), 'rows');
+    
+    sortAndColorCodeLeads();
+    setupQualificationTriggers();
+    console.log('Qualification system initialized successfully!');
+    return 'Qualification system initialized successfully! Using sheet: ' + sheet.getName();
+  } catch (error) {
+    console.error('Error initializing qualification system:', error);
+    return 'Error: ' + error.toString();
+  }
+}
+
+// DEPLOYMENT INSTRUCTIONS:
+// 1. Create a new Google Apps Script project
+// 2. Replace the default code with this script
+// 3. Update SPREADSHEET_ID to match your Google Sheet (should be same as contact form)
+// 4. Update MANAGEMENT_EMAIL if needed (currently set to mgmt.rcs@gmail.com)
+// 5. Run testSpreadsheetAccess() to verify connection to your existing Sheet1
+// 6. Run testQualificationForm() to test the simplified data saving
+// 7. Run initializeQualificationSystem() once to set up the system
+// 8. Deploy as web app:
+//    - Click "Deploy" > "New Deployment"
+//    - Choose "Web app" as type
+//    - Set execute as "Me" and access to "Anyone"
+//    - Copy the web app URL
+// 9. Replace the URL in qualification.html with your web app URL
+//
+// NOTE: This saves only essential contact data to Sheet1:
+// - Timestamp, First Name, Last Name, Phone, Email, Company Name, Business Email
+// - All other fields (address, city, state, country, zip, business description, employees, services) are left BLANK
+// - Questionnaire details are only included in emails, not the spreadsheet
