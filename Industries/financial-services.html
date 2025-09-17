@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthcare Security Solutions | RCS Security</title>
+    <title>Financial Services Security Solutions | RCS Security</title>
     <style>
         html {
             scroll-behavior: smooth;
@@ -75,26 +75,6 @@
             list-style: none;
         }
         
-        /* Mobile Navigation Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            color: var(--secondary-color);
-        }
-        
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--secondary-color);
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-        
         .nav-links li {
             margin-left: 20px;
             position: relative;
@@ -155,6 +135,31 @@
             background-color: var(--light-gray);
         }
         
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 7.5px 15px; /* Increased by 1.25x */
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px; /* Increased by 1.25x */
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px; /* Increased by 1.25x */
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+
         /* Dropdown arrow positioning fix */
         .nav-links a.has-dropdown {
             display: flex;
@@ -243,29 +248,231 @@
             margin-left: 5px;
         }
         
-        .has-dropdown::after {
-            content: "▼";
-            font-size: 10px;
-            margin-left: 5px;
-            display: inline-block;
-            vertical-align: middle;
+        /* Mobile Navigation Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            color: var(--secondary-color);
         }
         
-        .btn {
-            display: inline-block;
-            padding: 7.5px 15px; /* Increased by 1.25x */
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 4px; /* Increased by 1.25x */
-            font-weight: 600;
-            transition: background-color 0.3s;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px; /* Increased by 1.25x */
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 5px 0;
+            transition: 0.3s;
         }
-        
-        .btn:hover {
-            background-color: #7a0916;
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            .mobile-menu-toggle {
+                display: block;
+                z-index: 102;
+                order: 2;
+                margin-left: auto;
+                margin-right: 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 99;
+                overflow-y: auto;
+            }
+            
+            /* Add close button for mobile menu */
+            .nav-links::before {
+                content: "✕";
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 24px;
+                color: var(--dark-gray);
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+                z-index: 101;
+                user-select: none;
+            }
+            
+            .nav-links::before:hover {
+                background: var(--light-gray);
+                color: var(--primary-color);
+                transform: scale(1.1);
+            }
+            
+            .nav-links::before:active {
+                transform: scale(0.95);
+                background: rgba(151, 12, 28, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                position: relative;
+            }
+            
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links > li > a {
+                padding: 18px 20px;
+                font-size: 17px;
+                min-height: 56px;
+                width: 100%;
+                justify-content: space-between;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                transition: all 0.2s ease;
+                position: relative;
+            }
+            
+            .nav-links > li > a:hover {
+                background: rgba(151, 12, 28, 0.03);
+            }
+            
+            .nav-links > li > a.has-dropdown {
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            
+            .nav-links > li > a.has-dropdown::after {
+                content: "▼";
+                font-size: 12px;
+                margin-left: auto;
+                color: var(--primary-color);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links > li.dropdown-open > a.has-dropdown::after {
+                transform: rotate(180deg);
+            }
+            
+            .nav-links > li.dropdown-open > a {
+                background: rgba(151, 12, 28, 0.04);
+                color: var(--primary-color);
+                border-bottom: 2px solid var(--primary-color);
+            }
+            
+            .nav-links .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                max-height: 0;
+                padding-left: 0;
+                background: #f8f8f8;
+                min-width: 100%;
+                margin: 0;
+                border-radius: 6px;
+                overflow: hidden;
+                border-left: 3px solid var(--primary-color);
+                opacity: 0;
+                visibility: hidden;
+                transform: none;
+                transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                            margin 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                            opacity 0.3s ease-out,
+                            visibility 0.3s;
+            }
+            
+            .nav-links li.dropdown-open .dropdown-menu {
+                max-height: 400px;
+                margin: 8px 20px;
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .dropdown-menu li {
+                position: relative;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            .dropdown-menu li:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-menu a {
+                font-size: 15px;
+                padding: 14px 20px 14px 30px;
+                display: block;
+                transition: background-color 0.2s ease, color 0.2s ease;
+                position: relative;
+                color: var(--secondary-color);
+                background: transparent;
+            }
+            
+            .dropdown-menu a:hover {
+                background: rgba(151, 12, 28, 0.05);
+                color: var(--primary-color);
+            }
+            
+            /* Header adjustments */
+            nav {
+                padding: 10px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+            }
+            
+            /* Logo positioning - center */
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(35%);
+                z-index: 98;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .logo-img {
+                width: 50px;
+            }
+            
+            /* Search and button positioning - left side */
+            .nav-right-section {
+                order: 1;
+                width: auto;
+                margin-right: 0;
+                margin-left: 0;
+                flex: 1;
+            }
+            
+            .search-container {
+                display: none;
+            }
+            
+            .nav-right-section .btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
         }
         
         .hero {
@@ -978,67 +1185,6 @@
     </style>
 </head>
 <body>
-    <!-- Header and Navigation -->
-    <header>
-        <div class="container">
-            <nav class="nav-container">
-                <div class="logo">
-                    <div class="logo-img">
-                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
-                    </div>
-                </div>
-                <ul class="nav-links">
-                    <li>
-                        <a href="../index.html#services" class="has-dropdown" data-mobile-no-nav>Services</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
-                            <li><a href="../security-training.html">Security Awareness Training</a></li>
-                            <li><a href="../qualification.html">Free Security Audit</a></li>
-                        </ul>
-                    </li>
-                    <!-- Solutions tab removed -->
-                    <li>
-                        <a href="#impact" class="has-dropdown" data-mobile-no-nav>Industries</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="healthcare.html">Healthcare</a></li>
-                            <li><a href="law-firms.html">Law Firms</a></li>
-                            <li><a href="educational-institutions.html">Educational Institutions</a></li>
-                            <li><a href="financial-services.html">Financial Services</a></li>
-                        </ul>
-                    </li>
-                    <!-- Resources tab removed -->
-                    <li>
-                        <a href="../company-history.html" class="has-dropdown" data-mobile-no-nav>About Us</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../company-history.html">Company History</a></li>
-                            <li><a href="../faq.html">FAQ</a></li>
-                            <li><a href="../mission-values.html">Mission & Values</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="nav-right-section" style="display: flex; align-items: center;">
-                    <div class="search-container">
-                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
-                        <button class="search-btn" id="searchBtn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                        </button>
-                        <div class="search-suggestions" id="searchSuggestions"></div>
-                    </div>
-                    <a href="../index.html" class="btn">Back to Home</a>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Intersection Observer for scroll animations
@@ -1326,10 +1472,10 @@
                         url: 'educational-institutions.html'
                     },
                     {
-                        title: 'Technology',
+                        title: 'Financial Services',
                         category: 'Industry',
-                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware'],
-                        url: 'technology.html'
+                        keywords: ['finance', 'banking', 'financial', 'investment'],
+                        url: 'financial-services.html'
                     },
                     {
                         title: 'Enterprise Security',
@@ -1443,12 +1589,73 @@
             initSearch();
         });
     </script>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="../index.html#services" class="has-dropdown" data-mobile-no-nav>Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
+                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="../security-training.html">Security Awareness Training</a></li>
+                            <li><a href="../qualification.html">Free Security Audit</a></li>
+                        </ul>
+                    </li>
+                    <!-- Solutions tab removed -->
+                    <li>
+                        <a href="#impact" class="has-dropdown" data-mobile-no-nav>Industries</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="healthcare.html">Healthcare</a></li>
+                            <li><a href="law-firms.html">Law Firms</a></li>
+                            <li><a href="educational-institutions.html">Educational Institutions</a></li>
+                            <li><a href="financial-services.html">Financial Services</a></li>
+                        </ul>
+                    </li>
+                    <!-- Resources tab removed -->
+                    <li>
+                        <a href="../company-history.html" class="has-dropdown" data-mobile-no-nav>About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../company-history.html">Company History</a></li>
+                            <li><a href="../faq.html">FAQ</a></li>
+                            <li><a href="../mission-values.html">Mission & Values</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+                        <button class="search-btn" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <a href="../index.html" class="btn">Back to Home</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Healthcare Security Solutions</h1>
-                <p>Protecting healthcare organizations from social engineering threats with specialized security strategies that don't compromise patient care.</p>
+                <h1>Financial Services Security Solutions</h1>
+                <p>Protecting financial institutions from social engineering threats with specialized security strategies tailored to your unique challenges.</p>
                 <a href="#vulnerabilities" class="btn">Explore Solutions</a>
             </div>
         </div>
@@ -1458,37 +1665,37 @@
     <section id="overview">
         <div class="container">
             <div class="section-title">
-                <h2>Healthcare Security Challenges</h2>
-                <p>Understanding the unique threats and vulnerabilities in the healthcare sector</p>
+                <h2>Financial Services Security Challenges</h2>
+                <p>Understanding the unique threats and vulnerabilities in the financial services sector</p>
             </div>
             <div class="content-section">
                 <div class="content-text">
-                    <h3>When Patient Care Trumps Security</h3>
-                    <p>Your healthcare team's dedication to patient care creates an ideal environment for social engineering. Clinical staff prioritize patient needs over security protocols, create security shortcuts under pressure, and readily share credentials to expedite care – exactly what attackers are counting on.</p>
-                    <p>At RCS Security, we understand the specific challenges that healthcare organizations face when it comes to cybersecurity and social engineering attacks.</p>
+                    <h3>Why Financial Services Organizations Need Specialized Protection</h3>
+                    <p>In financial services, your greatest asset is also your greatest vulnerability: trust. Your employees are trained to be responsive and service-oriented, creating perfect targets for social engineers. Unlike other sectors like healthcare or educational institutions, financial organizations face unique regulatory pressures that attackers exploit.</p>
+                    <p>At RCS Security, we understand the specific challenges that financial institutions face when it comes to cybersecurity and social engineering attacks.</p>
                     <ul>
-                        <li><strong>Patient care prioritization</strong>: Clinical staff often prioritize care delivery over security protocols, creating exploitable gaps</li>
-                        <li><strong>High-pressure environment</strong>: Emergency situations and time constraints lead to security shortcuts and decreased vigilance</li>
-                        <li><strong>Credential sharing</strong>: Staff frequently share credentials to expedite care, compromising access controls</li>
-                        <li><strong>Limited security training</strong>: Competing priorities reduce time for comprehensive security education</li>
+                        <li><strong>Customer trust exploitation</strong>: Your employees are susceptible to social engineering attacks impersonating clients, regulators, or executives</li>
+                        <li><strong>Time-sensitive transaction pressure</strong>: Staff may bypass verification protocols when faced with "critical" requests, creating vulnerability to urgency-based manipulation</li>
+                        <li><strong>Complex regulatory compliance</strong>: Often distracts from operational security while creating opportunities for targeted attacks</li>
+                        <li><strong>Fintech integration</strong>: Creates security gaps between legacy systems and newer technologies</li>
                     </ul>
                 </div>
                 <div class="content-image">
-                    <img src="../Images/Healthcare Ignorance.jpg" alt="Healthcare Security Challenges">
+                    <img src="../Images/FinOffice.png" alt="Financial Office Environment">
                 </div>
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h3>$4-8M</h3>
-                    <p>Average breach cost for medium healthcare organizations</p>
+                    <h3>$5.08M</h3>
+                    <p>Average breach cost for medium-sized financial institutions</p>
                 </div>
                 <div class="stat-card">
-                    <h3>92%</h3>
-                    <p>Of healthcare providers reported at least one cyberattack in 2024</p>
+                    <h3>51 days</h3>
+                    <p>Average recovery time, with reputation damage accounting for $1.47 million</p>
                 </div>
                 <div class="stat-card">
-                    <h3>67%</h3>
-                    <p>Faced ransomware attacks in 2024, up from 60% in 2023</p>
+                    <h3>130</h3>
+                    <p>Attempted security incidents daily for financial institutions</p>
                 </div>
             </div>
         </div>
@@ -1498,34 +1705,34 @@
     <section id="vulnerabilities" style="background-color: var(--light-gray);">
         <div class="container">
             <div class="section-title">
-                <h2>Common Healthcare Vulnerabilities</h2>
-                <p>The social engineering attack vectors specifically targeting healthcare organizations</p>
+                <h2>Common Financial Services Vulnerabilities</h2>
+                <p>The social engineering attack vectors specifically targeting financial institutions</p>
             </div>
             
             <div class="vulnerability-card">
-                <h3>Medical Authority Impersonation</h3>
-                <p>Social engineers exploit healthcare's hierarchical structure by impersonating physicians, administrators, or regulatory authorities. Staff are conditioned to respond quickly to these authority figures, creating opportunities for attackers to bypass security controls.</p>
+                <h3>Customer Trust Exploitation</h3>
+                <p>Social engineers specifically target your staff through customer trust relationships, leveraging the service-oriented nature of financial employees. Attackers impersonate clients, partners, or regulators to manipulate staff into taking actions that compromise security.</p>
                 <div class="solution-card">
                     <h4>Our Solution</h4>
-                    <p>We conduct authority-based phishing campaigns impersonating executives or physicians to test and strengthen your verification procedures, even when requests appear to come from clinical leadership.</p>
+                    <p>We conduct targeted spear-phishing campaigns using regulatory compliance notifications and client impersonation scenarios to test and strengthen your team's ability to verify identities even when under pressure to provide service.</p>
                 </div>
             </div>
             
             <div class="vulnerability-card">
-                <h3>False Urgency Appeals Tied to Patient Care</h3>
-                <p>Attackers leverage healthcare's mission-driven culture by creating scenarios that suggest patient care is at risk. Staff naturally prioritize potential patient needs over security procedures when presented with urgent medical scenarios.</p>
+                <h3>Urgency-Based Manipulation</h3>
+                <p>Time-sensitive transaction pressures lead staff to bypass verification protocols when faced with "critical" requests. Attackers create artificial urgency to force quick decisions that circumvent security procedures.</p>
                 <div class="solution-card">
                     <h4>Our Solution</h4>
-                    <p>Our medical emergency scenario testing evaluates staff responses under pressure, helping your team develop protocols that maintain security even during seemingly urgent clinical situations.</p>
+                    <p>Our simulated financial transaction process testing attempts to bypass dual-control requirements, helping your team recognize and resist urgency-based manipulation tactics even under pressure.</p>
                 </div>
             </div>
             
             <div class="vulnerability-card">
-                <h3>Help Desk Targeting</h3>
-                <p>IT support in healthcare environments often prioritizes quick resolution to minimize clinical disruption. Attackers target help desks to gain credentials and access through social engineering tactics that emphasize patient care impact.</p>
+                <h3>Executive Impersonation</h3>
+                <p>Authority bias makes financial employees vulnerable to executive impersonation attacks. These sophisticated social engineering tactics leverage organizational hierarchy to execute fraudulent transactions or extract sensitive information.</p>
                 <div class="solution-card">
                     <h4>Our Solution</h4>
-                    <p>We conduct specialized help desk testing that simulates clinical scenarios, helping your IT support team balance service delivery with essential security verification.</p>
+                    <p>We conduct executive impersonation scenarios testing authority-based vulnerabilities, helping your team develop verification protocols that work even when requests appear to come from leadership.</p>
                 </div>
             </div>
         </div>
@@ -1535,23 +1742,23 @@
     <section id="solutions">
         <div class="container">
             <div class="section-title">
-                <h2>Our Healthcare Security Solutions</h2>
-                <p>Customized services designed specifically for the healthcare sector</p>
+                <h2>Our Financial Services Security Solutions</h2>
+                <p>Customized services designed specifically for the financial sector</p>
             </div>
             <div class="content-section">
                 <div class="content-text">
-                    <h3>Tailored Protection for Healthcare Organizations</h3>
-                    <p>Our healthcare security solutions are built on deep industry knowledge and extensive experience working with organizations in your sector.</p>
+                    <h3>Tailored Protection for Financial Institutions</h3>
+                    <p>Our financial services security solutions are built on deep industry knowledge and extensive experience working with organizations in your sector.</p>
                     <ul>
-                        <li><strong>Clinical Workflow Assessment</strong>: Identifying care-vs-security tradeoffs to develop procedures that protect data without hindering patient care</li>
-                        <li><strong>Medical Device Testing</strong>: Evaluating connected clinical systems for security vulnerabilities and developing mitigation strategies</li>
-                        <li><strong>EHR Security Assessment</strong>: Testing electronic health record access controls and data integrity measures</li>
-                        <li><strong>Medical Emergency Scenarios</strong>: Testing staff responses to urgent situations to build security-conscious crisis protocols</li>
-                        <li><strong>Physical Access Testing</strong>: Evaluating unauthorized access to clinical areas to protect sensitive patient information and vulnerable systems</li>
+                        <li><strong>Targeted Spear-Phishing Campaigns</strong>: Using regulatory compliance notifications and executive impersonation to test and strengthen your team's resilience</li>
+                        <li><strong>Vishing Assessments</strong>: Simulating clients requesting urgent account changes to evaluate your staff's adherence to verification protocols</li>
+                        <li><strong>Financial Transaction Process Testing</strong>: Attempting to bypass dual-control requirements to identify procedural weaknesses</li>
+                        <li><strong>New Client Onboarding Exploitation</strong>: Testing KYC verification procedures to ensure they're resistant to social engineering</li>
+                        <li><strong>Help Desk Testing</strong>: Attempting password resets through social engineering to verify your authentication protocols</li>
                     </ul>
                 </div>
                 <div class="content-image">
-                    <img src="../Images/Healthcare Solution.jpg" alt="Healthcare Security Solutions">
+                    <img src="../Images/Shake.jpeg" alt="Financial Business Handshake">
                 </div>
             </div>
         </div>
@@ -1561,8 +1768,8 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>Protect Your Healthcare Organization</h2>
-                <p>Let us help you protect your patients by protecting your people. Your commitment to care shouldn't be your security downfall.</p>
+                <h2>Protect Your Financial Institution</h2>
+                <p>Don't wait for criminals to exploit your team's trust-based vulnerabilities. Contact our team of financial security specialists to discuss your specific needs and challenges.</p>
                 <a href="../contact.html" class="btn btn-white">Schedule Consultation</a>
             </div>
         </div>
@@ -1611,5 +1818,6 @@
             </div>
         </div>
     </footer>
+    
 </body>
 </html>

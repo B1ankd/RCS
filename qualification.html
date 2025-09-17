@@ -290,6 +290,14 @@
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('Images/3 x 12 Web Banner - Medium Smooth.png');
             background-size: cover;
             background-position: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .hero.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .hero-content {
@@ -313,6 +321,14 @@
         .qualification-section {
             padding: 70px 0;
             min-height: 80vh;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .qualification-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .qualification-container {
@@ -525,22 +541,36 @@
         .contact-collection {
             display: none;
             text-align: center;
-            animation: fadeIn 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
         .contact-collection.show {
             display: block;
+        }
+        
+        .contact-collection.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Results Section */
         .results-container {
             display: none;
             text-align: center;
-            animation: fadeIn 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
         .results-container.show {
             display: block;
+        }
+        
+        .results-container.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .risk-score {
@@ -634,6 +664,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .footer-grid {
@@ -1025,6 +1063,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="Industries/healthcare.html">Healthcare</a></li>
                             <li><a href="Industries/law-firms.html">Law Firms</a></li>
+                            <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
+                            <li><a href="Industries/financial-services.html">Financial Services</a></li>
                         </ul>
                     </li>
                     <!-- Resources tab removed -->
@@ -1499,6 +1539,8 @@
                     <ul class="footer-links">
                         <li><a href="Industries/healthcare.html">Healthcare</a></li>
                         <li><a href="Industries/law-firms.html">Law Firms</a></li>
+                        <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
+                        <li><a href="Industries/financial-services.html">Financial Services</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1526,6 +1568,57 @@
     <script>
         // Mobile menu and navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const sections = document.querySelectorAll('.hero, .qualification-section, footer');
+            
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Initial hero animation
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                setTimeout(() => {
+                    heroSection.classList.add('visible');
+                }, 300);
+            }
+            
+            // Animate option cards with staggered delay when question becomes active
+            const observeQuestionOptions = () => {
+                const activeQuestion = document.querySelector('.question-container.active');
+                if (activeQuestion) {
+                    const optionCards = activeQuestion.querySelectorAll('.option-card');
+                    optionCards.forEach((card, index) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        card.style.transitionDelay = (index * 0.1) + 's';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100 + (index * 100));
+                    });
+                }
+            };
+            
+            // Initial animation for first question
+            setTimeout(observeQuestionOptions, 600);
+            
+            // Store reference to observeQuestionOptions for use in question navigation
+            window.animateQuestionOptions = observeQuestionOptions;
+            
             // Mobile menu toggle functionality
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const navLinks = document.querySelector('.nav-links');
@@ -1764,6 +1857,13 @@
                 document.getElementById(`question${current + 1}`).classList.add('active');
                 updateProgressBar(current + 1);
                 currentQuestion = current + 1;
+                
+                // Trigger option animations for new question
+                setTimeout(() => {
+                    if (window.animateQuestionOptions) {
+                        window.animateQuestionOptions();
+                    }
+                }, 200);
             }
         }
 
@@ -1772,6 +1872,13 @@
             document.getElementById(`question${current - 1}`).classList.add('active');
             updateProgressBar(current - 1);
             currentQuestion = current - 1;
+            
+            // Trigger option animations for previous question
+            setTimeout(() => {
+                if (window.animateQuestionOptions) {
+                    window.animateQuestionOptions();
+                }
+            }, 200);
         }
 
         function updateProgressBar(questionNum) {
@@ -1813,7 +1920,13 @@
                     
                     // Show contact collection instead of results
                     document.getElementById('calculating').classList.remove('show');
-                    document.getElementById('contactCollection').classList.add('show');
+                    const contactCollection = document.getElementById('contactCollection');
+                    contactCollection.classList.add('show');
+                    
+                    // Trigger smooth animation
+                    setTimeout(() => {
+                        contactCollection.classList.add('visible');
+                    }, 100);
                     
                     // Update progress bar to 100%
                     updateProgressBar(totalQuestions);
@@ -1981,8 +2094,14 @@
                         riskClass = "low";
                     }
                     
-                    // Show results
-                    document.getElementById('results').classList.add('show');
+                    // Show results with smooth animation
+                    const resultsContainer = document.getElementById('results');
+                    resultsContainer.classList.add('show');
+                    
+                    // Trigger smooth animation
+                    setTimeout(() => {
+                        resultsContainer.classList.add('visible');
+                    }, 100);
                     
                     // Animate risk score
                     animateRiskScore(riskPercentage);
