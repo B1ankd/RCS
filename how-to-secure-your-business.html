@@ -137,6 +137,75 @@
             vertical-align: middle;
         }
 
+        .search-container {
+            position: relative;
+            margin-right: 15px;
+        }
+
+        .search-input {
+            padding: 4px 10px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 12px;
+            width: 140px;
+            transition: width 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .search-input:focus {
+            width: 180px;
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+
+        .search-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .search-suggestions.show {
+            max-height: 300px;
+        }
+
+        .search-suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-suggestion-item:hover {
+            background-color: var(--light-gray);
+        }
+
+        .search-suggestion-item:last-child {
+            border-bottom: none;
+        }
+
         .btn {
             display: inline-block;
             padding: 7.5px 15px;
@@ -180,24 +249,26 @@
             transition: 0.3s;
         }
 
-        .hero-inner {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        .hero {
+            background-color: var(--secondary-color);
             color: var(--white);
-            padding: 100px 0 80px;
+            padding: 100px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('Images/3 x 12 Web Banner - Medium Smooth.png');
+            background-size: cover;
+            background-position: center;
             text-align: center;
         }
 
-        .hero-inner h1 {
-            font-size: 42px;
+        .hero h1 {
+            font-size: 48px;
             margin-bottom: 20px;
             line-height: 1.2;
         }
 
-        .hero-inner p {
+        .hero p {
             font-size: 20px;
             max-width: 800px;
             margin: 0 auto;
-            opacity: 0.95;
         }
 
         .section {
@@ -343,54 +414,77 @@
         footer {
             background-color: var(--secondary-color);
             color: var(--white);
-            padding: 50px 0 20px;
+            padding: clamp(40px, 8vw, 80px) 0 clamp(15px, 3vw, 30px);
+            min-height: 20vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(20px, 3vw, 35px);
+            margin-bottom: clamp(20px, 4vw, 50px);
+            align-items: start;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            min-height: clamp(120px, 15vh, 200px);
+            justify-content: flex-start;
         }
 
         .footer-col h4 {
-            margin-bottom: 15px;
-            font-size: 18px;
+            font-size: clamp(16px, 3.5vw, 22px);
+            margin-bottom: clamp(12px, 2.5vw, 25px);
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
         }
 
         .footer-links {
             list-style: none;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(8px, 1.5vw, 15px);
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
 
         .footer-links a {
-            color: rgba(255,255,255,0.8);
+            color: #b3b3b3;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-size: clamp(13px, 2.8vw, 16px);
+            line-height: 1.5;
+            display: block;
+            padding: clamp(4px, 1vw, 8px) 0;
+            border-radius: 4px;
         }
 
         .footer-links a:hover {
             color: var(--white);
+            transform: translateX(5px);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding-left: clamp(8px, 2vw, 12px);
         }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
+        .copyright {
             text-align: center;
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .local-service-area {
-            text-align: center;
-            font-size: 15px;
-            color: rgba(255,255,255,0.8);
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: clamp(15px, 3vw, 25px);
+            border-top: 1px solid #444;
+            color: #b3b3b3;
+            font-family: 'Arial', sans-serif;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin-top: auto;
+            line-height: 1.4;
         }
 
         @media (max-width: 768px) {
@@ -402,11 +496,15 @@
                 display: flex;
             }
 
-            .hero-inner h1 {
+            .search-container {
+                display: none;
+            }
+
+            .hero h1 {
                 font-size: 28px;
             }
 
-            .hero-inner p {
+            .hero p {
                 font-size: 16px;
             }
 
@@ -429,6 +527,198 @@
     </style>
 </head>
 <body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const initSearch = () => {
+                const searchInput = document.getElementById('searchInput');
+                const searchBtn = document.getElementById('searchBtn');
+                const searchSuggestions = document.getElementById('searchSuggestions');
+
+                // Define searchable content with keywords and links
+                const searchContent = [
+                    // Main Pages
+                    {
+                        title: 'Home',
+                        category: 'Page',
+                        keywords: ['home', 'main', 'landing', 'social engineering', 'security'],
+                        url: 'index.html'
+                    },
+                    {
+                        title: 'Contact Us',
+                        category: 'Page',
+                        keywords: ['contact', 'email', 'support', 'help', 'reach out', 'get in touch'],
+                        url: 'contact.html'
+                    },
+                    {
+                        title: 'FAQ',
+                        category: 'Page',
+                        keywords: ['faq', 'questions', 'answers', 'help', 'frequently asked', 'support'],
+                        url: 'faq.html'
+                    },
+                    // Services
+                    {
+                        title: 'Social Engineering Risk Assessment',
+                        category: 'Service',
+                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
+                        url: 'risk-assessment.html'
+                    },
+                    {
+                        title: 'Simulated Attack Exercises',
+                        category: 'Service',
+                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
+                        url: 'simulated-attacks.html'
+                    },
+                    {
+                        title: 'Security Awareness Training',
+                        category: 'Service',
+                        keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
+                        url: 'security-training.html'
+                    },
+                    // Company Pages
+                    {
+                        title: 'Company History',
+                        category: 'Company',
+                        keywords: ['about', 'company', 'history', 'red cell', 'legacy', 'background'],
+                        url: 'company-history.html'
+                    },
+                    {
+                        title: 'Mission & Values',
+                        category: 'Company',
+                        keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
+                        url: 'mission-values.html'
+                    },
+                    {
+                        title: 'Real-World Case Studies',
+                        category: 'Company',
+                        keywords: ['case studies', 'breaches', 'penetration testing', 'security', 'business security'],
+                        url: 'how-to-secure-your-business.html'
+                    },
+                    // Active Industries
+                    {
+                        title: 'Healthcare Security',
+                        category: 'Industry',
+                        keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
+                        url: 'Industries/healthcare.html'
+                    },
+                    {
+                        title: 'Law Firm Security',
+                        category: 'Industry',
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
+                        url: 'Industries/law-firms.html'
+                    },
+                    {
+                        title: 'Educational Institutions Security',
+                        category: 'Industry',
+                        keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
+                        url: 'Industries/educational-institutions.html'
+                    },
+                    {
+                        title: 'Financial Services Security',
+                        category: 'Industry',
+                        keywords: ['financial', 'finance', 'banking', 'investment', 'fintech', 'financial services'],
+                        url: 'Industries/financial-services.html'
+                    }
+                ];
+
+                // Function to search and display results
+                const performSearch = (query) => {
+                    // Clear previous suggestions
+                    searchSuggestions.innerHTML = '';
+
+                    if (!query || query.length < 2) {
+                        searchSuggestions.classList.remove('show');
+                        return;
+                    }
+
+                    const normalizedQuery = query.toLowerCase().trim();
+                    const results = [];
+
+                    // Search in titles and keywords
+                    searchContent.forEach(item => {
+                        // Check title
+                        if (item.title.toLowerCase().includes(normalizedQuery)) {
+                            results.push(item);
+                            return;
+                        }
+
+                        // Check keywords
+                        for (const keyword of item.keywords) {
+                            if (keyword.toLowerCase().includes(normalizedQuery)) {
+                                results.push(item);
+                                return;
+                            }
+                        }
+                    });
+
+                    // Display results
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.className = 'search-suggestion-item';
+                            suggestionItem.innerHTML = `
+                                <span class="suggestion-title">${result.title}</span>
+                                <span class="suggestion-category">${result.category}</span>
+                            `;
+                            suggestionItem.addEventListener('click', () => {
+                                window.location.href = result.url;
+                            });
+                            searchSuggestions.appendChild(suggestionItem);
+                        });
+                        searchSuggestions.classList.add('show');
+                    } else {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'search-suggestion-item';
+                        noResults.textContent = 'No results found';
+                        searchSuggestions.appendChild(noResults);
+                        searchSuggestions.classList.add('show');
+                    }
+                };
+
+                // Search input event listeners
+                if (searchInput) {
+                    searchInput.addEventListener('focus', () => {
+                        if (searchInput.value.length >= 2) {
+                            performSearch(searchInput.value);
+                        }
+                    });
+
+                    searchInput.addEventListener('input', () => {
+                        performSearch(searchInput.value);
+                    });
+
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+
+                            // If there's only one result, navigate to it
+                            const suggestionItems = searchSuggestions.querySelectorAll('.search-suggestion-item');
+                            if (suggestionItems.length === 1 && !suggestionItems[0].textContent.includes('No results found')) {
+                                suggestionItems[0].click();
+                            }
+                        }
+                    });
+                }
+
+                // Search button event listener
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', () => {
+                        performSearch(searchInput.value);
+                    });
+                }
+
+                // Close suggestions when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.classList.remove('show');
+                    }
+                });
+            };
+
+            // Initialize search
+            initSearch();
+        });
+    </script>
     <!-- Header -->
     <header>
         <div class="container">
@@ -468,6 +758,16 @@
                     </li>
                 </ul>
                 <div class="nav-right-section" style="display: flex; align-items: center;">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+                        <button class="search-btn" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
                     <a href="index.html" class="btn">Back to Home</a>
                     <button class="mobile-menu-toggle" id="mobileMenuToggle">
                         <span></span>
@@ -480,12 +780,10 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-inner">
+    <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>How to Secure My Business: 3 Real-World Breaches That Prove Your Alarms Aren't Enough</h1>
-                <p>Real penetration testing case studies from Red Cell Solutions</p>
-            </div>
+            <h1>How to Secure My Business: 3 Real-World Breaches That Prove Your Alarms Aren't Enough</h1>
+            <p>Real penetration testing case studies from Red Cell Solutions</p>
         </div>
     </section>
 
@@ -595,10 +893,6 @@
 
             <p>Effective security requires understanding <strong>YOUR</strong> specific vulnerabilities, <strong>YOUR</strong> industry's unique threats, and <strong>YOUR</strong> operational realities. That's why we don't sell you a standard package—we show you where you're actually exposed, using the same methods an attacker would use.</p>
 
-            <div class="reality-cta">
-                <p><strong>Ready to see where your security really stands?</strong></p>
-                <a href="contact.html" class="btn btn-white">Schedule a Consultation</a>
-            </div>
         </div>
     </section>
 
@@ -608,7 +902,7 @@
             <div class="cta-content">
                 <h2>Don't Wait for a Real Breach</h2>
                 <p>Let us show you your vulnerabilities before an attacker does. Our physical penetration testing and social engineering assessments reveal the truth about your security posture.</p>
-                <a href="contact.html" class="btn btn-white">Contact Us Today</a>
+                <a href="contact.html" class="btn btn-white">Schedule Consultation</a>
             </div>
         </div>
     </section>
@@ -623,6 +917,7 @@
                         <li><a href="risk-assessment.html">Risk Assessment</a></li>
                         <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
                         <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -632,26 +927,27 @@
                         <li><a href="Industries/law-firms.html">Law Firms</a></li>
                         <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
                         <li><a href="Industries/financial-services.html">Financial Services</a></li>
-                        <li><a href="Industries/technology.html">Technology</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul class="footer-links">
                         <li><a href="company-history.html">Company History</a></li>
-                        <li><a href="mission-values.html">Mission & Values</a></li>
                         <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="mission-values.html">Mission & Values</a></li>
+                        <li><a href="how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
-
-            <p class="local-service-area">
-                Proudly securing businesses across Coral Springs, Fort Lauderdale, Miami, and the greater South Florida area. Serving clients throughout the East Coast and nationwide.
-            </p>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Red Cell Solutions. All rights reserved.</p>
+            <div class="copyright">
+                <p>&copy; 2025 RCS Security. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -711,7 +1007,7 @@
             });
 
             // Hero section initial animation
-            const heroSection = document.querySelector('.hero-inner');
+            const heroSection = document.querySelector('.hero');
             if (heroSection) {
                 heroSection.style.opacity = '0';
                 heroSection.style.transform = 'translateY(50px)';
