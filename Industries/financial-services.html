@@ -1415,34 +1415,36 @@
                 
                 // Define searchable content with keywords and links
                 const searchContent = [
+                    // Main Pages
                     {
                         title: 'Home',
                         category: 'Page',
-                        keywords: ['home', 'main', 'start', 'homepage'],
+                        keywords: ['home', 'main', 'landing', 'social engineering', 'security'],
                         url: '../index.html'
                     },
                     {
                         title: 'Contact Us',
                         category: 'Page',
-                        keywords: ['contact', 'email', 'phone', 'support', 'help', 'reach out'],
+                        keywords: ['contact', 'email', 'support', 'help', 'reach out', 'get in touch'],
                         url: '../contact.html'
                     },
                     {
                         title: 'FAQ',
                         category: 'Page',
-                        keywords: ['faq', 'questions', 'answers', 'help', 'support'],
+                        keywords: ['faq', 'questions', 'answers', 'help', 'frequently asked', 'support'],
                         url: '../faq.html'
                     },
+                    // Services
                     {
                         title: 'Security Audits',
                         category: 'Service',
-                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
+                        keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
                         url: '../security-audits.html'
                     },
                     {
                         title: 'Penetration Testing',
                         category: 'Service',
-                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
+                        keywords: ['penetration testing', 'pen test', 'phishing', 'vishing', 'smishing', 'attack', 'simulation', 'physical access', 'social engineering', 'osint'],
                         url: '../penetration-testing.html'
                     },
                     {
@@ -1451,42 +1453,57 @@
                         keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
                         url: '../security-training.html'
                     },
+                    // Company Pages
                     {
                         title: 'Company History',
                         category: 'Company',
-                        keywords: ['history', 'company', 'background', 'story', 'founding'],
+                        keywords: ['about', 'company', 'history', 'red cell', 'legacy', 'background'],
                         url: '../company-history.html'
                     },
                     {
                         title: 'Mission & Values',
                         category: 'Company',
-                        keywords: ['mission', 'values', 'purpose', 'principles', 'culture'],
+                        keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
                         url: '../mission-values.html'
                     },
                     {
-                        title: 'Healthcare',
+                        title: 'Real-World Case Studies',
+                        category: 'Company',
+                        keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
+                        url: '../how-to-secure-your-business.html'
+                    },
+                    // Active Industries
+                    {
+                        title: 'Healthcare Security',
                         category: 'Industry',
-                        keywords: ['health', 'medical', 'hospital', 'clinic', 'patient'],
+                        keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
                         url: 'healthcare.html'
                     },
                     {
-                        title: 'Law Firms',
+                        title: 'Law Firm Security',
                         category: 'Industry',
-                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm'],
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
                         url: 'law-firms.html'
                     },
                     {
-                        title: 'Educational Institutions',
+                        title: 'Educational Institutions Security',
                         category: 'Industry',
-                        keywords: ['education', 'school', 'university', 'college', 'academic'],
+                        keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
                         url: 'educational-institutions.html'
                     },
                     {
-                        title: 'Financial Services',
+                        title: 'Financial Services Security',
                         category: 'Industry',
-                        keywords: ['finance', 'banking', 'financial', 'investment'],
+                        keywords: ['financial', 'finance', 'banking', 'investment', 'fintech', 'financial services'],
                         url: 'financial-services.html'
                     },
+                    {
+                        title: 'Technology Security',
+                        category: 'Industry',
+                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
+                        url: 'technology.html'
+                    },
+                    // Solutions/Concepts
                     {
                         title: 'Enterprise Security',
                         category: 'Solution',
@@ -1563,8 +1580,12 @@
                         }
                     });
                     
+                    let searchDebounceTimer;
                     searchInput.addEventListener('input', () => {
-                        performSearch(searchInput.value);
+                        clearTimeout(searchDebounceTimer);
+                        searchDebounceTimer = setTimeout(() => {
+                            performSearch(searchInput.value);
+                        }, 350);
                     });
                     
                     searchInput.addEventListener('keydown', (e) => {

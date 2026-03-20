@@ -1382,6 +1382,205 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+
+            // Search functionality
+            const initSearch = () => {
+                const searchInput = document.getElementById('searchInput');
+                const searchBtn = document.getElementById('searchBtn');
+                const searchSuggestions = document.getElementById('searchSuggestions');
+
+                const searchContent = [
+                    // Main Pages
+                    {
+                        title: 'Home',
+                        category: 'Page',
+                        keywords: ['home', 'main', 'landing', 'social engineering', 'security'],
+                        url: '../index.html'
+                    },
+                    {
+                        title: 'Contact Us',
+                        category: 'Page',
+                        keywords: ['contact', 'email', 'support', 'help', 'reach out', 'get in touch'],
+                        url: '../contact.html'
+                    },
+                    {
+                        title: 'FAQ',
+                        category: 'Page',
+                        keywords: ['faq', 'questions', 'answers', 'help', 'frequently asked', 'support'],
+                        url: '../faq.html'
+                    },
+                    // Services
+                    {
+                        title: 'Security Audits',
+                        category: 'Service',
+                        keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
+                        url: '../security-audits.html'
+                    },
+                    {
+                        title: 'Penetration Testing',
+                        category: 'Service',
+                        keywords: ['penetration testing', 'pen test', 'phishing', 'vishing', 'smishing', 'attack', 'simulation', 'physical access', 'social engineering', 'osint'],
+                        url: '../penetration-testing.html'
+                    },
+                    {
+                        title: 'Security Awareness Training',
+                        category: 'Service',
+                        keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
+                        url: '../security-training.html'
+                    },
+                    // Company Pages
+                    {
+                        title: 'Company History',
+                        category: 'Company',
+                        keywords: ['about', 'company', 'history', 'red cell', 'legacy', 'background'],
+                        url: '../company-history.html'
+                    },
+                    {
+                        title: 'Mission & Values',
+                        category: 'Company',
+                        keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
+                        url: '../mission-values.html'
+                    },
+                    {
+                        title: 'Real-World Case Studies',
+                        category: 'Company',
+                        keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
+                        url: '../how-to-secure-your-business.html'
+                    },
+                    // Active Industries
+                    {
+                        title: 'Healthcare Security',
+                        category: 'Industry',
+                        keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
+                        url: 'healthcare.html'
+                    },
+                    {
+                        title: 'Law Firm Security',
+                        category: 'Industry',
+                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
+                        url: 'law-firms.html'
+                    },
+                    {
+                        title: 'Educational Institutions Security',
+                        category: 'Industry',
+                        keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
+                        url: 'educational-institutions.html'
+                    },
+                    {
+                        title: 'Financial Services Security',
+                        category: 'Industry',
+                        keywords: ['financial', 'finance', 'banking', 'investment', 'fintech', 'financial services'],
+                        url: 'financial-services.html'
+                    },
+                    {
+                        title: 'Technology Security',
+                        category: 'Industry',
+                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
+                        url: 'technology.html'
+                    },
+                    // Solutions/Concepts
+                    {
+                        title: 'Enterprise Security',
+                        category: 'Solution',
+                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
+                        url: '../index.html#approach'
+                    },
+                    {
+                        title: 'Human Firewall Program',
+                        category: 'Solution',
+                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
+                        url: '../index.html#approach'
+                    }
+                ];
+
+                // Function to search and display results
+                const performSearch = (query) => {
+                    searchSuggestions.innerHTML = '';
+
+                    if (!query || query.length < 2) {
+                        searchSuggestions.classList.remove('show');
+                        return;
+                    }
+
+                    const normalizedQuery = query.toLowerCase().trim();
+                    const results = [];
+
+                    searchContent.forEach(item => {
+                        if (item.title.toLowerCase().includes(normalizedQuery)) {
+                            results.push(item);
+                            return;
+                        }
+                        for (const keyword of item.keywords) {
+                            if (keyword.toLowerCase().includes(normalizedQuery)) {
+                                results.push(item);
+                                return;
+                            }
+                        }
+                    });
+
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.className = 'search-suggestion-item';
+                            suggestionItem.innerHTML = `
+                                <span class="suggestion-title">${result.title}</span>
+                                <span class="suggestion-category">${result.category}</span>
+                            `;
+                            suggestionItem.addEventListener('click', () => {
+                                window.location.href = result.url;
+                            });
+                            searchSuggestions.appendChild(suggestionItem);
+                        });
+                        searchSuggestions.classList.add('show');
+                    } else {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'search-suggestion-item';
+                        noResults.textContent = 'No results found';
+                        searchSuggestions.appendChild(noResults);
+                        searchSuggestions.classList.add('show');
+                    }
+                };
+
+                if (searchInput) {
+                    searchInput.addEventListener('focus', () => {
+                        if (searchInput.value.length >= 2) {
+                            performSearch(searchInput.value);
+                        }
+                    });
+
+                    let searchDebounceTimer;
+                    searchInput.addEventListener('input', () => {
+                        clearTimeout(searchDebounceTimer);
+                        searchDebounceTimer = setTimeout(() => {
+                            performSearch(searchInput.value);
+                        }, 350);
+                    });
+
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const suggestionItems = searchSuggestions.querySelectorAll('.search-suggestion-item');
+                            if (suggestionItems.length === 1 && !suggestionItems[0].textContent.includes('No results found')) {
+                                suggestionItems[0].click();
+                            }
+                        }
+                    });
+                }
+
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', () => {
+                        performSearch(searchInput.value);
+                    });
+                }
+
+                document.addEventListener('click', (e) => {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.classList.remove('show');
+                    }
+                });
+            };
+
+            initSearch();
         });
     </script>
 </body>

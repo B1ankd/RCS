@@ -1774,13 +1774,13 @@
                     {
                         title: 'Security Audits',
                         category: 'Service',
-                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
+                        keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
                         url: 'security-audits.html'
                     },
                     {
                         title: 'Penetration Testing',
                         category: 'Service',
-                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
+                        keywords: ['penetration testing', 'pen test', 'phishing', 'vishing', 'smishing', 'attack', 'simulation', 'physical access', 'social engineering', 'osint'],
                         url: 'penetration-testing.html'
                     },
                     {
@@ -1801,6 +1801,12 @@
                         category: 'Company',
                         keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
                         url: 'mission-values.html'
+                    },
+                    {
+                        title: 'Real-World Case Studies',
+                        category: 'Company',
+                        keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
+                        url: 'how-to-secure-your-business.html'
                     },
                     // Active Industries
                     {
@@ -1827,18 +1833,24 @@
                         keywords: ['financial', 'finance', 'banking', 'investment', 'fintech', 'financial services'],
                         url: 'Industries/financial-services.html'
                     },
+                    {
+                        title: 'Technology Security',
+                        category: 'Industry',
+                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
+                        url: 'Industries/technology.html'
+                    },
                     // Solutions/Concepts
                     {
                         title: 'Enterprise Security',
                         category: 'Solution',
                         keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
-                        url: '#approach'
+                        url: 'index.html#approach'
                     },
                     {
                         title: 'Human Firewall Program',
                         category: 'Solution',
                         keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
-                        url: '#approach'
+                        url: 'index.html#approach'
                     }
                 ];
                 
@@ -1904,8 +1916,12 @@
                         }
                     });
                     
+                    let searchDebounceTimer;
                     searchInput.addEventListener('input', () => {
-                        performSearch(searchInput.value);
+                        clearTimeout(searchDebounceTimer);
+                        searchDebounceTimer = setTimeout(() => {
+                            performSearch(searchInput.value);
+                        }, 350);
                     });
                     
                     searchInput.addEventListener('keydown', (e) => {
