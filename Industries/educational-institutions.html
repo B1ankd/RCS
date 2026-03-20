@@ -392,7 +392,17 @@
         .stat-card p {
             color: var(--dark-gray);
         }
-        
+
+        .stat-card a {
+            color: var(--dark-gray);
+            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
+            text-decoration: none;
+        }
+        .stat-card a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
         section.cta-section {
             background-color: var(--primary-color);
             color: var(--white);
@@ -990,16 +1000,16 @@
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
-                    <div class="logo-img">
+                    <a href="../index.html" class="logo-img">
                         <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
-                    </div>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="../index.html#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="../security-audits.html">Security Audits</a></li>
+                            <li><a href="../penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="../security-training.html">Security Awareness Training</a></li>
                             <li><a href="../qualification.html">Free Security Audit</a></li>
                         </ul>
@@ -1084,15 +1094,15 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>#1</h3>
-                    <p>Education was the most targeted sector globally in 2024 with 3,086 weekly attacks</p>
+                    <p>Education was the most targeted sector globally in 2024, averaging 3,086 weekly attacks per organization, per <a href="https://blog.checkpoint.com/research/check-point-research-warns-every-day-is-a-school-day-for-cybercriminals-with-the-education-sector-as-the-top-target-in-2024/" target="_blank" rel="noopener noreferrer">Check Point Research 2024</a></p>
                 </div>
                 <div class="stat-card">
                     <h3>$3.7M</h3>
-                    <p>Average breach cost for medium educational institutions</p>
+                    <p>Average breach cost for educational institutions, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                 </div>
                 <div class="stat-card">
                     <h3>92%</h3>
-                    <p>Increase in K-12 ransomware attacks from 2022 to 2023</p>
+                    <p>Increase in K-12 ransomware attacks from 2022 to 2023, per <a href="https://www.threatdown.com/blog/2024-state-of-ransomware-in-education-92-spike-in-k-12-attacks/" target="_blank" rel="noopener noreferrer">ThreatDown State of Ransomware in Education 2024</a></p>
                 </div>
             </div>
         </div>
@@ -1179,8 +1189,8 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="../risk-assessment.html">Risk Assessment</a></li>
-                        <li><a href="../simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="../security-audits.html">Security Audits</a></li>
+                        <li><a href="../penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="../security-training.html">Security Training</a></li>
                         <li><a href="../qualification.html">Free Security Audit</a></li>
                     </ul>

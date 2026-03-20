@@ -392,7 +392,17 @@
         .stat-card p {
             color: var(--dark-gray);
         }
-        
+
+        .stat-card a {
+            color: var(--dark-gray);
+            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
+            text-decoration: none;
+        }
+        .stat-card a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
         .cta-section {
             background-color: var(--primary-color);
             color: var(--white);
@@ -1084,16 +1094,16 @@
                         url: '../faq.html'
                     },
                     {
-                        title: 'Social Engineering Risk Assessment',
+                        title: 'Security Audits',
                         category: 'Service',
                         keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
-                        url: '../risk-assessment.html'
+                        url: '../security-audits.html'
                     },
                     {
-                        title: 'Simulated Attack Exercises',
+                        title: 'Penetration Testing',
                         category: 'Service',
                         keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
-                        url: '../simulated-attacks.html'
+                        url: '../penetration-testing.html'
                     },
                     {
                         title: 'Security Awareness Training',
@@ -1389,16 +1399,16 @@
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
-                    <div class="logo-img">
+                    <a href="../index.html" class="logo-img">
                         <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
-                    </div>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="../security-audits.html">Security Audits</a></li>
+                            <li><a href="../penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="../security-training.html">Security Awareness Training</a></li>
                             <li><a href="../qualification.html">Free Security Audit</a></li>
                         </ul>
@@ -1483,15 +1493,15 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>$5.08M</h3>
-                    <p>Average breach cost for medium law firms</p>
+                    <p>Average breach cost for professional services firms, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                 </div>
                 <div class="stat-card">
-                    <h3>55%</h3>
-                    <p>Of clients likely to change firms after a security breach</p>
+                    <h3>29%</h3>
+                    <p>Of law firms reported experiencing a security breach, per the <a href="https://www.americanbar.org/groups/law_practice/resources/tech-report/2023/2023-cybersecurity-techreport/" target="_blank" rel="noopener noreferrer">ABA Cybersecurity TechReport 2023</a></p>
                 </div>
                 <div class="stat-card">
-                    <h3>60%</h3>
-                    <p>Increase in cyber attacks against law firms in the past two years</p>
+                    <h3>34%</h3>
+                    <p>Of law firms have a formal incident response plan in place, per the <a href="https://www.americanbar.org/groups/law_practice/resources/tech-report/2023/2023-cybersecurity-techreport/" target="_blank" rel="noopener noreferrer">ABA Cybersecurity TechReport 2023</a></p>
                 </div>
             </div>
         </div>
@@ -1578,8 +1588,8 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="../risk-assessment.html">Risk Assessment</a></li>
-                        <li><a href="../simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="../security-audits.html">Security Audits</a></li>
+                        <li><a href="../penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="../security-training.html">Security Training</a></li>
                         <li><a href="../qualification.html">Free Security Audit</a></li>
                     </ul>

@@ -429,6 +429,17 @@
             color: var(--dark-gray);
         }
 
+        .stat-item a {
+            color: var(--dark-gray);
+            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
+            text-decoration: none;
+        }
+
+        .stat-item a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
         footer {
             background-color: var(--secondary-color);
             color: var(--white);
@@ -1334,16 +1345,16 @@
                     },
                     // Services
                     {
-                        title: 'Social Engineering Risk Assessment',
+                        title: 'Security Audits',
                         category: 'Service',
-                        keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
-                        url: 'risk-assessment.html'
+                        keywords: ['audit', 'assessment', 'physical security', 'compliance', 'workstation', 'incident response', 'security audit'],
+                        url: 'security-audits.html'
                     },
                     {
-                        title: 'Simulated Attack Exercises',
+                        title: 'Penetration Testing',
                         category: 'Service',
-                        keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
-                        url: 'simulated-attacks.html'
+                        keywords: ['penetration testing', 'pen test', 'phishing', 'vishing', 'smishing', 'physical access', 'social engineering', 'osint'],
+                        url: 'penetration-testing.html'
                     },
                     {
                         title: 'Security Awareness Training',
@@ -1674,16 +1685,16 @@
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
-                    <div class="logo-img">
+                    <a href="index.html" class="logo-img">
                         <img src="Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
-                    </div>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="security-audits.html">Security Audits</a></li>
+                            <li><a href="penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="security-training.html">Security Awareness Training</a></li>
                             <li><a href="qualification.html">Free Security Audit</a></li>
                         </ul>
@@ -1828,25 +1839,25 @@
     <section class="section" style="background-color: var(--light-gray);">
         <div class="container">
             <div class="section-title">
-                <h2>Proven Results</h2>
-                <p>Measurable outcomes from training programs</p>
+                <h2>What the Research Shows</h2>
+                <p>Industry data on the measurable impact of sustained security awareness training</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <h3>65%</h3>
-                    <p>Reduction in successful phishing attempts</p>
+                    <h3>86%</h3>
+                    <p>Reduction in phishing susceptibility after 12 months of continuous security awareness training, per the <a href="https://www.knowbe4.com/phishing-by-industry-benchmarking-report" target="_blank" rel="noopener noreferrer">KnowBe4 2025 Phishing Benchmark Report</a></p>
                 </div>
                 <div class="stat-item">
-                    <h3>87%</h3>
-                    <p>Increase in security incident reporting</p>
+                    <h3>74%</h3>
+                    <p>Of data breaches involve a human element, making trained employees your most impactful security control, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                 </div>
                 <div class="stat-item">
-                    <h3>92%</h3>
-                    <p>Employee satisfaction with training content</p>
+                    <h3>68%</h3>
+                    <p>Of employees knowingly take risky actions despite understanding the security implications, per the <a href="https://www.proofpoint.com/us/resources/threat-reports/state-of-phish" target="_blank" rel="noopener noreferrer">Proofpoint State of the Phish 2024</a></p>
                 </div>
                 <div class="stat-item">
-                    <h3>23%</h3>
-                    <p>Decrease in overall security incidents</p>
+                    <h3>4.6%</h3>
+                    <p>Average phishing susceptibility rate for employees after one year of sustained awareness training, down from 34.3%, per the <a href="https://info.knowbe4.com/phishing-benchmarking-2024-na" target="_blank" rel="noopener noreferrer">KnowBe4 2024 Phishing Benchmark Report</a></p>
                 </div>
             </div>
         </div>
@@ -1871,9 +1882,9 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="risk-assessment.html">Risk Assessment</a></li>
-                        <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
-                        <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="security-audits.html">Security Audits</a></li>
+                        <li><a href="penetration-testing.html">Penetration Testing</a></li>
+                        <li><a href="security-training.html">Security Awareness Training</a></li>
                         <li><a href="qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
@@ -1904,10 +1915,6 @@
                     </ul>
                 </div>
             </div>
-
-            <p class="local-service-area" style="text-align: center; font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                Proudly securing businesses across Coral Springs, Fort Lauderdale, Miami, and the greater South Florida area. Serving clients throughout the East Coast and nationwide.
-            </p>
 
             <div class="copyright">
                 <p>&copy; 2025 RCS Security. All rights reserved.</p>

@@ -382,8 +382,18 @@
             color: var(--dark-gray);
             font-family: 'Arial', sans-serif;
         }
-        
-        
+
+        .stat-item a {
+            color: var(--dark-gray);
+            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
+            text-decoration: none;
+        }
+        .stat-item a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+
         .cta-section {
             background-color: var(--primary-color);
             color: var(--white);
@@ -1762,16 +1772,16 @@
                     },
                     // Services
                     {
-                        title: 'Social Engineering Risk Assessment',
+                        title: 'Security Audits',
                         category: 'Service',
                         keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
-                        url: 'risk-assessment.html'
+                        url: 'security-audits.html'
                     },
                     {
-                        title: 'Simulated Attack Exercises',
+                        title: 'Penetration Testing',
                         category: 'Service',
                         keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
-                        url: 'simulated-attacks.html'
+                        url: 'penetration-testing.html'
                     },
                     {
                         title: 'Security Awareness Training',
@@ -2239,16 +2249,16 @@
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
-                    <div class="logo-img">
+                    <a href="index.html" class="logo-img">
                         <img src="Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
-                    </div>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="security-audits.html">Security Audits</a></li>
+                            <li><a href="penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="security-training.html">Security Awareness Training</a></li>
                             <li><a href="qualification.html">Free Security Audit</a></li>
                         </ul>
@@ -2314,8 +2324,8 @@
             <section class="hero" id="home">
                 <div class="container">
                     <div class="hero-content">
-                        <h1>Protect Your Business from Social Engineering Attacks</h1>
-                        <p>Bad people find it easiest to hurt companies by tricking the workers. Our services help you find, stop, and respond to these clevar threats.</p>
+                        <h1>Protect Your Business from Security Threats</h1>
+                        <p>Attackers find it easiest to hurt companies by targeting employees and physical infastructure. Our services help you find, stop, and respond to these clevar threats.</p>
                         <a href="#services" class="btn">Explore Solutions</a>
                     </div>
                 </div>
@@ -2325,8 +2335,8 @@
         <section class="section" id="services">
             <div class="container">
                 <div class="section-title">
-                    <h2>Our Social Engineering Protection Services</h2>
-                    <p>Complete solutions designed to strengthen your organization's security and protect against professional hacksers that try and trick your employees.</p>
+                    <h2>Our Security Services</h2>
+                    <p>Complete solutions designed to strengthen your organization's security and protect against professional criminals that try and rob you.</p>
                 </div>
                 <div class="services-grid">
                     <div class="service-card">
@@ -2334,9 +2344,9 @@
                             <img src="Images/Social Eng Risk Assessment.jpg" alt="Security Assessment">
                         </div>
                         <div class="service-content">
-                            <h3>Social Engineering Risk Assessment</h3>
+                            <h3>Security Audits</h3>
                             <p>Spot weak points and protect from liability through comprehensive evaluations of your people, processes, and protection measures.</p>
-                            <a href="risk-assessment.html" class="btn">Learn More</a>
+                            <a href="security-audits.html" class="btn">Learn More</a>
                         </div>
                     </div>
                     <div class="service-card">
@@ -2344,9 +2354,9 @@
                             <img src="Images/Simulated attack.jpg" alt="Simulated Attacks">
                         </div>
                         <div class="service-content">
-                            <h3>Simulated Attack Exercises</h3>
+                            <h3>Penetration Testing</h3>
                             <p>Test your organization's security with realistic phone, email, text, and physical security simulations performed by our experts.</p>
-                            <a href="simulated-attacks.html" class="btn">Learn More</a>
+                            <a href="penetration-testing.html" class="btn">Learn More</a>
                         </div>
                     </div>
                     <div class="service-card">
@@ -2372,20 +2382,20 @@
                 </div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <h3>85%</h3>
-                        <p>of breaches are due to human error</p>
+                        <h3>68%</h3>
+                        <p>of breaches involve a human element, per the <a href="https://www.verizon.com/business/resources/reports/dbir.html" target="_blank" rel="noopener noreferrer">Verizon 2024 Data Breach Investigations Report</a></p>
                     </div>
                     <div class="stat-item">
                         <h3>$4.88M</h3>
-                        <p>average cost of a data breach</p>
+                        <p>average cost of a data breach, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                     </div>
                     <div class="stat-item">
-                        <h3>60%</h3>
-                        <p>of businesses close within six months of a breach</p>
+                        <h3>258 days</h3>
+                        <p>average time to identify and contain a data breach, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                     </div>
                     <div class="stat-item">
                         <h3>65%</h3>
-                        <p>reduction in successful breach attempts after training</p>
+                        <p>reduction in successful breach attempts after security awareness training, per <a href="https://www.knowbe4.com/press/knowbe4-research-confirms-effective-security-awareness-training-significantly-reduces-data-breaches" target="_blank" rel="noopener noreferrer">KnowBe4 research</a></p>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px; padding: 20px;">
@@ -2393,7 +2403,7 @@
                         See how real businesses have been breached through social engineering and physical security gaps.
                     </p>
                     <a href="how-to-secure-your-business.html" style="display: inline-block; padding: 12px 24px; background-color: var(--primary-color); color: white; text-decoration: none; border-radius: 4px; font-weight: 600; transition: background-color 0.3s;">
-                        Read Real-World Case Studies →
+                        Read Real-World Case Studies
                     </a>
                 </div>
             </div>
@@ -2457,8 +2467,8 @@
                     <div class="footer-col">
                         <h4>Services</h4>
                         <ul class="footer-links">
-                            <li><a href="risk-assessment.html">Risk Assessment</a></li>
-                            <li><a href="simulated-attacks.html">Simulated Attacks</a></li>
+                            <li><a href="security-audits.html">Security Audits</a></li>
+                            <li><a href="penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="security-training.html">Security Training</a></li>
                             <li><a href="qualification.html">Free Security Audit</a></li>
                         </ul>
@@ -2490,10 +2500,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <p class="local-service-area" style="text-align: center; font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    Proudly securing businesses across Coral Springs, Fort Lauderdale, Miami, and the greater South Florida area. Serving clients throughout the East Coast and nationwide.
-                </p>
 
                 <div class="copyright">
                     <p>&copy; 2025 RCS Security. All rights reserved.</p>

@@ -597,7 +597,17 @@
         .stat-card p {
             color: var(--dark-gray);
         }
-        
+
+        .stat-card a {
+            color: var(--dark-gray);
+            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
+            text-decoration: none;
+        }
+        .stat-card a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
         .cta-section {
             background-color: var(--primary-color);
             color: var(--white);
@@ -1424,16 +1434,16 @@
                         url: '../faq.html'
                     },
                     {
-                        title: 'Social Engineering Risk Assessment',
+                        title: 'Security Audits',
                         category: 'Service',
                         keywords: ['risk', 'assessment', 'vulnerability', 'evaluation', 'audit', 'security assessment'],
-                        url: '../risk-assessment.html'
+                        url: '../security-audits.html'
                     },
                     {
-                        title: 'Simulated Attack Exercises',
+                        title: 'Penetration Testing',
                         category: 'Service',
                         keywords: ['attack', 'simulation', 'phishing', 'vishing', 'testing', 'penetration testing'],
-                        url: '../simulated-attacks.html'
+                        url: '../penetration-testing.html'
                     },
                     {
                         title: 'Security Awareness Training',
@@ -1594,16 +1604,16 @@
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
-                    <div class="logo-img">
+                    <a href="../index.html" class="logo-img">
                         <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
-                    </div>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="../index.html#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="../risk-assessment.html">Social Engineering Risk Assessment</a></li>
-                            <li><a href="../simulated-attacks.html">Simulated Attack Exercises</a></li>
+                            <li><a href="../security-audits.html">Security Audits</a></li>
+                            <li><a href="../penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="../security-training.html">Security Awareness Training</a></li>
                             <li><a href="../qualification.html">Free Security Audit</a></li>
                         </ul>
@@ -1687,16 +1697,16 @@
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h3>$5.08M</h3>
-                    <p>Average breach cost for medium-sized financial institutions</p>
+                    <h3>$6.08M</h3>
+                    <p>Average breach cost for financial institutions, per the <a href="https://www.ibm.com/think/insights/cost-of-a-data-breach-2024-financial-industry" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024: Financial Industry</a></p>
                 </div>
                 <div class="stat-card">
                     <h3>51 days</h3>
-                    <p>Average recovery time, with reputation damage accounting for $1.47 million</p>
+                    <p>Average time to contain a breach in the financial sector, per the <a href="https://www.ibm.com/think/insights/cost-of-a-data-breach-2024-financial-industry" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024: Financial Industry</a></p>
                 </div>
                 <div class="stat-card">
-                    <h3>130</h3>
-                    <p>Attempted security incidents daily for financial institutions</p>
+                    <h3>154%</h3>
+                    <p>Increase in DDoS attacks targeting the financial sector from 2022 to 2023, with financial services accounting for 35% of all DDoS attacks globally, per the <a href="https://www.fsisac.com/newsroom/pr-akamai-ddos-report-2024" target="_blank" rel="noopener noreferrer">FS-ISAC/Akamai DDoS Report 2024</a></p>
                 </div>
             </div>
         </div>
@@ -1783,8 +1793,8 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="../risk-assessment.html">Risk Assessment</a></li>
-                        <li><a href="../simulated-attacks.html">Simulated Attacks</a></li>
+                        <li><a href="../security-audits.html">Security Audits</a></li>
+                        <li><a href="../penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="../security-training.html">Security Training</a></li>
                         <li><a href="../qualification.html">Free Security Audit</a></li>
                     </ul>
