@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  
+
   <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://redcellsolutions.com/</loc>
@@ -21,30 +21,8 @@
       <image:title>Security Awareness Training</image:title>
     </image:image>
   </url>
-  
-  <!-- Service Pages - High Priority -->
-  <url>
-    <loc>https://redcellsolutions.com/risk-assessment.html</loc>
-    <lastmod>2025-01-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://redcellsolutions.com/simulated-attacks.html</loc>
-    <lastmod>2025-01-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://redcellsolutions.com/security-training.html</loc>
-    <lastmod>2025-01-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Contact Page - Medium Priority -->
+
+  <!-- Contact Page -->
   <url>
     <loc>https://redcellsolutions.com/contact.html</loc>
     <lastmod>2025-01-29</lastmod>
@@ -52,75 +30,111 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- New Reality-Check Guide Page - High Priority -->
+  <!-- Service Pages - High Priority -->
   <url>
-    <loc>https://redcellsolutions.com/how-to-secure-your-business.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <loc>https://redcellsolutions.com/services/security-audits.html</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Industry Pages - High Priority per Gemini's Recommendation -->
   <url>
-    <loc>https://redcellsolutions.com/Industries/healthcare.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <loc>https://redcellsolutions.com/services/penetration-testing.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://redcellsolutions.com/Images/Simulated%20attack.jpg</image:loc>
+      <image:title>Physical Penetration Testing, Social Engineering and Intrusion Simulation</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/services/red-teaming.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://redcellsolutions.com/Images/Simulated%20Attack%20Exercises.jpg</image:loc>
+      <image:title>Full-Spectrum Physical Red Team Adversary Simulation</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/services/security-training.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://redcellsolutions.com/Images/Sec%20Aware%20Train.jpg</image:loc>
+      <image:title>Security Awareness Training</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/services/qualification.html</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Company Pages -->
+  <url>
+    <loc>https://redcellsolutions.com/company/company-history.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/company/mission-values.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/company/faq.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/company/how-to-secure-your-business.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Industry Pages -->
+  <url>
+    <loc>https://redcellsolutions.com/Industries/healthcare.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://redcellsolutions.com/Images/Healthcare%20Solution.jpg</image:loc>
+      <image:title>Healthcare and Hospital Physical Security Testing</image:title>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://redcellsolutions.com/Industries/law-firms.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://redcellsolutions.com/Industries/educational-institutions.html</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://redcellsolutions.com/Industries/technology.html</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- New Service Pages -->
-  <url>
-    <loc>https://redcellsolutions.com/services/physical-penetration-testing/</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://redcellsolutions.com/services/red-teaming/</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://redcellsolutions.com/services/social-engineering/</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- New Industry Pages -->
-  <url>
-    <loc>https://redcellsolutions.com/industries/healthcare-security/</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://redcellsolutions.com/industries/utilities-energy/</loc>
+    <loc>https://redcellsolutions.com/Industries/financial-services.html</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

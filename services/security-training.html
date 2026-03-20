@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Law Firm Physical Security | Protecting Attorney-Client Privilege</title>
-    <meta name="description" content="Prevent corporate espionage and physical breaches of confidential legal files. Bug sweeping, physical security assessments, and social engineering testing for law firms.">
-    <meta name="keywords" content="law firm information security, protecting attorney-client privilege, legal office security, law firm bug sweeping">
+    <title>Security Awareness Training | Social Engineering Prevention</title>
+    <meta name="description" content="Train your staff to recognize social engineering tactics, prevent tailgating, verify credentials, and stop physical security breaches before they happen.">
+    <meta name="keywords" content="security awareness training, social engineering prevention, employee security training, security training programs">
     <style>
         html {
             scroll-behavior: smooth;
@@ -77,26 +77,6 @@
             list-style: none;
         }
         
-        /* Mobile Navigation Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            color: var(--secondary-color);
-        }
-        
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--secondary-color);
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-        
         .nav-links li {
             margin-left: 20px;
             position: relative;
@@ -123,9 +103,9 @@
             left: 0;
             background-color: var(--white);
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            min-width: 180px; /* Slightly reduced width */
-            border-radius: 3px; /* Smaller radius */
-            padding: 5px 0; /* Reduced padding */
+            min-width: 180px;
+            border-radius: 3px;
+            padding: 5px 0;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px) scale(0.95);
@@ -157,6 +137,31 @@
             background-color: var(--light-gray);
         }
         
+        .has-dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 7.5px 15px; /* Increased by 1.25x */
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px; /* Increased by 1.25x */
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px; /* Increased by 1.25x */
+        }
+        
+        .btn:hover {
+            background-color: #7a0916;
+        }
+
         /* Dropdown arrow positioning fix */
         .nav-links a.has-dropdown {
             display: flex;
@@ -245,72 +250,46 @@
             margin-left: 5px;
         }
         
-        .has-dropdown::after {
-            content: "▼";
-            font-size: 10px;
-            margin-left: 5px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 7.5px 15px; /* Increased by 1.25x */
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 4px; /* Increased by 1.25x */
-            font-weight: 600;
-            transition: background-color 0.3s;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px; /* Increased by 1.25x */
-        }
-        
-        .btn:hover {
-            background-color: #7a0916;
-        }
-        
-        .hero {
+
+        .hero-inner {
             background-color: var(--secondary-color);
             color: var(--white);
-            padding: 80px 0;
+            padding: 60px 0;
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../Images/3 x 12 Web Banner - Medium Smooth.png');
             background-size: cover;
             background-position: center;
         }
         
         .hero-content {
-            max-width: 600px;
+            max-width: 800px;
         }
         
-        .hero h1 {
-            font-size: 42px;
+        .hero-inner h1 {
+            font-size: 38px;
             margin-bottom: 20px;
             line-height: 1.2;
-            font-family: 'Arial', sans-serif;
         }
         
-        .hero p {
+        .hero-inner p {
             font-size: 18px;
             margin-bottom: 30px;
-            font-family: 'Arial', sans-serif;
         }
-        
-        section {
-            padding: 60px 0;
+
+        .section {
+            padding: 70px 0;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        section.visible {
+        .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .section-title h2 {
@@ -319,89 +298,86 @@
         }
         
         .section-title p {
+            font-size: 18px;
             color: var(--dark-gray);
             max-width: 700px;
             margin: 0 auto;
         }
-        
-        .content-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+
+        .content-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
+            align-items: center;
         }
-        
-        .content-text {
-            flex: 1;
+
+        .content-image {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
+
         .content-text h3 {
             font-size: 24px;
             margin-bottom: 15px;
             color: var(--primary-color);
         }
-        
+
         .content-text p {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        
+
         .content-text ul {
             margin-bottom: 20px;
             padding-left: 20px;
         }
-        
+
         .content-text li {
             margin-bottom: 10px;
         }
-        
-        .content-image {
-            flex: 1;
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .content-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .stats-grid {
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .stat-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .stat-card h3 {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .stat-card p {
-            color: var(--dark-gray);
+            margin-top: 20px;
         }
 
-        .stat-card a {
-            color: var(--dark-gray);
-            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
-            text-decoration: none;
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .stat-card a:hover {
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
             color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
         }
+
+        .feature-card p {
+            color: var(--dark-gray);
+            font-size: 15px;
+        }
+
 
         .cta-section {
             background-color: var(--primary-color);
@@ -421,8 +397,8 @@
         }
         
         .cta-content p {
-            margin-bottom: 30px;
             font-size: 18px;
+            margin-bottom: 30px;
         }
         
         .btn-white {
@@ -433,7 +409,37 @@
         .btn-white:hover {
             background-color: #f0f0f0;
         }
-        
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: var(--dark-gray);
+        }
+
+        .stat-item a {
+            color: var(--dark-gray);
+            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
+            text-decoration: none;
+        }
+
+        .stat-item a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
         footer {
             background-color: var(--secondary-color);
             color: var(--white);
@@ -509,71 +515,76 @@
             margin-top: auto;
             line-height: 1.4;
         }
-        
-        .vulnerability-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
-        
-        .vulnerability-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .solution-card {
-            background-color: var(--light-gray);
-            border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .solution-card h4 {
-            margin-bottom: 10px;
-            color: var(--secondary-color);
-        }
-        
-        /* Common mobile breakpoints for various devices */
-        /* Extra small devices (phones, 320px - 480px) */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
+
+        @media (max-width: 768px) {
+            .content-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            
-            .hero h1 {
-                font-size: 24px;
-                line-height: 1.3;
+
+            .features-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .hero p {
-                font-size: 14px;
-                line-height: 1.5;
+
+            .hero-inner h1 {
+                font-size: 32px;
             }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-                min-height: 44px; /* Ensure touch target size */
-                display: inline-flex;
-                align-items: center;
-            }
-            
-            section {
-                padding: 40px 0;
-            }
-            
+
             .section-title h2 {
-                font-size: 24px;
-            }
-            
-            .section-title p {
-                font-size: 14px;
+                font-size: 28px;
             }
         }
-        
+
+        /* Mobile Navigation Toggle Button */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            color: var(--secondary-color);
+            z-index: 101;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Medium devices (tablets, 769px - 992px) */
+        @media (max-width: 992px) {
+            .container {
+                max-width: 100%;
+                padding: 0 30px;
+            }
+            
+            .services-grid,
+            .process-grid,
+            .vulnerability-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-columns {
+                gap: 30px;
+            }
+        }
+
         /* Small devices (landscape phones, 481px - 768px) */
         @media (max-width: 768px) {
             /* Mobile Navigation */
@@ -714,7 +725,6 @@
                 visibility: visible;
             }
             
-            
             .dropdown-menu li {
                 position: relative;
                 border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -773,9 +783,8 @@
                 flex: 1;
             }
             
-            
             .search-container {
-                display: none; /* Hide search on mobile for cleaner UI */
+                display: none;
             }
             
             .nav-right-section .btn {
@@ -783,50 +792,83 @@
                 padding: 8px 16px;
             }
             
-            /* Content sections */
-            .content-section {
-                flex-direction: column;
-            }
-            
-            .content-image {
-                margin-top: 30px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero {
+            /* Hero sections */
+            .hero,
+            .hero-inner {
                 padding: 60px 0;
             }
             
-            .hero h1 {
-                font-size: 28px;
+            .hero h1,
+            .hero-inner h1 {
+                font-size: 32px;
+                line-height: 1.3;
             }
             
-            .hero p {
+            .hero p,
+            .hero-inner p {
                 font-size: 16px;
+            }
+            
+            /* Section adjustments */
+            .section {
+                padding: 60px 0;
             }
             
             .section-title h2 {
                 font-size: 28px;
             }
             
-            .cta-content h2 {
-                font-size: 28px;
+            .section-title p {
+                font-size: 16px;
             }
             
+            /* Grid layouts */
+            .services-grid,
+            .process-grid,
+            .vulnerability-grid,
+            .solution-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            /* Content columns */
+            .content-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .content-columns.reverse {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+            
+            /* Cards and content blocks */
+            .service-card,
+            .process-card,
+            .vulnerability-card {
+                margin-bottom: 0;
+            }
+            
+            .service-img,
+            .content-img {
+                height: 200px;
+            }
+            
+            .service-content,
+            .process-content {
+                padding: 20px;
+            }
+            
+            /* Buttons */
             .btn {
-                padding: 12px 20px;
-                font-size: 16px;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
             }
             
             /* Footer adjustments */
@@ -853,6 +895,213 @@
             .footer-links a {
                 font-size: clamp(13px, 3.2vw, 15px);
                 padding: clamp(6px, 1.5vw, 10px) 0;
+            }
+            
+            /* CTA sections */
+            .cta-content h2 {
+                font-size: 28px;
+            }
+            
+            .cta-content p {
+                font-size: 16px;
+            }
+            
+            /* Forms */
+            .contact-form input,
+            .contact-form select,
+            .contact-form textarea {
+                font-size: 16px;
+                padding: 12px 15px;
+                min-height: 44px;
+            }
+            
+            .contact-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Sticky sidebar for mobile */
+            .sticky-sidebar {
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                right: 0;
+                left: 0;
+                width: 100%;
+                transform: none;
+                border-radius: 6px 6px 0 0;
+                margin: 0;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                z-index: 90;
+            }
+            
+            .sticky-sidebar ul {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            
+            .sticky-sidebar li {
+                margin: 0;
+                flex: 1;
+                text-align: center;
+            }
+            
+            .sticky-sidebar a {
+                font-size: 13px;
+                padding: 5px 2px;
+                text-align: center;
+                white-space: nowrap;
+                padding-left: 10px;
+                display: inline-block;
+            }
+            
+            /* Main content padding for fixed sidebar */
+            .main-content {
+                padding-bottom: 80px;
+            }
+        }
+
+        /* Extra small devices (phones, 320px - 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1,
+            .hero-inner h1 {
+                font-size: 24px;
+            }
+            
+            .hero p,
+            .hero-inner p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .section-title p {
+                font-size: 14px;
+            }
+            
+            .service-content h3,
+            .process-card h3,
+            .vulnerability-card h3 {
+                font-size: 16px;
+            }
+            
+            .service-content p,
+            .process-content p,
+            .vulnerability-card p {
+                font-size: 13px;
+            }
+            
+            .stat-item h3 {
+                font-size: 28px;
+            }
+            
+            .stat-item p {
+                font-size: 14px;
+            }
+            
+            /* Timeline adjustments */
+            .timeline-item {
+                padding-left: 30px;
+            }
+            
+            .timeline-year {
+                font-size: 16px;
+            }
+            
+            .timeline-content h3 {
+                font-size: 16px;
+            }
+            
+            .timeline-content p {
+                font-size: 13px;
+            }
+        }
+
+        /* Extra mobile optimizations for smallest screens */
+        @media (max-width: 375px) {
+            .hero h1,
+            .hero-inner h1 {
+                font-size: 22px;
+            }
+            
+            .section-title h2 {
+                font-size: 22px;
+            }
+            
+            .service-content h3,
+            .process-card h3 {
+                font-size: 15px;
+            }
+            
+            .stat-item h3 {
+                font-size: 24px;
+            }
+            
+            .btn {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+            
+            .sticky-sidebar a {
+                font-size: 11px;
+            }
+            
+            /* Stats grid single column on very small screens */
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile-specific JavaScript behaviors */
+        @media (max-width: 768px) {
+            /* Disable hover effects on mobile */
+            .service-card:hover,
+            .process-card:hover,
+            .vulnerability-card:hover {
+                transform: none;
+            }
+            
+            /* Ensure dropdowns work with touch */
+            .nav-links .has-dropdown {
+                cursor: pointer;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero,
+            .hero-inner {
+                padding: 40px 0;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            .sticky-sidebar {
+                padding: 5px;
+            }
+            
+            .sticky-sidebar a {
+                font-size: 12px;
             }
         }
         
@@ -988,12 +1237,12 @@
             }
         }
     </style>
-</head>
+    </head>
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Intersection Observer for scroll animations
-            const sections = document.querySelectorAll('section');
+            const sections = document.querySelectorAll('.section');
             
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -1023,39 +1272,39 @@
                 }, 300);
             }
             
-            // Animate content sections with fade in effect
-            const contentSections = document.querySelectorAll('.content-section');
-            contentSections.forEach(section => {
-                const image = section.querySelector('.content-image');
-                const text = section.querySelector('.content-text');
+            // Animate content columns with fade in effect
+            const contentColumns = document.querySelectorAll('.content-columns');
+            contentColumns.forEach(column => {
+                const contentImage = column.querySelector('.content-image');
+                const contentText = column.querySelector('.content-text');
                 
-                if (image) {
-                    image.style.opacity = '0';
-                    image.style.transform = 'translateX(-30px)';
-                    image.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                if (contentImage) {
+                    contentImage.style.opacity = '0';
+                    contentImage.style.transform = 'translateX(-30px)';
+                    contentImage.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 }
                 
-                if (text) {
-                    text.style.opacity = '0';
-                    text.style.transform = 'translateX(30px)';
-                    text.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                if (contentText) {
+                    contentText.style.opacity = '0';
+                    contentText.style.transform = 'translateX(30px)';
+                    contentText.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 }
             });
             
-            const contentSectionObserver = new IntersectionObserver(entries => {
+            const contentColumnsObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const image = entry.target.querySelector('.content-image');
-                        const text = entry.target.querySelector('.content-text');
+                        const contentImage = entry.target.querySelector('.content-image');
+                        const contentText = entry.target.querySelector('.content-text');
                         
-                        if (image) {
-                            image.style.opacity = '1';
-                            image.style.transform = 'translateX(0)';
+                        if (contentImage) {
+                            contentImage.style.opacity = '1';
+                            contentImage.style.transform = 'translateX(0)';
                         }
                         
-                        if (text) {
-                            text.style.opacity = '1';
-                            text.style.transform = 'translateX(0)';
+                        if (contentText) {
+                            contentText.style.opacity = '1';
+                            contentText.style.transform = 'translateX(0)';
                         }
                     }
                 });
@@ -1063,8 +1312,8 @@
                 threshold: 0.15
             });
             
-            contentSections.forEach(section => {
-                contentSectionObserver.observe(section);
+            contentColumns.forEach(column => {
+                contentColumnsObserver.observe(column);
             });
             
             // Search functionality
@@ -1099,25 +1348,25 @@
                         title: 'Security Audits',
                         category: 'Service',
                         keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
-                        url: '../services/security-audits.html'
+                        url: 'security-audits.html'
                     },
                     {
                         title: 'Penetration Testing',
                         category: 'Service',
                         keywords: ['penetration testing', 'pen test', 'phishing', 'vishing', 'smishing', 'attack', 'simulation', 'physical access', 'social engineering', 'osint'],
-                        url: '../services/penetration-testing.html'
+                        url: 'penetration-testing.html'
                     },
                     {
                         title: 'Red Teaming',
                         category: 'Service',
                         keywords: ['red teaming', 'red team', 'adversary simulation', 'full spectrum', 'physical red team', 'intrusion simulation'],
-                        url: '../services/red-teaming.html'
+                        url: 'red-teaming.html'
                     },
                     {
                         title: 'Security Awareness Training',
                         category: 'Service',
                         keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
-                        url: '../services/security-training.html'
+                        url: 'security-training.html'
                     },
                     // Company Pages
                     {
@@ -1143,31 +1392,31 @@
                         title: 'Healthcare Security',
                         category: 'Industry',
                         keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
-                        url: 'healthcare.html'
+                        url: '../Industries/healthcare.html'
                     },
                     {
                         title: 'Law Firm Security',
                         category: 'Industry',
                         keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
-                        url: 'law-firms.html'
+                        url: '../Industries/law-firms.html'
                     },
                     {
                         title: 'Educational Institutions Security',
                         category: 'Industry',
                         keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
-                        url: 'educational-institutions.html'
+                        url: '../Industries/educational-institutions.html'
                     },
                     {
                         title: 'Financial Services Security',
                         category: 'Industry',
                         keywords: ['financial', 'finance', 'banking', 'investment', 'fintech', 'financial services'],
-                        url: 'financial-services.html'
+                        url: '../Industries/financial-services.html'
                     },
                     {
                         title: 'Technology Security',
                         category: 'Industry',
                         keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
-                        url: 'technology.html'
+                        url: '../Industries/technology.html'
                     },
                     // Solutions/Concepts
                     {
@@ -1284,7 +1533,25 @@
             
             // Initialize search
             initSearch();
-            
+
+            // Add smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
             // Mobile menu toggle functionality
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const navLinks = document.querySelector('.nav-links');
@@ -1419,9 +1686,23 @@
                     });
                 }
             });
+            
+            // Update sticky sidebar behavior for mobile
+            const updateStickyNavigation = () => {
+                const sidebar = document.querySelector('.sticky-sidebar');
+                if (sidebar && window.innerWidth <= 768) {
+                    // Remove any desktop-specific classes on mobile
+                    sidebar.classList.remove('fixed');
+                    sidebar.style.top = '';
+                }
+            };
+            
+            // Run on load and resize
+            updateStickyNavigation();
+            window.addEventListener('resize', updateStickyNavigation);
         });
     </script>
-    <!-- Header and Navigation -->
+    <!-- Header -->
     <header>
         <div class="container">
             <nav class="nav-container">
@@ -1434,21 +1715,21 @@
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="../services/security-audits.html">Security Audits</a></li>
-                            <li><a href="../services/penetration-testing.html">Penetration Testing</a></li>
-                            <li><a href="../services/red-teaming.html">Red Teaming</a></li>
-                            <li><a href="../services/security-training.html">Security Awareness Training</a></li>
-                            <li><a href="../services/qualification.html">Free Security Audit</a></li>
+                            <li><a href="security-audits.html">Security Audits</a></li>
+                            <li><a href="penetration-testing.html">Penetration Testing</a></li>
+                            <li><a href="red-teaming.html">Red Teaming</a></li>
+                            <li><a href="security-training.html">Security Awareness Training</a></li>
+                            <li><a href="qualification.html">Free Security Audit</a></li>
                         </ul>
                     </li>
                     <!-- Solutions tab removed -->
                     <li>
                         <a href="#impact" class="has-dropdown" data-mobile-no-nav>Industries</a>
                         <ul class="dropdown-menu">
-                            <li><a href="healthcare.html">Healthcare</a></li>
-                            <li><a href="law-firms.html">Law Firms</a></li>
-                            <li><a href="educational-institutions.html">Educational Institutions</a></li>
-                            <li><a href="financial-services.html">Financial Services</a></li>
+                            <li><a href="../Industries/healthcare.html">Healthcare</a></li>
+                            <li><a href="../Industries/law-firms.html">Law Firms</a></li>
+                            <li><a href="../Industries/educational-institutions.html">Educational Institutions</a></li>
+                            <li><a href="../Industries/financial-services.html">Financial Services</a></li>
                         </ul>
                     </li>
                     <!-- Resources tab removed -->
@@ -1483,132 +1764,140 @@
             </nav>
         </div>
     </header>
-    
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-inner">
         <div class="container">
             <div class="hero-content">
-                <h1>Law Firms Security Solutions</h1>
-                <p>Protecting legal organizations from social engineering threats without compromising client confidentiality or practice efficiency.</p>
-                <a href="#vulnerabilities" class="btn">Explore Solutions</a>
+                <h1>Security Awareness Training</h1>
+                <p>Empower your employees with customized training programs designed to recognize and respond to social engineering tactics.</p>
             </div>
         </div>
     </section>
-    
-    <!-- Industry Overview -->
-    <section id="overview">
+
+    <!-- Overview Section -->
+    <section class="section">
         <div class="container">
             <div class="section-title">
-                <h2>Law Firms Security Challenges</h2>
-                <p>Understanding the unique threats and vulnerabilities in the legal sector</p>
+                <h2>Building Your Human Firewall</h2>
+                <p>Transform your employees from security vulnerabilities into your strongest defense</p>
             </div>
-            <div class="content-section">
+            <div class="content-columns">
                 <div class="content-text">
-                    <h3>Client Confidentiality Meets Compliance Pressure</h3>
-                    <p>Law firms operate on attorney-client privilege and trust – creating perfect opportunities for social engineers. Your legal professionals work under strict deadlines and court pressure, making them vulnerable to urgency-based attacks, while document-heavy workflows and billable hour pressure lead to security shortcuts.</p>
-                    <p>At RCS Security, we understand the specific challenges that law firms face when it comes to cybersecurity and social engineering attacks.</p>
+                    <h3>Beyond Basic Awareness</h3>
+                    <p>Our Security Awareness Training goes beyond generic presentations to provide immersive, engaging education that changes security behavior. We help your employees understand not only what social engineering threats look like, but why they work and how to respond effectively.</p>
+                    <p>All programs are tailored to your organization's specific risks, industry, and culture to maximize relevance and retention.</p>
                     <ul>
-                        <li><strong>Attorney-client privilege exploitation</strong>: Attackers leverage this trust relationship through targeted phishing attempts</li>
-                        <li><strong>Deadline and court pressure</strong>: Legal professionals working under strict deadlines are vulnerable to urgency-based attacks</li>
-                        <li><strong>Document-heavy workflow</strong>: High volume of sensitive documents creates opportunities for malicious delivery</li>
-                        <li><strong>Billable hour pressure</strong>: Focus on billable time can lead to security shortcuts that compromise data</li>
+                        <li>Customized curriculum based on your risk assessment</li>
+                        <li>Engaging delivery methods that accommodate different learning styles</li>
+                        <li>Real-world examples and interactive exercises</li>
+                        <li>Progressive learning paths for different roles and responsibilities</li>
+                        <li>Regular reinforcement and knowledge checks</li>
                     </ul>
+                    <a href="#training-programs" class="btn">Explore Our Programs</a>
                 </div>
                 <div class="content-image">
-                    <img src="../Images/Attourney Security.png" alt="Law Firms Security">
+                    <img src="../Images/Sec Aware Train.jpg" alt="Security Training" style="width: 100%; height: auto;">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs Section -->
+    <section class="section" style="background-color: var(--light-gray);" id="training-programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Training Approach</h2>
+                <p>Comprehensive programs designed for maximum effectiveness and engagement</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Core Awareness Program</h3>
+                    <p>Our foundation curriculum covers essential security awareness topics including phishing recognition, social engineering tactics, password security, physical security, and data protection.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Role-Based Training</h3>
+                    <p>Specialized modules for high-risk positions like executives, IT staff, and customer service. These address the unique threats and responsibilities of different roles.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Hands-On Workshops</h3>
+                    <p>Interactive sessions where employees practice identifying and responding to social engineering scenarios in a safe, guided environment.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Integrated Simulations</h3>
+                    <p>Regular phishing and social engineering exercises that provide immediate educational feedback and measure improvement over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Methods Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Flexible Delivery Options</h2>
+                <p>Training solutions that adapt to your organization's needs and culture</p>
+            </div>
+            <div class="content-columns">
+                <div class="content-image">
+                    <img src="../Images/Remote Training.jpg" alt="Remote Training Delivery" style="width: 100%; height: auto;">
+                </div>
+                <div class="content-text">
+                    <h3>Multiple Formats for Maximum Impact</h3>
+                    <p>We offer various delivery methods to accommodate different learning preferences, organizational structures, and technical environments.</p>
+                    <ul>
+                        <li><strong>In-Person Workshops</strong> - Engaging sessions led by our security experts</li>
+                        <li><strong>Live Virtual Training</strong> - Interactive remote sessions with real-time Q&A</li>
+                        <li><strong>Executive Briefings</strong> - Condensed sessions tailored for leadership teams</li>
+                        <li><strong>Department-Specific Training</strong> - Customized content for different business units</li>
+                        <li><strong>Train-the-Trainer Programs</strong> - Equipping your internal champions to deliver ongoing education</li>
+                    </ul>
+                    <p>All delivery methods include comprehensive reporting to track completion, knowledge retention, and behavioral improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>What the Research Shows</h2>
+                <p>Industry data on the measurable impact of sustained security awareness training</p>
             </div>
             <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>$5.08M</h3>
-                    <p>Average breach cost for professional services firms, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
+                <div class="stat-item">
+                    <h3>86%</h3>
+                    <p>Reduction in phishing susceptibility after 12 months of continuous security awareness training, per the <a href="https://www.knowbe4.com/phishing-by-industry-benchmarking-report" target="_blank" rel="noopener noreferrer">KnowBe4 2025 Phishing Benchmark Report</a></p>
                 </div>
-                <div class="stat-card">
-                    <h3>29%</h3>
-                    <p>Of law firms reported experiencing a security breach, per the <a href="https://www.americanbar.org/groups/law_practice/resources/tech-report/2023/2023-cybersecurity-techreport/" target="_blank" rel="noopener noreferrer">ABA Cybersecurity TechReport 2023</a></p>
+                <div class="stat-item">
+                    <h3>74%</h3>
+                    <p>Of data breaches involve a human element, making trained employees your most impactful security control, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                 </div>
-                <div class="stat-card">
-                    <h3>34%</h3>
-                    <p>Of law firms have a formal incident response plan in place, per the <a href="https://www.americanbar.org/groups/law_practice/resources/tech-report/2023/2023-cybersecurity-techreport/" target="_blank" rel="noopener noreferrer">ABA Cybersecurity TechReport 2023</a></p>
+                <div class="stat-item">
+                    <h3>68%</h3>
+                    <p>Of employees knowingly take risky actions despite understanding the security implications, per the <a href="https://www.proofpoint.com/us/resources/threat-reports/state-of-phish" target="_blank" rel="noopener noreferrer">Proofpoint State of the Phish 2024</a></p>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Vulnerabilities Section -->
-    <section id="vulnerabilities" style="background-color: var(--light-gray);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Common Law Firm Vulnerabilities</h2>
-                <p>The social engineering attack vectors specifically targeting legal organizations</p>
-            </div>
-            
-            <div class="vulnerability-card">
-                <h3>Attorney-Client Privilege Exploitation</h3>
-                <p>Social engineers create scenarios that invoke attorney-client privilege to manipulate legal staff into revealing information or performing actions they otherwise wouldn't. This exploitation plays on attorneys' commitment to client confidentiality while using it as a shield for attack.</p>
-                <div class="solution-card">
-                    <h4>Our Solution</h4>
-                    <p>We conduct specialized client impersonation testing for sensitive information requests, helping your legal team develop verification protocols that maintain confidentiality while preventing impersonation attempts.</p>
-                </div>
-            </div>
-            
-            <div class="vulnerability-card">
-                <h3>Deadline and Court Pressure Manipulation</h3>
-                <p>Attackers leverage the strict deadlines and court schedules that govern legal work, creating urgent scenarios that claim to require immediate action to avoid negative consequences for clients or cases.</p>
-                <div class="solution-card">
-                    <h4>Our Solution</h4>
-                    <p>Our court filing exploitation creates scenarios with imminent deadlines, helping your staff identify manipulation tactics even under significant time pressure and develop verification procedures that work in urgent situations.</p>
-                </div>
-            </div>
-            
-            <div class="vulnerability-card">
-                <h3>Document-Heavy Workflow Exploitation</h3>
-                <p>Legal professionals process enormous volumes of documents daily. Attackers exploit this by inserting malicious files into expected document workflows, often disguised as court filings, discovery documents, or client communications.</p>
-                <div class="solution-card">
-                    <h4>Our Solution</h4>
-                    <p>We conduct document delivery testing with simulated malicious attachments, helping your team develop secure document handling protocols that maintain workflow efficiency while detecting potential threats.</p>
+                <div class="stat-item">
+                    <h3>4.6%</h3>
+                    <p>Average phishing susceptibility rate for employees after one year of sustained awareness training, down from 34.3%, per the <a href="https://info.knowbe4.com/phishing-benchmarking-2024-na" target="_blank" rel="noopener noreferrer">KnowBe4 2024 Phishing Benchmark Report</a></p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Solution Offerings -->
-    <section id="solutions">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Law Firm Security Solutions</h2>
-                <p>Customized services designed specifically for the legal sector</p>
-            </div>
-            <div class="content-section">
-                <div class="content-text">
-                    <h3>Tailored Protection for Legal Organizations</h3>
-                    <p>Our legal security solutions are built on deep understanding of law firm operations and the unique social engineering vulnerabilities they create.</p>
-                    <ul>
-                        <li><strong>Legal-Context Phishing</strong>: Using court notices and bar association communications to test staff awareness</li>
-                        <li><strong>Document Delivery Testing</strong>: Simulating malicious attachments that mimic legitimate legal documents</li>
-                        <li><strong>Client Impersonation Testing</strong>: Evaluating protocols for authenticating client communications and requests</li>
-                        <li><strong>Legal Research Platform Testing</strong>: Verifying security of eDiscovery and document repositories</li>
-                        <li><strong>Court Filing Exploitation</strong>: Creating scenarios with imminent deadlines to test verification under pressure</li>
-                    </ul>
-                </div>
-                <div class="content-image">
-                    <img src="../Images/Attourney Teaching.jpg" alt="Law Firm Solutions">
-                </div>
-            </div>
-        </div>
-    </section>
-    
+
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>Protect Your Law Firm</h2>
-                <p>Protect your client's confidential information by protecting your people. Our legal-focused social engineering assessment can help.</p>
-                <a href="../contact.html" class="btn btn-white">Schedule Consultation</a>
+                <h2>Ready to Transform Your Security Culture?</h2>
+                <p>Contact us today to schedule a consultation and learn how our security awareness training can empower your employees to become your strongest security asset.</p>
+                <a href="../contact.html" class="btn btn-white">Schedule a Consultation</a>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1616,20 +1905,20 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="../services/security-audits.html">Security Audits</a></li>
-                        <li><a href="../services/penetration-testing.html">Penetration Testing</a></li>
-                        <li><a href="../services/red-teaming.html">Red Teaming</a></li>
-                        <li><a href="../services/security-training.html">Security Training</a></li>
-                        <li><a href="../services/qualification.html">Free Security Audit</a></li>
+                        <li><a href="security-audits.html">Security Audits</a></li>
+                        <li><a href="penetration-testing.html">Penetration Testing</a></li>
+                        <li><a href="red-teaming.html">Red Teaming</a></li>
+                        <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Industries</h4>
                     <ul class="footer-links">
-                        <li><a href="healthcare.html">Healthcare</a></li>
-                        <li><a href="law-firms.html">Law Firms</a></li>
-                        <li><a href="educational-institutions.html">Educational Institutions</a></li>
-                        <li><a href="financial-services.html">Financial Services</a></li>
+                        <li><a href="../Industries/healthcare.html">Healthcare</a></li>
+                        <li><a href="../Industries/law-firms.html">Law Firms</a></li>
+                        <li><a href="../Industries/educational-institutions.html">Educational Institutions</a></li>
+                        <li><a href="../Industries/financial-services.html">Financial Services</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1650,6 +1939,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="copyright">
                 <p>&copy; 2025 RCS Security. All rights reserved.</p>
             </div>
