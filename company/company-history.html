@@ -3,7 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company History | RCS Security - Red Cell Legacy</title>
+    <title>Company History: The Red Cell Legacy | Red Cell Solutions</title>
+    <meta name="description" content="Red Cell Solutions traces its roots to the Naval Red Cell unit of the 1980s. Learn how military red teaming principles shape our security testing today.">
+    <link rel="canonical" href="https://redcellsolutions.com/company/company-history.html">
+    <meta property="og:title" content="Company History: The Red Cell Legacy | Red Cell Solutions">
+    <meta property="og:description" content="Red Cell Solutions traces its roots to the Naval Red Cell unit of the 1980s. Learn how military red teaming principles shape our security testing today.">
+    <meta property="og:image" content="https://redcellsolutions.com/Images/RCS%20Logo.png">
+    <meta property="og:url" content="https://redcellsolutions.com/company/company-history.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Company History: The Red Cell Legacy | Red Cell Solutions">
+    <meta name="twitter:description" content="Red Cell Solutions traces its roots to the Naval Red Cell unit of the 1980s. Learn how military red teaming principles shape our security testing today.">
+    <meta name="twitter:image" content="https://redcellsolutions.com/Images/RCS%20Logo.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "Company History: The Red Cell Legacy",
+      "url": "https://redcellsolutions.com/company/company-history.html",
+      "description": "The history of Red Cell Solutions, from the Naval Red Cell unit formed in 1984 to today's physical security consulting practice.",
+      "about": {
+        "@type": "ProfessionalService",
+        "name": "Red Cell Solutions",
+        "url": "https://redcellsolutions.com",
+        "telephone": "+1-954-496-0657"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://redcellsolutions.com/"},
+        {"@type": "ListItem", "position": 2, "name": "About Us", "item": "https://redcellsolutions.com/company/company-history.html"},
+        {"@type": "ListItem", "position": 3, "name": "Company History", "item": "https://redcellsolutions.com/company/company-history.html"}
+      ]
+    }
+    </script>
     <link rel="icon" type="image/png" href="../Images/Red Cell Security Logo - NO RCS.png">
     <link rel="apple-touch-icon" href="../Images/Red Cell Security Logo - NO RCS.png">
     <style>
@@ -25,6 +62,11 @@
         body {
             line-height: 1.6;
             color: var(--secondary-color);
+        }
+
+        html,
+        body {
+            overflow-x: clip;
         }
         
         header {
@@ -412,7 +454,7 @@
             transform: translateY(-5px);
         }
         
-        .principle-card h4 {
+        .principle-card h3 {
             font-size: 20px;
             margin-bottom: 15px;
             color: var(--primary-color);
@@ -499,6 +541,26 @@
             line-height: 1.4;
         }
         
+        /* In-content text links */
+        section p a:not(.btn),
+        section li a:not(.btn),
+        main p a:not(.btn),
+        main li a:not(.btn) {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(151, 12, 28, 0.35);
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        }
+
+        section p a:not(.btn):hover,
+        section li a:not(.btn):hover,
+        main p a:not(.btn):hover,
+        main li a:not(.btn):hover {
+            color: #7a0916;
+            border-bottom-color: #7a0916;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 36px;
@@ -697,7 +759,7 @@
             }
             
             .nav-links li.dropdown-open .dropdown-menu {
-                max-height: 400px;
+                max-height: 600px;
                 margin: 8px 20px;
                 opacity: 1;
                 visibility: visible;
@@ -1220,243 +1282,26 @@
     </style>
 </head>
 <body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Search functionality
-            const initSearch = () => {
-                const searchInput = document.getElementById('searchInput');
-                const searchBtn = document.getElementById('searchBtn');
-                const searchSuggestions = document.getElementById('searchSuggestions');
-                
-                // Define searchable content with keywords and links
-                const searchContent = [
-                    // Main Pages
-                    {
-                        title: 'Home',
-                        category: 'Page',
-                        keywords: ['home', 'main', 'landing', 'social engineering', 'security'],
-                        url: '../index.html'
-                    },
-                    {
-                        title: 'Contact Us',
-                        category: 'Page',
-                        keywords: ['contact', 'email', 'support', 'help', 'reach out', 'get in touch'],
-                        url: '../contact.html'
-                    },
-                    {
-                        title: 'FAQ',
-                        category: 'Page',
-                        keywords: ['faq', 'questions', 'answers', 'help', 'frequently asked', 'support'],
-                        url: 'faq.html'
-                    },
-                    // Services
-                    {
-                        title: 'Security Audits',
-                        category: 'Service',
-                        keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
-                        url: '../services/security-audits.html'
-                    },
-                    {
-                        title: 'Penetration Testing',
-                        category: 'Service',
-                        keywords: ['penetration testing', 'pen test', 'phishing', 'vishing', 'smishing', 'attack', 'simulation', 'physical access', 'social engineering', 'osint'],
-                        url: '../services/penetration-testing.html'
-                    },
-                    {
-                        title: 'Red Teaming',
-                        category: 'Service',
-                        keywords: ['red teaming', 'red team', 'adversary simulation', 'full spectrum', 'physical red team', 'intrusion simulation'],
-                        url: '../services/red-teaming.html'
-                    },
-                    {
-                        title: 'Security Awareness Training',
-                        category: 'Service',
-                        keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
-                        url: '../services/security-training.html'
-                    },
-                    // Company Pages
-                    {
-                        title: 'Company History',
-                        category: 'Company',
-                        keywords: ['about', 'company', 'history', 'red cell', 'legacy', 'background'],
-                        url: 'company-history.html'
-                    },
-                    {
-                        title: 'Mission & Values',
-                        category: 'Company',
-                        keywords: ['mission', 'values', 'purpose', 'principles', 'commitment', 'beliefs'],
-                        url: 'mission-values.html'
-                    },
-                    {
-                        title: 'Real-World Case Studies',
-                        category: 'Company',
-                        keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
-                        url: 'how-to-secure-your-business.html'
-                    },
-                    // Active Industries
-                    {
-                        title: 'Healthcare Security',
-                        category: 'Industry',
-                        keywords: ['healthcare', 'health', 'medical', 'hospital', 'clinic', 'patient', 'hipaa'],
-                        url: '../Industries/healthcare.html'
-                    },
-                    {
-                        title: 'Law Firm Security',
-                        category: 'Industry',
-                        keywords: ['law', 'legal', 'attorney', 'lawyer', 'firm', 'confidential', 'ethics'],
-                        url: '../Industries/law-firms.html'
-                    },
-                    {
-                        title: 'Educational Institutions Security',
-                        category: 'Industry',
-                        keywords: ['education', 'school', 'university', 'college', 'academic', 'student'],
-                        url: '../Industries/educational-institutions.html'
-                    },
-                    {
-                        title: 'Financial Services Security',
-                        category: 'Industry',
-                        keywords: ['financial', 'finance', 'banking', 'investment', 'fintech', 'financial services'],
-                        url: '../Industries/financial-services.html'
-                    },
-                    {
-                        title: 'Technology Security',
-                        category: 'Industry',
-                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
-                        url: '../Industries/technology.html'
-                    },
-                    // Solutions/Concepts
-                    {
-                        title: 'Enterprise Security',
-                        category: 'Solution',
-                        keywords: ['enterprise', 'business', 'corporate', 'company', 'organization'],
-                        url: '../index.html#approach'
-                    },
-                    {
-                        title: 'Human Firewall Program',
-                        category: 'Solution',
-                        keywords: ['human firewall', 'people', 'staff', 'personnel', 'employees'],
-                        url: '../index.html#approach'
-                    }
-                ];
-                
-                // Function to search and display results
-                const performSearch = (query) => {
-                    // Clear previous suggestions
-                    searchSuggestions.innerHTML = '';
-                    
-                    if (!query || query.length < 2) {
-                        searchSuggestions.classList.remove('show');
-                        return;
-                    }
-                    
-                    const normalizedQuery = query.toLowerCase().trim();
-                    const results = [];
-                    
-                    // Search in titles and keywords
-                    searchContent.forEach(item => {
-                        // Check title
-                        if (item.title.toLowerCase().includes(normalizedQuery)) {
-                            results.push(item);
-                            return;
-                        }
-                        
-                        // Check keywords
-                        for (const keyword of item.keywords) {
-                            if (keyword.toLowerCase().includes(normalizedQuery)) {
-                                results.push(item);
-                                return;
-                            }
-                        }
-                    });
-                    
-                    // Display results
-                    if (results.length > 0) {
-                        results.forEach(result => {
-                            const suggestionItem = document.createElement('div');
-                            suggestionItem.className = 'search-suggestion-item';
-                            suggestionItem.innerHTML = `
-                                <span class="suggestion-title">${result.title}</span>
-                                <span class="suggestion-category">${result.category}</span>
-                            `;
-                            suggestionItem.addEventListener('click', () => {
-                                window.location.href = result.url;
-                            });
-                            searchSuggestions.appendChild(suggestionItem);
-                        });
-                        searchSuggestions.classList.add('show');
-                    } else {
-                        const noResults = document.createElement('div');
-                        noResults.className = 'search-suggestion-item';
-                        noResults.textContent = 'No results found';
-                        searchSuggestions.appendChild(noResults);
-                        searchSuggestions.classList.add('show');
-                    }
-                };
-                
-                // Search input event listeners
-                if (searchInput) {
-                    searchInput.addEventListener('focus', () => {
-                        if (searchInput.value.length >= 2) {
-                            performSearch(searchInput.value);
-                        }
-                    });
-                    
-                    let searchDebounceTimer;
-                    searchInput.addEventListener('input', () => {
-                        clearTimeout(searchDebounceTimer);
-                        searchDebounceTimer = setTimeout(() => {
-                            performSearch(searchInput.value);
-                        }, 350);
-                    });
-                    
-                    searchInput.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter') {
-                            e.preventDefault();
-                            
-                            // If there's only one result, navigate to it
-                            const suggestionItems = searchSuggestions.querySelectorAll('.search-suggestion-item');
-                            if (suggestionItems.length === 1 && !suggestionItems[0].textContent.includes('No results found')) {
-                                suggestionItems[0].click();
-                            }
-                        }
-                    });
-                }
-                
-                // Search button event listener
-                if (searchBtn) {
-                    searchBtn.addEventListener('click', () => {
-                        performSearch(searchInput.value);
-                    });
-                }
-                
-                // Close suggestions when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-                        searchSuggestions.classList.remove('show');
-                    }
-                });
-            };
-            
-            // Initialize search
-            initSearch();
-        });
-    </script>
+    <script src="../js/company.js" defer></script>
     <header>
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
                     <a href="../index.html" class="logo-img">
-                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
+                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Solutions logo" width="60" height="60" style="width: 60px; height: 60px;">
                     </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="../index.html#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
+                            <li><a href="../services/physical-security-consulting.html">Physical Security Consulting</a></li>
                             <li><a href="../services/security-audits.html">Security Audits</a></li>
                             <li><a href="../services/penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="../services/red-teaming.html">Red Teaming</a></li>
                             <li><a href="../services/security-training.html">Security Awareness Training</a></li>
+                            <li><a href="../services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                            <li><a href="../services/security-expert-witness.html">Security Expert Witness</a></li>
                             <li><a href="../services/qualification.html">Free Security Audit</a></li>
                         </ul>
                     </li>
@@ -1467,6 +1312,20 @@
                             <li><a href="../Industries/law-firms.html">Law Firms</a></li>
                             <li><a href="../Industries/educational-institutions.html">Educational Institutions</a></li>
                             <li><a href="../Industries/financial-services.html">Financial Services</a></li>
+                            <li><a href="../Industries/houses-of-worship.html">Houses of Worship</a></li>
+                            <li><a href="../Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                            <li><a href="../Industries/construction.html">Construction</a></li>
+                            <li><a href="../Industries/data-centers.html">Data Centers</a></li>
+                            <li><a href="../Industries/cannabis.html">Cannabis & Dispensaries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#locations" class="has-dropdown" data-mobile-no-nav>Locations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../locations/miami.html">Miami</a></li>
+                            <li><a href="../locations/fort-lauderdale.html">Fort Lauderdale</a></li>
+                            <li><a href="../locations/west-palm-beach.html">West Palm Beach</a></li>
+                            <li><a href="../locations/orlando.html">Orlando</a></li>
                         </ul>
                     </li>
                     <li>
@@ -1476,6 +1335,8 @@
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="mission-values.html">Mission & Values</a></li>
                             <li><a href="how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                            <li><a href="physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                            <li><a href="why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -1504,7 +1365,7 @@
     <section class="hero">
         <div class="container">
             <h1>Our Legacy: Born from Naval Excellence</h1>
-            <p>The story of RCS Security begins with the revolutionary Naval Red Cell unit that transformed security testing in the 1980s, establishing principles that guide our mission today.</p>
+            <p>The story of Red Cell Solutions begins with the revolutionary Naval Red Cell unit that transformed security testing in the 1980s, establishing principles that guide our mission today.</p>
         </div>
     </section>
 
@@ -1549,8 +1410,8 @@
 
                         <div id="event-present" class="timeline-event">
                             <div class="timeline-event-content">
-                                <h3>RCS Security (Present Day)</h3>
-                                <p>Today, RCS Security carries forward the Red Cell legacy, applying proven military methodologies to protect healthcare facilities, law firms, and organizations handling sensitive information. We maintain the warrior ethos while operating within professional ethical frameworks.</p>
+                                <h3>Red Cell Solutions (Present Day)</h3>
+                                <p>Today, Red Cell Solutions carries forward the Red Cell legacy, applying proven military methodologies to protect healthcare facilities, law firms, and organizations handling sensitive information. We maintain the warrior ethos while operating within professional ethical frameworks.</p>
                             </div>
                         </div>
                     </div>
@@ -1576,32 +1437,32 @@
 
                         <div class="principles-grid">
                             <div class="principle-card">
-                                <h4 style="color: var(--primary-color);">Mission-First Mentality</h4>
+                                <h3 style="color: var(--primary-color);">Mission-First Mentality</h3>
                                 <p>"We were mission oriented and would do what we had to do to achieve it." This dedication to protecting our clients drives every assessment and training program we deliver.</p>
                             </div>
 
                             <div class="principle-card">
-                                <h4 style="color: var(--primary-color);">Realistic Testing</h4>
+                                <h3 style="color: var(--primary-color);">Realistic Testing</h3>
                                 <p>"The more you sweat in training, the less you bleed in combat." We create exercises so realistic they expose vulnerabilities that checkbox compliance miss, because comfortable training produces vulnerable organizations.</p>
                             </div>
 
                             <div class="principle-card">
-                                <h4 style="color: var(--primary-color);">Think Like the Enemy</h4>
+                                <h3 style="color: var(--primary-color);">Think Like the Enemy</h3>
                                 <p>Red Cell's revolutionary approach combined physical infiltration, social manipulation, and technical exploitation, proving that effective security requires understanding human psychology, not just technical vulnerabilities.</p>
                             </div>
 
                             <div class="principle-card">
-                                <h4 style="color: var(--primary-color);">Lead from the Front</h4>
+                                <h3 style="color: var(--primary-color);">Lead from the Front</h3>
                                 <p>"I will always lead you from the front, not the rear." Our consultants personally conduct assessments and training, bringing decades of experience to protect what matters most to your organization.</p>
                             </div>
 
                             <div class="principle-card">
-                                <h4 style="color: var(--primary-color);">Never Assume</h4>
+                                <h3 style="color: var(--primary-color);">Never Assume</h3>
                                 <p>"Thou shalt never assume" drives our continuous testing mentality. Security isn't a state achieved but a process maintained through vigilant assessment and adaptation to evolving threats.</p>
                             </div>
 
                             <div class="principle-card">
-                                <h4 style="color: var(--primary-color);">Professional Integrity</h4>
+                                <h3 style="color: var(--primary-color);">Professional Integrity</h3>
                                 <p>"Before the Warrior can face the enemy, the Warrior must face himself." We maintain the self-discipline and ethical grounding required to think like criminals while operating with professional integrity.</p>
                             </div>
                         </div>
@@ -1628,10 +1489,13 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
+                        <li><a href="../services/physical-security-consulting.html">Physical Security Consulting</a></li>
                         <li><a href="../services/security-audits.html">Security Audits</a></li>
                         <li><a href="../services/penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="../services/red-teaming.html">Red Teaming</a></li>
                         <li><a href="../services/security-training.html">Security Training</a></li>
+                        <li><a href="../services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                        <li><a href="../services/security-expert-witness.html">Security Expert Witness</a></li>
                         <li><a href="../services/qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
@@ -1642,6 +1506,11 @@
                         <li><a href="../Industries/law-firms.html">Law Firms</a></li>
                         <li><a href="../Industries/educational-institutions.html">Educational Institutions</a></li>
                         <li><a href="../Industries/financial-services.html">Financial Services</a></li>
+                        <li><a href="../Industries/houses-of-worship.html">Houses of Worship</a></li>
+                        <li><a href="../Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                        <li><a href="../Industries/construction.html">Construction</a></li>
+                        <li><a href="../Industries/data-centers.html">Data Centers</a></li>
+                        <li><a href="../Industries/cannabis.html">Cannabis & Dispensaries</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1651,19 +1520,22 @@
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="mission-values.html">Mission & Values</a></li>
                         <li><a href="how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                        <li><a href="physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                        <li><a href="why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
-                        <!-- Phone number removed -->
+                        <li><a href="tel:+19544960657">954-496-0657</a></li>
                         <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
                         <li><a href="../contact.html">Contact Us</a></li>
+                        <li>Coral Springs, FL | Serving South Florida and clients nationwide</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+                <p>&copy; 2026 Red Cell Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>

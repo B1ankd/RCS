@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physical Red Teaming &amp; Adversary Simulation | Red Cell Solutions</title>
-    <meta name="description" content="Full-spectrum physical red team operations simulating sustained adversary campaigns against your organization. Go beyond point-in-time audits with long-form adversary simulation.">
-    <meta name="keywords" content="physical red teaming, adversary simulation, red team operations, full spectrum red team, physical security red team, persistent threat simulation, security testing Florida">
-    <meta property="og:title" content="Physical Red Teaming &amp; Adversary Simulation | Red Cell Solutions">
-    <meta property="og:description" content="Full-spectrum physical red team operations simulating sustained adversary campaigns against your organization.">
+    <title>Red Team Assessments &amp; Exercises | Red Cell Solutions</title>
+    <meta name="description" content="Red team assessments and exercises that simulate a determined adversary over weeks, testing whether your organization can prevent, detect, and respond.">
+    <link rel="canonical" href="https://redcellsolutions.com/services/red-teaming.html">
+    <meta property="og:title" content="Red Team Assessments &amp; Exercises | Red Cell Solutions">
+    <meta property="og:description" content="Red team assessments and exercises that simulate a determined adversary over weeks, testing whether your organization can prevent, detect, and respond.">
     <meta property="og:image" content="https://redcellsolutions.com/Images/Simulated%20Attack%20Exercises.jpg">
     <meta property="og:url" content="https://redcellsolutions.com/services/red-teaming.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Red Team Assessments &amp; Exercises | Red Cell Solutions">
+    <meta name="twitter:description" content="Red team assessments and exercises that simulate a determined adversary over weeks, testing whether your organization can prevent, detect, and respond.">
+    <meta name="twitter:image" content="https://redcellsolutions.com/Images/Simulated%20Attack%20Exercises.jpg">
     <link rel="icon" type="image/png" href="../Images/Red Cell Security Logo - NO RCS.png">
     <link rel="apple-touch-icon" href="../Images/Red Cell Security Logo - NO RCS.png">
     <style>
@@ -25,6 +28,11 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { line-height: 1.6; color: var(--secondary-color); }
+
+        html,
+        body {
+            overflow-x: clip;
+        }
         header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; }
@@ -101,6 +109,27 @@
         .footer-links a { color: #b3b3b3; text-decoration: none; transition: all 0.3s ease; font-size: clamp(13px,2.8vw,16px); line-height: 1.5; display: block; padding: clamp(4px,1vw,8px) 0; border-radius: 4px; }
         .footer-links a:hover { color: var(--white); transform: translateX(5px); background-color: rgba(255,255,255,0.05); padding-left: clamp(8px,2vw,12px); }
         .copyright { text-align: center; padding-top: clamp(15px,3vw,25px); border-top: 1px solid #444; color: #b3b3b3; font-size: clamp(12px,2.5vw,14px); margin-top: auto; }
+
+        /* In-content text links */
+        section p a:not(.btn),
+        section li a:not(.btn),
+        main p a:not(.btn),
+        main li a:not(.btn) {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(151, 12, 28, 0.35);
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        }
+
+        section p a:not(.btn):hover,
+        section li a:not(.btn):hover,
+        main p a:not(.btn):hover,
+        main li a:not(.btn):hover {
+            color: #7a0916;
+            border-bottom-color: #7a0916;
+        }
+
         @media (max-width: 992px) { .services-grid, .comparison-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
             .mobile-menu-toggle { display: block; z-index: 102; order: 2; margin-left: auto; }
@@ -113,7 +142,7 @@
             .nav-links > li.dropdown-open > a.has-dropdown::after { transform: rotate(180deg); }
             .nav-links > li.dropdown-open > a { background: rgba(151,12,28,0.04); color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
             .nav-links .dropdown-menu { position: static; box-shadow: none; max-height: 0; background: #f8f8f8; min-width: 100%; margin: 0; border-radius: 6px; overflow: hidden; border-left: 3px solid var(--primary-color); opacity: 0; visibility: hidden; transform: none; transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1), margin 0.3s, opacity 0.3s, visibility 0.3s; }
-            .nav-links li.dropdown-open .dropdown-menu { max-height: 400px; margin: 8px 20px; opacity: 1; visibility: visible; }
+            .nav-links li.dropdown-open .dropdown-menu { max-height: 600px; margin: 8px 20px; opacity: 1; visibility: visible; }
             .dropdown-menu a { font-size: 15px; padding: 14px 20px 14px 30px; display: block; color: var(--secondary-color); background: transparent; }
             .dropdown-menu a:hover { background: rgba(151,12,28,0.05); color: var(--primary-color); }
             nav { padding: 10px 0; position: relative; }
@@ -134,100 +163,121 @@
         @media (min-width: 376px) and (max-width: 600px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 375px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://redcellsolutions.com/services/red-teaming.html#service",
+          "name": "Physical Red Teaming",
+          "serviceType": "Red Team Assessment",
+          "description": "Full-spectrum physical red teaming: sustained, objective-based red team assessments and exercises combining reconnaissance, physical intrusion, and social engineering to test prevention, detection, and response.",
+          "url": "https://redcellsolutions.com/services/red-teaming.html",
+          "provider": {
+            "@type": "ProfessionalService",
+            "@id": "https://redcellsolutions.com/#organization",
+            "name": "Red Cell Solutions",
+            "telephone": "+1-954-496-0657",
+            "url": "https://redcellsolutions.com/"
+          },
+          "areaServed": ["Coral Springs", "Fort Lauderdale", "Miami", "West Palm Beach", "Boca Raton", "South Florida", "Florida", "United States"]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://redcellsolutions.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://redcellsolutions.com/#services"},
+            {"@type": "ListItem", "position": 3, "name": "Red Teaming", "item": "https://redcellsolutions.com/services/red-teaming.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is red teaming?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Red teaming is a sustained, objective-based adversary simulation in which a trained team operates like a real threat actor against your organization over weeks or months. It tests your full security program, people, process, and technology, including whether your team detects and responds while an attack is underway."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is a red team assessment?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A red team assessment is an engagement built around a realistic adversary objective, such as reaching a server room or retrieving sensitive documents. The red team combines reconnaissance, physical intrusion, and social engineering to pursue that objective, then reports the full attack narrative, detection gaps, and a remediation roadmap."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who needs a red team engagement?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Red team engagements suit organizations that have already addressed basic security hygiene and completed penetration tests. If you operate high-value facilities, face regulatory scrutiny, or need to validate detection and response under realistic conditions, a red team engagement shows how your program performs against a motivated adversary."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is red teaming different from penetration testing?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Penetration testing is a point-in-time assessment that finds as many vulnerabilities as possible within a defined scope, while red teaming is a longer, objective-based campaign that measures whether your organization detects and responds to an active adversary. The comparison section on this page breaks down both disciplines in detail."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-            }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
-            sections.forEach(section => observer.observe(section));
-
-            const heroEl = document.querySelector('.hero-inner');
-            if (heroEl) {
-                heroEl.style.opacity = '0'; heroEl.style.transform = 'translateY(50px)';
-                heroEl.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                setTimeout(() => { heroEl.style.opacity = '1'; heroEl.style.transform = 'translateY(0)'; }, 300);
-            }
-
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const navLinks = document.querySelector('.nav-links');
-            const body = document.body;
-            mobileMenuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-                this.style.display = navLinks.classList.contains('active') ? 'none' : 'block';
-            });
-            const dropdownLinks = document.querySelectorAll('.nav-links .has-dropdown');
-            const originalHrefs = new Map();
-            dropdownLinks.forEach(link => {
-                if (link.hasAttribute('href') && !originalHrefs.has(link)) {
-                    originalHrefs.set(link, link.getAttribute('href'));
-                    link.removeAttribute('href'); link.style.cursor = 'pointer';
-                }
-                link.addEventListener('click', function(e) {
-                    e.preventDefault(); e.stopPropagation();
-                    const parentLi = this.parentElement;
-                    const wasOpen = parentLi.classList.contains('dropdown-open');
-                    document.querySelectorAll('.nav-links li').forEach(li => { if (li !== parentLi) li.classList.remove('dropdown-open'); });
-                    if (!wasOpen) parentLi.classList.add('dropdown-open'); else parentLi.classList.remove('dropdown-open');
-                    return false;
-                });
-            });
-            document.querySelectorAll('.nav-links a:not(.has-dropdown)').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) { navLinks.classList.remove('active'); body.style.overflow = ''; mobileMenuToggle.style.display = 'block'; }
-                });
-            });
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) { navLinks.classList.remove('active'); body.style.overflow = ''; document.querySelectorAll('.nav-links li').forEach(li => li.classList.remove('dropdown-open')); mobileMenuToggle.style.display = ''; }
-                else if (!navLinks.classList.contains('active')) { mobileMenuToggle.style.display = 'block'; }
-            });
-            navLinks.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768 && this.classList.contains('active')) {
-                    const rect = this.getBoundingClientRect();
-                    if (e.clientX - rect.left >= rect.width - 60 && e.clientY - rect.top <= 60) {
-                        this.classList.remove('active'); body.style.overflow = ''; mobileMenuToggle.style.display = 'block';
-                        document.querySelectorAll('.nav-links li').forEach(li => li.classList.remove('dropdown-open'));
-                    }
-                }
-            });
-            document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768 && navLinks.classList.contains('active') && !navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                    navLinks.classList.remove('active'); body.style.overflow = ''; mobileMenuToggle.style.display = 'block';
-                }
-                if (!e.target.closest('.nav-links')) document.querySelectorAll('.nav-links li').forEach(li => li.classList.remove('dropdown-open'));
-            });
-        });
-    </script>
+    <script src="../js/service.js" defer></script>
 
     <header>
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
                     <a href="../index.html" class="logo-img">
-                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Solutions Red Team Operations" style="width: 60px; height: 60px;">
+                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Solutions logo" width="60" height="60" style="width: 60px; height: 60px;">
                     </a>
                 </div>
                 <ul class="nav-links">
                     <li>
-                        <a href="../index.html#services" class="has-dropdown" data-mobile-no-nav>Services</a>
+                        <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
+                            <li><a href="physical-security-consulting.html">Physical Security Consulting</a></li>
                             <li><a href="security-audits.html">Security Audits</a></li>
                             <li><a href="penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="red-teaming.html">Red Teaming</a></li>
                             <li><a href="security-training.html">Security Awareness Training</a></li>
+                            <li><a href="workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                            <li><a href="security-expert-witness.html">Security Expert Witness</a></li>
                             <li><a href="qualification.html">Free Security Audit</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="../index.html#impact" class="has-dropdown" data-mobile-no-nav>Industries</a>
+                        <a href="#impact" class="has-dropdown" data-mobile-no-nav>Industries</a>
                         <ul class="dropdown-menu">
                             <li><a href="../Industries/healthcare.html">Healthcare</a></li>
                             <li><a href="../Industries/law-firms.html">Law Firms</a></li>
                             <li><a href="../Industries/educational-institutions.html">Educational Institutions</a></li>
                             <li><a href="../Industries/financial-services.html">Financial Services</a></li>
+                            <li><a href="../Industries/houses-of-worship.html">Houses of Worship</a></li>
+                            <li><a href="../Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                            <li><a href="../Industries/construction.html">Construction</a></li>
+                            <li><a href="../Industries/data-centers.html">Data Centers</a></li>
+                            <li><a href="../Industries/cannabis.html">Cannabis & Dispensaries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#locations" class="has-dropdown" data-mobile-no-nav>Locations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../locations/miami.html">Miami</a></li>
+                            <li><a href="../locations/fort-lauderdale.html">Fort Lauderdale</a></li>
+                            <li><a href="../locations/west-palm-beach.html">West Palm Beach</a></li>
+                            <li><a href="../locations/orlando.html">Orlando</a></li>
                         </ul>
                     </li>
                     <li>
@@ -237,6 +287,8 @@
                             <li><a href="../company/faq.html">FAQ</a></li>
                             <li><a href="../company/mission-values.html">Mission &amp; Values</a></li>
                             <li><a href="../company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                            <li><a href="../company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                            <li><a href="../company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -297,6 +349,10 @@
                         <li>Ideal for testing your full security program</li>
                     </ul>
                 </div>
+            </div>
+            <div class="content-text" style="margin-top: 40px;">
+                <p>The two disciplines answer different questions. A <a href="penetration-testing.html">physical penetration test</a> answers "can our controls be defeated?" by finding as many exploitable weaknesses as possible within a defined scope. A red team exercise answers "would we notice, and what would we do about it?" by pursuing a single realistic objective the way an actual adversary would: patiently, quietly, and across multiple attack vectors at once.</p>
+                <p>That difference changes everything about the engagement. A penetration test announces its scope and works methodically through it; a red team assessment gives your security team no schedule to prepare for. Most organizations benefit from both, in sequence: a <a href="security-audits.html">security audit</a> to establish the baseline, penetration testing to validate individual controls, and red teaming to test the whole program under fire.</p>
             </div>
         </div>
     </section>
@@ -362,11 +418,31 @@
                         <li>Your board or executive leadership requires evidence of security program effectiveness beyond compliance checkboxes</li>
                         <li>You operate in a regulated industry (healthcare, finance, defense) with sophisticated adversary exposure</li>
                     </ul>
+                    <p>Physical red teaming is particularly relevant for <a href="../Industries/healthcare.html">healthcare facilities</a> and <a href="../Industries/financial-services.html">financial services organizations</a>, where a single unauthorized entry can expose regulated data, controlled substances, or high-value assets. If you have not yet tested individual controls, start with a <a href="penetration-testing.html">physical penetration test</a> and graduate to a full red team exercise once the fundamentals hold.</p>
                     <a href="../contact.html" class="btn">Talk to Our Team</a>
                 </div>
                 <div class="content-image">
-                    <img src="../Images/Custom strat dev.jpg" alt="Red Cell Solutions custom red team strategy development for physical security">
+                    <img src="../Images/Custom strat dev.jpg" alt="Red Cell Solutions custom red team strategy development for physical security" width="612" height="408" loading="lazy">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about red team assessments and exercises</p>
+            </div>
+            <div class="content-text">
+                <h3>What is red teaming?</h3>
+                <p>Red teaming is a sustained, objective-based adversary simulation in which a trained team operates like a real threat actor against your organization over weeks or months. It tests your full security program, people, process, and technology, including whether your team detects and responds while an attack is underway.</p>
+                <h3>What is a red team assessment?</h3>
+                <p>A red team assessment is an engagement built around a realistic adversary objective, such as reaching a server room or retrieving sensitive documents. The red team combines reconnaissance, physical intrusion, and social engineering to pursue that objective, then reports the full attack narrative, detection gaps, and a remediation roadmap.</p>
+                <h3>Who needs a red team engagement?</h3>
+                <p>Red team engagements suit organizations that have already addressed basic security hygiene and completed penetration tests. If you operate high-value facilities, face regulatory scrutiny, or need to validate detection and response under realistic conditions, a red team engagement shows how your program performs against a motivated adversary.</p>
+                <h3>How is red teaming different from penetration testing?</h3>
+                <p>Penetration testing is a point-in-time assessment that finds as many vulnerabilities as possible within a defined scope, while red teaming is a longer, objective-based campaign that measures whether your organization detects and responds to an active adversary. The comparison section on this page breaks down both disciplines in detail.</p>
             </div>
         </div>
     </section>
@@ -387,10 +463,13 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
+                        <li><a href="physical-security-consulting.html">Physical Security Consulting</a></li>
                         <li><a href="security-audits.html">Security Audits</a></li>
                         <li><a href="penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="red-teaming.html">Red Teaming</a></li>
                         <li><a href="security-training.html">Security Training</a></li>
+                        <li><a href="workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                        <li><a href="security-expert-witness.html">Security Expert Witness</a></li>
                         <li><a href="qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
@@ -401,6 +480,11 @@
                         <li><a href="../Industries/law-firms.html">Law Firms</a></li>
                         <li><a href="../Industries/educational-institutions.html">Educational Institutions</a></li>
                         <li><a href="../Industries/financial-services.html">Financial Services</a></li>
+                        <li><a href="../Industries/houses-of-worship.html">Houses of Worship</a></li>
+                        <li><a href="../Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                        <li><a href="../Industries/construction.html">Construction</a></li>
+                        <li><a href="../Industries/data-centers.html">Data Centers</a></li>
+                        <li><a href="../Industries/cannabis.html">Cannabis & Dispensaries</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -410,18 +494,22 @@
                         <li><a href="../company/faq.html">FAQ</a></li>
                         <li><a href="../company/mission-values.html">Mission &amp; Values</a></li>
                         <li><a href="../company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                        <li><a href="../company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                        <li><a href="../company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
+                        <li><a href="tel:+19544960657">954-496-0657</a></li>
                         <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
                         <li><a href="../contact.html">Contact Us</a></li>
+                        <li>Coral Springs, FL | Serving South Florida and clients nationwide</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+                <p>&copy; 2026 Red Cell Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>

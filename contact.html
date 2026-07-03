@@ -3,9 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | RCS Security</title>
+    <title>Contact Red Cell Solutions | Physical Security Experts</title>
+    <meta name="description" content="Contact Red Cell Solutions to schedule a free physical security consultation. Call 954-496-0657 or request penetration testing and assessments online.">
+    <link rel="canonical" href="https://redcellsolutions.com/contact.html">
+    <meta property="og:title" content="Contact Red Cell Solutions | Physical Security Experts">
+    <meta property="og:description" content="Contact Red Cell Solutions to schedule a free physical security consultation. Call 954-496-0657 or request penetration testing and assessments online.">
+    <meta property="og:image" content="https://redcellsolutions.com/Images/Social%20Eng%20Risk%20Assessment.jpg">
+    <meta property="og:url" content="https://redcellsolutions.com/contact.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Red Cell Solutions | Physical Security Experts">
+    <meta name="twitter:description" content="Contact Red Cell Solutions to schedule a free physical security consultation. Call 954-496-0657 or request penetration testing and assessments online.">
+    <meta name="twitter:image" content="https://redcellsolutions.com/Images/Social%20Eng%20Risk%20Assessment.jpg">
     <link rel="icon" type="image/png" href="Images/Red Cell Security Logo - NO RCS.png">
     <link rel="apple-touch-icon" href="Images/Red Cell Security Logo - NO RCS.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": "https://redcellsolutions.com/contact.html",
+          "url": "https://redcellsolutions.com/contact.html",
+          "name": "Contact Red Cell Solutions",
+          "description": "Contact Red Cell Solutions to schedule a free physical security consultation.",
+          "about": {
+            "@id": "https://redcellsolutions.com/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://redcellsolutions.com/#organization",
+          "name": "Red Cell Solutions",
+          "url": "https://redcellsolutions.com/",
+          "logo": "https://redcellsolutions.com/Images/Red%20Cell%20Security%20Logo%20-%20NO%20RCS.png",
+          "telephone": "+1-954-496-0657",
+          "email": "contact@redcellsolutions.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Coral Springs",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          },
+          "areaServed": [
+            "Coral Springs",
+            "Fort Lauderdale",
+            "Miami",
+            "West Palm Beach",
+            "Boca Raton",
+            "South Florida",
+            "Florida",
+            "United States"
+          ]
+        }
+      ]
+    }
+    </script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -31,6 +84,11 @@
             line-height: 1.6;
             color: var(--secondary-color);
             font-family: 'Arial', sans-serif;
+        }
+
+        html,
+        body {
+            overflow-x: clip;
         }
         
         header {
@@ -524,6 +582,26 @@
             transition: 0.3s;
         }
 
+        /* In-content text links */
+        section p a:not(.btn),
+        section li a:not(.btn),
+        main p a:not(.btn),
+        main li a:not(.btn) {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(151, 12, 28, 0.35);
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        }
+
+        section p a:not(.btn):hover,
+        section li a:not(.btn):hover,
+        main p a:not(.btn):hover,
+        main li a:not(.btn):hover {
+            color: #7a0916;
+            border-bottom-color: #7a0916;
+        }
+
         @media (max-width: 768px) {
             /* Mobile Navigation */
             .mobile-menu-toggle {
@@ -657,7 +735,7 @@
             }
             
             .nav-links li.dropdown-open .dropdown-menu {
-                max-height: 400px;
+                max-height: 600px;
                 margin: 8px 20px;
                 opacity: 1;
                 visibility: visible;
@@ -1455,6 +1533,12 @@
                     },
                     // Services
                     {
+                        title: 'Physical Security Consulting',
+                        category: 'Service',
+                        keywords: ['consulting', 'consultant', 'physical security', 'advisory'],
+                        url: 'services/physical-security-consulting.html'
+                    },
+                    {
                         title: 'Security Audits',
                         category: 'Service',
                         keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
@@ -1478,6 +1562,18 @@
                         keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
                         url: 'services/security-training.html'
                     },
+                    {
+                        title: 'Workplace Violence Prevention',
+                        category: 'Service',
+                        keywords: ['workplace violence', 'violence prevention', 'active shooter', 'sb 553', 'threat assessment'],
+                        url: 'services/workplace-violence-prevention.html'
+                    },
+                    {
+                        title: 'Security Expert Witness',
+                        category: 'Service',
+                        keywords: ['expert witness', 'negligent security', 'premises liability', 'litigation', 'attorney'],
+                        url: 'services/security-expert-witness.html'
+                    },
                     // Company Pages
                     {
                         title: 'Company History',
@@ -1496,6 +1592,18 @@
                         category: 'Company',
                         keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
                         url: 'company/how-to-secure-your-business.html'
+                    },
+                    {
+                        title: 'Security Assessment Guide',
+                        category: 'Company',
+                        keywords: ['assessment', 'checklist', 'guide', 'risk assessment'],
+                        url: 'company/physical-security-assessment-guide.html'
+                    },
+                    {
+                        title: 'Why Hire a Security Consultant',
+                        category: 'Company',
+                        keywords: ['why hire', 'hiring', 'choose consultant'],
+                        url: 'company/why-hire-a-physical-security-consultant.html'
                     },
                     // Active Industries
                     {
@@ -1523,10 +1631,59 @@
                         url: 'Industries/financial-services.html'
                     },
                     {
-                        title: 'Technology Security',
+                        title: 'Houses of Worship Security',
                         category: 'Industry',
-                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
-                        url: 'Industries/technology.html'
+                        keywords: ['church', 'worship', 'congregation', 'ministry', 'faith'],
+                        url: 'Industries/houses-of-worship.html'
+                    },
+                    {
+                        title: 'High Net Worth & Estates Security',
+                        category: 'Industry',
+                        keywords: ['estate', 'executive protection', 'family office', 'high net worth', 'private client'],
+                        url: 'Industries/high-net-worth.html'
+                    },
+                    {
+                        title: 'Construction Security',
+                        category: 'Industry',
+                        keywords: ['construction', 'job site', 'contractor', 'equipment theft'],
+                        url: 'Industries/construction.html'
+                    },
+                    {
+                        title: 'Data Center Security',
+                        category: 'Industry',
+                        keywords: ['data center', 'datacenter', 'server', 'colocation'],
+                        url: 'Industries/data-centers.html'
+                    },
+                    {
+                        title: 'Cannabis & Dispensary Security',
+                        category: 'Industry',
+                        keywords: ['cannabis', 'dispensary', 'marijuana', 'cultivation'],
+                        url: 'Industries/cannabis.html'
+                    },
+                    // Locations
+                    {
+                        title: 'Miami Security Consulting',
+                        category: 'Location',
+                        keywords: ['miami', 'miami-dade', 'brickell', 'coral gables'],
+                        url: 'locations/miami.html'
+                    },
+                    {
+                        title: 'Fort Lauderdale Security Consulting',
+                        category: 'Location',
+                        keywords: ['fort lauderdale', 'broward', 'coral springs'],
+                        url: 'locations/fort-lauderdale.html'
+                    },
+                    {
+                        title: 'West Palm Beach Security Consulting',
+                        category: 'Location',
+                        keywords: ['west palm beach', 'palm beach', 'boca raton'],
+                        url: 'locations/west-palm-beach.html'
+                    },
+                    {
+                        title: 'Orlando Security Consulting',
+                        category: 'Location',
+                        keywords: ['orlando', 'central florida'],
+                        url: 'locations/orlando.html'
                     },
                     // Solutions/Concepts
                     {
@@ -1914,41 +2071,6 @@ window.submitForm = async function() {
     }
 };
 
-// Optional: Add a function to test the form locally
-window.testFormSubmission = function() {
-    // Create test data
-    const testData = {
-        firstName: 'John',
-        lastName: 'Doe',
-        phone: '(555) 123-4567',
-        email: 'john.doe@example.com',
-        companyName: 'Test Company',
-        businessEmail: 'john@testcompany.com',
-        streetAddress: '123 Main St',
-        city: 'Testville',
-        state: 'FL',
-        country: 'USA',
-        zip: '12345',
-        businessJourney: 'Testing the form submission',
-        employees: '11-50',
-        services: ['Risk Assessment', 'Security Training']
-    };
-    
-    // Fill form with test data
-    Object.keys(testData).forEach(key => {
-        const element = document.getElementById(key);
-        if (element && key !== 'services') {
-            element.value = testData[key];
-        }
-    });
-    
-    // Check some service checkboxes
-    document.getElementById('service1').checked = true;
-    document.getElementById('service2').checked = true;
-    
-    console.log('Form filled with test data. Click Submit to test.');
-};
-
 // Add error reporting for debugging
 window.addEventListener('error', function(event) {
     console.error('Global error:', event.error);
@@ -2119,10 +2241,13 @@ window.addEventListener('error', function(event) {
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
+                            <li><a href="services/physical-security-consulting.html">Physical Security Consulting</a></li>
                             <li><a href="services/security-audits.html">Security Audits</a></li>
                             <li><a href="services/penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="services/red-teaming.html">Red Teaming</a></li>
                             <li><a href="services/security-training.html">Security Awareness Training</a></li>
+                            <li><a href="services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                            <li><a href="services/security-expert-witness.html">Security Expert Witness</a></li>
                             <li><a href="services/qualification.html">Free Security Audit</a></li>
                         </ul>
                     </li>
@@ -2134,6 +2259,20 @@ window.addEventListener('error', function(event) {
                             <li><a href="Industries/law-firms.html">Law Firms</a></li>
                             <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
                             <li><a href="Industries/financial-services.html">Financial Services</a></li>
+                            <li><a href="Industries/houses-of-worship.html">Houses of Worship</a></li>
+                            <li><a href="Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                            <li><a href="Industries/construction.html">Construction</a></li>
+                            <li><a href="Industries/data-centers.html">Data Centers</a></li>
+                            <li><a href="Industries/cannabis.html">Cannabis & Dispensaries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#locations" class="has-dropdown" data-mobile-no-nav>Locations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="locations/miami.html">Miami</a></li>
+                            <li><a href="locations/fort-lauderdale.html">Fort Lauderdale</a></li>
+                            <li><a href="locations/west-palm-beach.html">West Palm Beach</a></li>
+                            <li><a href="locations/orlando.html">Orlando</a></li>
                         </ul>
                     </li>
                     <!-- Resources tab removed -->
@@ -2144,6 +2283,8 @@ window.addEventListener('error', function(event) {
                             <li><a href="company/faq.html">FAQ</a></li>
                             <li><a href="company/mission-values.html">Mission & Values</a></li>
                             <li><a href="company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                            <li><a href="company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                            <li><a href="company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -2190,7 +2331,13 @@ window.addEventListener('error', function(event) {
                 <div class="contact-info">
                     <h3>Contact Information</h3>
                     <ul>
-                        <!-- Phone number removed -->
+                        <li>
+                            <i>📞</i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                <a href="tel:+19544960657" style="color: var(--secondary-color); text-decoration: none;">954-496-0657</a>
+                            </div>
+                        </li>
                         <li>
                             <i>✉️</i>
                             <div>
@@ -2212,9 +2359,8 @@ window.addEventListener('error', function(event) {
                     <div class="social-links">
                         <h4>Follow Us</h4>
                         <div class="social-icons">
-                            <a href="#" title="LinkedIn">in</a>
-                            <a href="#" title="Twitter">𝕏</a>
-                            <a href="#" title="Facebook">f</a>
+                            <a href="https://www.linkedin.com/company/red-cell-solutions/" title="Red Cell Solutions on LinkedIn" aria-label="Red Cell Solutions on LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+                            <a href="https://www.linkedin.com/in/christopher-orta-22649339a/" title="Christopher Orta on LinkedIn" aria-label="Christopher Orta on LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
                         </div>
                     </div>
                 </div>
@@ -2395,10 +2541,13 @@ window.addEventListener('error', function(event) {
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
+                        <li><a href="services/physical-security-consulting.html">Physical Security Consulting</a></li>
                         <li><a href="services/security-audits.html">Security Audits</a></li>
                         <li><a href="services/penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="services/red-teaming.html">Red Teaming</a></li>
                         <li><a href="services/security-training.html">Security Training</a></li>
+                        <li><a href="services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                        <li><a href="services/security-expert-witness.html">Security Expert Witness</a></li>
                         <li><a href="services/qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
@@ -2409,6 +2558,11 @@ window.addEventListener('error', function(event) {
                         <li><a href="Industries/law-firms.html">Law Firms</a></li>
                         <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
                         <li><a href="Industries/financial-services.html">Financial Services</a></li>
+                        <li><a href="Industries/houses-of-worship.html">Houses of Worship</a></li>
+                        <li><a href="Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                        <li><a href="Industries/construction.html">Construction</a></li>
+                        <li><a href="Industries/data-centers.html">Data Centers</a></li>
+                        <li><a href="Industries/cannabis.html">Cannabis & Dispensaries</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -2418,19 +2572,22 @@ window.addEventListener('error', function(event) {
                         <li><a href="company/faq.html">FAQ</a></li>
                         <li><a href="company/mission-values.html">Mission & Values</a></li>
                         <li><a href="company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                        <li><a href="company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                        <li><a href="company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
-                        <!-- Phone number removed -->
+                        <li><a href="tel:+19544960657">954-496-0657</a></li>
                         <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
+                        <li style="color: #b3b3b3; font-size: clamp(13px, 2.8vw, 16px); line-height: 1.5; padding: clamp(4px, 1vw, 8px) 0;">Coral Springs, FL | Serving South Florida and clients nationwide</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+                <p>&copy; 2026 Red Cell Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>

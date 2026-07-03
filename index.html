@@ -4,26 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physical Penetration Testing &amp; Red Teaming | Red Cell Solutions</title>
-    <meta name="description" content="Red Cell Solutions specializes in physical penetration testing, red team operations, and social engineering defense for South Florida businesses and nationwide high-security facilities.">
-    <meta name="keywords" content="physical penetration testing, red teaming, lock bypass, badge cloning, tailgating assessment, social engineering specialist, security for schools, HIPAA physical security audit, information security companies near me, security consultant Florida, pen testing services, security compliance testing">
+    <meta name="description" content="Physical penetration testing, red teaming, and physical security assessments for businesses in South Florida and nationwide. Free consultations.">
+    <link rel="canonical" href="https://redcellsolutions.com/">
     <meta property="og:title" content="Physical Penetration Testing &amp; Red Teaming | Red Cell Solutions">
-    <meta property="og:description" content="Red Cell Solutions specializes in physical penetration testing, red team operations, and social engineering defense for South Florida businesses and nationwide high-security facilities.">
+    <meta property="og:description" content="Physical penetration testing, red teaming, and physical security assessments for businesses in South Florida and nationwide. Free consultations.">
     <meta property="og:image" content="https://redcellsolutions.com/Images/Social%20Eng%20Risk%20Assessment.jpg">
     <meta property="og:url" content="https://redcellsolutions.com/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Physical Penetration Testing &amp; Red Teaming | Red Cell Solutions">
-    <meta name="twitter:description" content="Red Cell Solutions specializes in physical penetration testing, red team operations, and social engineering defense for South Florida businesses and nationwide high-security facilities.">
+    <meta name="twitter:description" content="Physical penetration testing, red teaming, and physical security assessments for businesses in South Florida and nationwide. Free consultations.">
     <meta name="twitter:image" content="https://redcellsolutions.com/Images/Social%20Eng%20Risk%20Assessment.jpg">
     <link rel="icon" type="image/png" href="Images/Red Cell Security Logo - NO RCS.png">
     <link rel="apple-touch-icon" href="Images/Red Cell Security Logo - NO RCS.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Red Cell Solutions",
-      "url": "https://redcellsolutions.com",
-      "logo": "https://redcellsolutions.com/Images/Red%20Cell%20Security%20Logo%20-%20NO%20RCS.png"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://redcellsolutions.com/#organization",
+          "name": "Red Cell Solutions",
+          "url": "https://redcellsolutions.com/",
+          "logo": "https://redcellsolutions.com/Images/Red%20Cell%20Security%20Logo%20-%20NO%20RCS.png",
+          "telephone": "+1-954-496-0657",
+          "email": "contact@redcellsolutions.com",
+          "sameAs": [
+            "https://www.linkedin.com/company/red-cell-solutions/",
+            "https://www.linkedin.com/in/christopher-orta-22649339a/"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://redcellsolutions.com/#service",
+          "name": "Red Cell Solutions",
+          "description": "Physical penetration testing, red teaming, physical security assessments, and security awareness training for businesses.",
+          "url": "https://redcellsolutions.com/",
+          "logo": "https://redcellsolutions.com/Images/Red%20Cell%20Security%20Logo%20-%20NO%20RCS.png",
+          "image": "https://redcellsolutions.com/Images/Social%20Eng%20Risk%20Assessment.jpg",
+          "telephone": "+1-954-496-0657",
+          "email": "contact@redcellsolutions.com",
+          "priceRange": "$$",
+          "parentOrganization": {
+            "@id": "https://redcellsolutions.com/#organization"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Coral Springs",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "26.271192",
+            "longitude": "-80.270569"
+          },
+          "areaServed": [
+            "Coral Springs",
+            "Fort Lauderdale",
+            "Miami",
+            "West Palm Beach",
+            "Boca Raton",
+            "South Florida",
+            "Florida",
+            "United States"
+          ],
+          "serviceType": [
+            "Physical Penetration Testing",
+            "Red Teaming",
+            "Physical Security Assessment",
+            "Security Audits",
+            "Security Awareness Training"
+          ]
+        }
+      ]
     }
     </script>
     <style>
@@ -133,6 +187,11 @@
             line-height: 1.6;
             color: var(--secondary-color);
             font-family: 'Arial', sans-serif;
+        }
+
+        html,
+        body {
+            overflow-x: clip;
         }
         
         header {
@@ -611,6 +670,26 @@
         }
         
         
+        /* In-content text links */
+        section p a:not(.btn),
+        section li a:not(.btn),
+        main p a:not(.btn),
+        main li a:not(.btn) {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(151, 12, 28, 0.35);
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        }
+
+        section p a:not(.btn):hover,
+        section li a:not(.btn):hover,
+        main p a:not(.btn):hover,
+        main li a:not(.btn):hover {
+            color: #7a0916;
+            border-bottom-color: #7a0916;
+        }
+
         @media (max-width: 992px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
@@ -825,7 +904,7 @@
             }
             
             .nav-links li.dropdown-open .dropdown-menu {
-                max-height: 400px;
+                max-height: 600px;
                 margin: 8px 20px;
                 opacity: 1;
                 visibility: visible;
@@ -1792,6 +1871,12 @@
                     },
                     // Services
                     {
+                        title: 'Physical Security Consulting',
+                        category: 'Service',
+                        keywords: ['consulting', 'consultant', 'physical security', 'advisory'],
+                        url: 'services/physical-security-consulting.html'
+                    },
+                    {
                         title: 'Security Audits',
                         category: 'Service',
                         keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
@@ -1815,6 +1900,18 @@
                         keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
                         url: 'services/security-training.html'
                     },
+                    {
+                        title: 'Workplace Violence Prevention',
+                        category: 'Service',
+                        keywords: ['workplace violence', 'violence prevention', 'active shooter', 'sb 553', 'threat assessment'],
+                        url: 'services/workplace-violence-prevention.html'
+                    },
+                    {
+                        title: 'Security Expert Witness',
+                        category: 'Service',
+                        keywords: ['expert witness', 'negligent security', 'premises liability', 'litigation', 'attorney'],
+                        url: 'services/security-expert-witness.html'
+                    },
                     // Company Pages
                     {
                         title: 'Company History',
@@ -1833,6 +1930,18 @@
                         category: 'Company',
                         keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
                         url: 'company/how-to-secure-your-business.html'
+                    },
+                    {
+                        title: 'Security Assessment Guide',
+                        category: 'Company',
+                        keywords: ['assessment', 'checklist', 'guide', 'risk assessment'],
+                        url: 'company/physical-security-assessment-guide.html'
+                    },
+                    {
+                        title: 'Why Hire a Security Consultant',
+                        category: 'Company',
+                        keywords: ['why hire', 'hiring', 'choose consultant'],
+                        url: 'company/why-hire-a-physical-security-consultant.html'
                     },
                     // Active Industries
                     {
@@ -1860,10 +1969,59 @@
                         url: 'Industries/financial-services.html'
                     },
                     {
-                        title: 'Technology Security',
+                        title: 'Houses of Worship Security',
                         category: 'Industry',
-                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
-                        url: 'Industries/technology.html'
+                        keywords: ['church', 'worship', 'congregation', 'ministry', 'faith'],
+                        url: 'Industries/houses-of-worship.html'
+                    },
+                    {
+                        title: 'High Net Worth & Estates Security',
+                        category: 'Industry',
+                        keywords: ['estate', 'executive protection', 'family office', 'high net worth', 'private client'],
+                        url: 'Industries/high-net-worth.html'
+                    },
+                    {
+                        title: 'Construction Security',
+                        category: 'Industry',
+                        keywords: ['construction', 'job site', 'contractor', 'equipment theft'],
+                        url: 'Industries/construction.html'
+                    },
+                    {
+                        title: 'Data Center Security',
+                        category: 'Industry',
+                        keywords: ['data center', 'datacenter', 'server', 'colocation'],
+                        url: 'Industries/data-centers.html'
+                    },
+                    {
+                        title: 'Cannabis & Dispensary Security',
+                        category: 'Industry',
+                        keywords: ['cannabis', 'dispensary', 'marijuana', 'cultivation'],
+                        url: 'Industries/cannabis.html'
+                    },
+                    // Locations
+                    {
+                        title: 'Miami Security Consulting',
+                        category: 'Location',
+                        keywords: ['miami', 'miami-dade', 'brickell', 'coral gables'],
+                        url: 'locations/miami.html'
+                    },
+                    {
+                        title: 'Fort Lauderdale Security Consulting',
+                        category: 'Location',
+                        keywords: ['fort lauderdale', 'broward', 'coral springs'],
+                        url: 'locations/fort-lauderdale.html'
+                    },
+                    {
+                        title: 'West Palm Beach Security Consulting',
+                        category: 'Location',
+                        keywords: ['west palm beach', 'palm beach', 'boca raton'],
+                        url: 'locations/west-palm-beach.html'
+                    },
+                    {
+                        title: 'Orlando Security Consulting',
+                        category: 'Location',
+                        keywords: ['orlando', 'central florida'],
+                        url: 'locations/orlando.html'
                     },
                     // Solutions/Concepts
                     {
@@ -2243,64 +2401,6 @@
         });
     </script>
 
-    <!-- LocalBusiness Schema for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": ["LocalBusiness", "ProfessionalService"],
-      "name": "Red Cell Solutions",
-      "image": "https://redcellsolutions.com/Images/RCS%20Logo.png",
-      "description": "Specialized physical red teaming and penetration testing services.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "South Florida",
-        "addressRegion": "FL",
-        "addressCountry": "US"
-      },
-      "serviceType": ["Physical Penetration Testing", "Red Teaming", "Security Audits"]
-    }
-    </script>
-
-    <!-- Schema.org Markup for SEO and AI Discovery -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Red Cell Solutions",
-      "description": "Physical penetration testing and social engineering security specialists",
-      "url": "https://redcellsolutions.com",
-      "logo": "https://redcellsolutions.com/Images/RCS%20Logo.png",
-      "image": "https://redcellsolutions.com/Images/Social%20Eng%20Risk%20Assessment.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Coral Springs",
-        "addressRegion": "FL",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "26.271192",
-        "longitude": "-80.270569"
-      },
-      "areaServed": [
-        "Coral Springs",
-        "Fort Lauderdale",
-        "Miami",
-        "West Palm Beach",
-        "South Florida",
-        "Florida",
-        "East Coast",
-        "United States"
-      ],
-      "serviceType": [
-        "Physical Penetration Testing",
-        "Social Engineering Security Consulting",
-        "Security Risk Assessment",
-        "Security Awareness Training"
-      ],
-      "priceRange": "$$"
-    }
-    </script>
 </head>
 <body>
     <!-- The rest of the HTML remains unchanged -->
@@ -2317,10 +2417,13 @@
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
+                            <li><a href="services/physical-security-consulting.html">Physical Security Consulting</a></li>
                             <li><a href="services/security-audits.html">Security Audits</a></li>
                             <li><a href="services/penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="services/red-teaming.html">Red Teaming</a></li>
                             <li><a href="services/security-training.html">Security Awareness Training</a></li>
+                            <li><a href="services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                            <li><a href="services/security-expert-witness.html">Security Expert Witness</a></li>
                             <li><a href="services/qualification.html">Free Security Audit</a></li>
                         </ul>
                     </li>
@@ -2332,6 +2435,20 @@
                             <li><a href="Industries/law-firms.html">Law Firms</a></li>
                             <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
                             <li><a href="Industries/financial-services.html">Financial Services</a></li>
+                            <li><a href="Industries/houses-of-worship.html">Houses of Worship</a></li>
+                            <li><a href="Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                            <li><a href="Industries/construction.html">Construction</a></li>
+                            <li><a href="Industries/data-centers.html">Data Centers</a></li>
+                            <li><a href="Industries/cannabis.html">Cannabis & Dispensaries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#locations" class="has-dropdown" data-mobile-no-nav>Locations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="locations/miami.html">Miami</a></li>
+                            <li><a href="locations/fort-lauderdale.html">Fort Lauderdale</a></li>
+                            <li><a href="locations/west-palm-beach.html">West Palm Beach</a></li>
+                            <li><a href="locations/orlando.html">Orlando</a></li>
                         </ul>
                     </li>
                     <!-- Resources tab removed -->
@@ -2342,6 +2459,8 @@
                             <li><a href="company/faq.html">FAQ</a></li>
                             <li><a href="company/mission-values.html">Mission & Values</a></li>
                             <li><a href="company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                            <li><a href="company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                            <li><a href="company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -2386,7 +2505,7 @@
                 <div class="container">
                     <div class="hero-content">
                         <h1>Physical Security &amp; Red Team Operations</h1>
-                        <p>Attackers find it easiest to hurt companies by targeting employees and physical infastructure. Our services help you find, stop, and respond to these clevar threats.</p>
+                        <p>Attackers find it easiest to hurt companies by targeting employees and physical infrastructure. Our services help you find, stop, and respond to these clever threats.</p>
                         <a href="#services" class="btn">Explore Solutions</a>
                     </div>
                 </div>
@@ -2399,35 +2518,40 @@
                     <h2>Our Security Services</h2>
                     <p>Complete solutions designed to strengthen your organization's security and protect against professional criminals that try and rob you.</p>
                 </div>
+                <div style="max-width: 800px; margin: 0 auto 50px;">
+                    <p style="font-size: 16px; color: var(--dark-gray); margin-bottom: 15px;">Red Cell Solutions is a physical security consulting firm based in Coral Springs, Florida, serving businesses across South Florida and clients nationwide. We focus on the areas where most security programs are weakest: your people, your facilities, and the everyday procedures attackers exploit to walk right past your defenses.</p>
+                    <p style="font-size: 16px; color: var(--dark-gray); margin-bottom: 15px;">A firewall cannot stop an intruder who walks through your front door. Our <a href="services/penetration-testing.html">physical penetration testing services</a> put your locks, badge readers, cameras, and front-desk procedures to the test with realistic, controlled intrusion attempts. Organizations that need to measure their entire security posture against a determined adversary turn to our <a href="services/red-teaming.html">red team operations</a>, which combine physical intrusion, social engineering, and open-source intelligence into a single coordinated exercise.</p>
+                    <p style="font-size: 16px; color: var(--dark-gray); margin-bottom: 0;">Not every organization needs a simulated break-in to find its weak points. A <a href="services/security-audits.html">physical security assessment and audit</a> gives you a systematic, documented review of your facilities, policies, and protection measures, along with prioritized recommendations you can act on immediately. To keep those gains, our <a href="services/security-training.html">security awareness training programs</a> teach your employees to recognize and report the tactics real intruders use.</p>
+                </div>
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-img">
-                            <img src="Images/Social Eng Risk Assessment.jpg" alt="Red Cell Solutions social engineering risk assessment and security audit">
+                            <img src="Images/Social Eng Risk Assessment.jpg" alt="Red Cell Solutions social engineering risk assessment and security audit" width="800" height="449" loading="lazy">
                         </div>
                         <div class="service-content">
                             <h3>Security Audits</h3>
                             <p>Spot weak points and protect from liability through comprehensive evaluations of your people, processes, and protection measures.</p>
-                            <a href="services/security-audits.html" class="btn">Learn More</a>
+                            <a href="services/security-audits.html" class="btn">Explore Security Audits</a>
                         </div>
                     </div>
                     <div class="service-card">
                         <div class="service-img">
-                            <img src="Images/Simulated attack.jpg" alt="Red Cell Solutions physical penetration testing team performing simulated intrusion attack">
+                            <img src="Images/Simulated attack.jpg" alt="Red Cell Solutions physical penetration testing team performing simulated intrusion attack" width="1000" height="667" loading="lazy">
                         </div>
                         <div class="service-content">
                             <h3>Penetration Testing</h3>
                             <p>Test your organization's security with realistic phone, email, text, and physical security simulations performed by our experts.</p>
-                            <a href="services/penetration-testing.html" class="btn">Learn More</a>
+                            <a href="services/penetration-testing.html" class="btn">Explore Penetration Testing</a>
                         </div>
                     </div>
                     <div class="service-card">
                         <div class="service-img">
-                            <img src="Images/Sec Aware Train.jpg" alt="Red Cell Solutions security awareness training program for employees">
+                            <img src="Images/Sec Aware Train.jpg" alt="Red Cell Solutions security awareness training program for employees" width="1319" height="879" loading="lazy">
                         </div>
                         <div class="service-content">
                             <h3>Security Awareness Training</h3>
                             <p>Train your employees as your first line of defense with custom training programs designed to find and respond to security threats.</p>
-                            <a href="services/security-training.html" class="btn">Learn More</a>
+                            <a href="services/security-training.html" class="btn">Explore Security Training</a>
                         </div>
                     </div>
                 </div>
@@ -2443,20 +2567,20 @@
                 </div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <h3>68%</h3>
-                        <p>of breaches involve a human element, per the <a href="https://www.verizon.com/business/resources/reports/dbir.html" target="_blank" rel="noopener noreferrer">Verizon 2024 Data Breach Investigations Report</a></p>
+                        <h3 style="font-size: 24px;">Most Breaches Start With People</h3>
+                        <p>68% of breaches involve a human element, per the <a href="https://www.verizon.com/business/resources/reports/dbir.html" target="_blank" rel="noopener noreferrer">Verizon 2024 Data Breach Investigations Report</a></p>
                     </div>
                     <div class="stat-item">
-                        <h3>$4.88M</h3>
-                        <p>average cost of a data breach, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
+                        <h3 style="font-size: 24px;">Breaches Carry a Heavy Price</h3>
+                        <p>$4.88M is the average cost of a data breach, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                     </div>
                     <div class="stat-item">
-                        <h3>258 days</h3>
-                        <p>average time to identify and contain a data breach, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
+                        <h3 style="font-size: 24px;">Intrusions Go Unnoticed for Months</h3>
+                        <p>258 days is the average time to identify and contain a data breach, per the <a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">IBM Cost of a Data Breach Report 2024</a></p>
                     </div>
                     <div class="stat-item">
-                        <h3>65%</h3>
-                        <p>reduction in successful breach attempts after security awareness training, per <a href="https://www.knowbe4.com/press/knowbe4-research-confirms-effective-security-awareness-training-significantly-reduces-data-breaches" target="_blank" rel="noopener noreferrer">KnowBe4 research</a></p>
+                        <h3 style="font-size: 24px;">Training Produces Measurable Results</h3>
+                        <p>65% reduction in successful breach attempts after security awareness training, per <a href="https://www.knowbe4.com/press/knowbe4-research-confirms-effective-security-awareness-training-significantly-reduces-data-breaches" target="_blank" rel="noopener noreferrer">KnowBe4 research</a></p>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px; padding: 20px;">
@@ -2480,7 +2604,7 @@
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-img">
-                            <img src="Images/assessment and analysis.jpg" alt="Red Cell Solutions physical security assessment and vulnerability analysis">
+                            <img src="Images/assessment and analysis.jpg" alt="Red Cell Solutions physical security assessment and vulnerability analysis" width="1334" height="792" loading="lazy">
                         </div>
                         <div class="service-content">
                             <h3>Assessment & Analysis</h3>
@@ -2489,7 +2613,7 @@
                     </div>
                     <div class="service-card">
                         <div class="service-img">
-                            <img src="Images/Custom strat dev.jpg" alt="Red Cell Solutions custom red team strategy development for physical security">
+                            <img src="Images/Custom strat dev.jpg" alt="Red Cell Solutions custom red team strategy development for physical security" width="612" height="408" loading="lazy">
                         </div>
                         <div class="service-content">
                             <h3>Custom Strategy Development</h3>
@@ -2498,13 +2622,17 @@
                     </div>
                     <div class="service-card">
                         <div class="service-img">
-                            <img src="Images/Implamentation.jpeg" alt="Red Cell Solutions security implementation and employee training deployment">
+                            <img src="Images/Implamentation.jpeg" alt="Red Cell Solutions security implementation and employee training deployment" width="481" height="360" loading="lazy">
                         </div>
                         <div class="service-content">
                             <h3>Implementation & Training</h3>
                             <p>We deploy proven solutions and provide training that encourages your employess to keep your business safe.</p>
                         </div>
                     </div>
+                </div>
+                <div style="max-width: 800px; margin: 50px auto 0;">
+                    <p style="font-size: 16px; color: var(--dark-gray); margin-bottom: 15px;">Every engagement follows this sequence because lasting security requires more than a report. An assessment tells you where you stand today. A strategy turns those findings into a plan your organization can actually execute. Implementation and training make sure the plan holds up when a real adversary tests it.</p>
+                    <p style="font-size: 16px; color: var(--dark-gray); margin-bottom: 0;">Whether you need a one-time physical security assessment before an audit, a full red team engagement, or an ongoing physical security consulting relationship, we scope each project around your facilities, your risk profile, and your budget. <a href="contact.html">Request a consultation</a> to discuss which approach fits your organization.</p>
                 </div>
             </div>
         </section>
@@ -2528,10 +2656,13 @@
                     <div class="footer-col">
                         <h4>Services</h4>
                         <ul class="footer-links">
+                            <li><a href="services/physical-security-consulting.html">Physical Security Consulting</a></li>
                             <li><a href="services/security-audits.html">Security Audits</a></li>
                             <li><a href="services/penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="services/red-teaming.html">Red Teaming</a></li>
                             <li><a href="services/security-training.html">Security Training</a></li>
+                            <li><a href="services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                            <li><a href="services/security-expert-witness.html">Security Expert Witness</a></li>
                             <li><a href="services/qualification.html">Free Security Audit</a></li>
                         </ul>
                     </div>
@@ -2542,6 +2673,11 @@
                             <li><a href="Industries/law-firms.html">Law Firms</a></li>
                             <li><a href="Industries/educational-institutions.html">Educational Institutions</a></li>
                             <li><a href="Industries/financial-services.html">Financial Services</a></li>
+                            <li><a href="Industries/houses-of-worship.html">Houses of Worship</a></li>
+                            <li><a href="Industries/high-net-worth.html">High Net Worth & Estates</a></li>
+                            <li><a href="Industries/construction.html">Construction</a></li>
+                            <li><a href="Industries/data-centers.html">Data Centers</a></li>
+                            <li><a href="Industries/cannabis.html">Cannabis & Dispensaries</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -2551,20 +2687,23 @@
                             <li><a href="company/faq.html">FAQ</a></li>
                             <li><a href="company/mission-values.html">Mission & Values</a></li>
                             <li><a href="company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                            <li><a href="company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                            <li><a href="company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Contact Us</h4>
                         <ul class="footer-links">
-                            <!-- Phone number removed -->
+                            <li><a href="tel:+19544960657">954-496-0657</a></li>
                             <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
+                            <li style="color: #b3b3b3; font-size: clamp(13px, 2.8vw, 16px); line-height: 1.5; padding: clamp(4px, 1vw, 8px) 0;">Coral Springs, FL | Serving South Florida and clients nationwide</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="copyright">
-                    <p>&copy; 2025 RCS Security. All rights reserved.</p>
+                    <p>&copy; 2026 Red Cell Solutions. All rights reserved.</p>
                 </div>
             </div>
         </footer>

@@ -3,993 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Law Firm Physical Security | Protecting Attorney-Client Privilege</title>
-    <meta name="description" content="Prevent corporate espionage and physical breaches of confidential legal files. Bug sweeping, physical security assessments, and social engineering testing for law firms.">
-    <meta name="keywords" content="law firm information security, protecting attorney-client privilege, legal office security, law firm bug sweeping">
+    <title>Law Firm Physical Security | Red Cell Solutions</title>
+    <meta name="description" content="Law firm physical security assessments and social engineering testing that protect client confidentiality, privileged files, and attorney-client trust.">
+    <link rel="canonical" href="https://redcellsolutions.com/Industries/law-firms.html">
+    <meta property="og:title" content="Law Firm Physical Security | Red Cell Solutions">
+    <meta property="og:description" content="Law firm physical security assessments and social engineering testing that protect client confidentiality, privileged files, and attorney-client trust.">
+    <meta property="og:image" content="https://redcellsolutions.com/Images/Attourney%20Security.png">
+    <meta property="og:url" content="https://redcellsolutions.com/Industries/law-firms.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Law Firm Physical Security | Red Cell Solutions">
+    <meta name="twitter:description" content="Law firm physical security assessments and social engineering testing that protect client confidentiality, privileged files, and attorney-client trust.">
+    <meta name="twitter:image" content="https://redcellsolutions.com/Images/Attourney%20Security.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Law Firm Physical Security Assessment",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Red Cell Solutions",
+        "url": "https://redcellsolutions.com",
+        "telephone": "+1-954-496-0657"
+      },
+      "description": "Physical security assessments and social engineering testing for law firms and legal organizations, protecting client confidentiality, attorney-client privilege, and sensitive case files from impersonation, pretexting, and unauthorized access.",
+      "serviceType": "Law Firm Physical Security",
+      "areaServed": ["Coral Springs", "Fort Lauderdale", "Miami", "West Palm Beach", "Boca Raton", "South Florida", "Florida", "United States"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://redcellsolutions.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Industries", "item": "https://redcellsolutions.com/index.html#impact"},
+        {"@type": "ListItem", "position": 3, "name": "Law Firms", "item": "https://redcellsolutions.com/Industries/law-firms.html"}
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do law firms need physical security?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Law firms hold privileged client files, litigation strategy, and financial records that make them targets for corporate espionage and opportunistic theft. Physical security protects attorney-client privilege where it lives: file storage, workspaces, and document workflows. A single breach can damage client trust and expose the firm to serious liability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a law firm security assessment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A law firm security assessment is an authorized evaluation of how well your firm protects client information in the physical world, covering office access controls, document handling, visitor procedures, and staff response to social engineering. Red Cell Solutions delivers prioritized findings your firm can act on without disrupting billable work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do social engineers target law firms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Social engineers target law firms by impersonating clients to request privileged information, creating urgent scenarios tied to court deadlines, and delivering malicious files disguised as court filings, discovery documents, or client communications. Each tactic exploits the trust, urgency, and document volume that define legal work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What physical safeguards protect client files?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Client files are protected by locked and access-controlled storage, clean desk practices, secure disposal of printed material, visitor escort policies, and workstation screen locks. Testing those safeguards under realistic conditions shows whether confidential material is actually protected or simply assumed to be."
+          }
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/png" href="../Images/Red Cell Security Logo - NO RCS.png">
     <link rel="apple-touch-icon" href="../Images/Red Cell Security Logo - NO RCS.png">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Core styles from main page */
-        :root {
-            --primary-color: #970c1c;
-            --secondary-color: #171717;
-            --light-gray: #f4f4f4;
-            --dark-gray: #393939;
-            --white: #ffffff;
-            --sidebar-fixed-top: 70px;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            line-height: 1.6;
-            color: var(--secondary-color);
-            font-family: 'Arial', sans-serif;
-        }
-        
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-left: 10px;
-        }
-        
-        .logo-img {
-            width: 60px;
-            height: auto;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        /* Mobile Navigation Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            color: var(--secondary-color);
-        }
-        
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--secondary-color);
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-        
-        .nav-links li {
-            margin-left: 20px;
-            position: relative;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: 500;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            padding: 1px 0;
-            font-size: 14px;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        .nav-links .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--white);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            min-width: 180px; /* Slightly reduced width */
-            border-radius: 3px; /* Smaller radius */
-            padding: 5px 0; /* Reduced padding */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px) scale(0.95);
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                        visibility 0.3s;
-            transform-origin: top center;
-            z-index: 100;
-        }
-        
-        /* Show dropdown when clicked (for desktop) */
-        .nav-links li.dropdown-open .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-        
-        .dropdown-menu li {
-            margin: 0;
-            list-style-type: none;
-        }
-        
-        .dropdown-menu a {
-            padding: 5px 15px;
-            font-size: 13px;
-        }
-        
-        .dropdown-menu a:hover {
-            background-color: var(--light-gray);
-        }
-        
-        /* Dropdown arrow positioning fix */
-        .nav-links a.has-dropdown {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-links a.has-dropdown::after {
-            margin-left: 8px;
-        }
-        
-        .search-container {
-            position: relative;
-            margin-right: 15px;
-        }
-        
-        .search-input {
-            padding: 4px 10px;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            font-size: 12px;
-            width: 140px;
-            transition: width 0.3s;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        .search-input:focus {
-            width: 180px;
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .search-btn {
-            background: none;
-            border: none;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #777;
-        }
-        
-        .search-btn:hover {
-            color: var(--primary-color);
-        }
-        
-        .search-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .search-suggestions.show {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .search-suggestion-item {
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 13px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .search-suggestion-item:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .search-suggestion-item .suggestion-title {
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-        
-        .search-suggestion-item .suggestion-category {
-            font-size: 11px;
-            color: #777;
-            margin-left: 5px;
-        }
-        
-        .has-dropdown::after {
-            content: "▼";
-            font-size: 10px;
-            margin-left: 5px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 7.5px 15px; /* Increased by 1.25x */
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 4px; /* Increased by 1.25x */
-            font-weight: 600;
-            transition: background-color 0.3s;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px; /* Increased by 1.25x */
-        }
-        
-        .btn:hover {
-            background-color: #7a0916;
-        }
-        
-        .hero {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            padding: 80px 0;
-            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../Images/3 x 12 Web Banner - Medium Smooth.png');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-content {
-            max-width: 600px;
-        }
-        
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        section {
-            padding: 60px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .section-title h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: var(--dark-gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .content-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 40px;
-        }
-        
-        .content-text {
-            flex: 1;
-        }
-        
-        .content-text h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .content-text p {
-            margin-bottom: 20px;
-        }
-        
-        .content-text ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-        
-        .content-text li {
-            margin-bottom: 10px;
-        }
-        
-        .content-image {
-            flex: 1;
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .content-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .stat-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .stat-card h3 {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .stat-card p {
-            color: var(--dark-gray);
-        }
-
-        .stat-card a {
-            color: var(--dark-gray);
-            border-bottom: 1px solid rgba(57, 57, 57, 0.4);
-            text-decoration: none;
-        }
-        .stat-card a:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-
-        .cta-section {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 60px 0;
-        }
-        
-        .cta-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .cta-content h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        
-        .cta-content p {
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-        
-        .btn-white {
-            background-color: var(--white);
-            color: var(--primary-color);
-        }
-        
-        .btn-white:hover {
-            background-color: #f0f0f0;
-        }
-        
-        footer {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            padding: clamp(40px, 8vw, 80px) 0 clamp(15px, 3vw, 30px);
-            min-height: 20vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: clamp(20px, 3vw, 35px);
-            margin-bottom: clamp(20px, 4vw, 50px);
-            align-items: start;
-        }
-        
-        .footer-col {
-            display: flex;
-            flex-direction: column;
-            min-height: clamp(120px, 15vh, 200px);
-            justify-content: flex-start;
-        }
-        
-        .footer-col h4 {
-            font-size: clamp(16px, 3.5vw, 22px);
-            margin-bottom: clamp(12px, 2.5vw, 25px);
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            line-height: 1.3;
-        }
-        
-        .footer-links {
-            list-style: none;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(8px, 1.5vw, 15px);
-        }
-        
-        .footer-links li {
-            margin-bottom: 0;
-        }
-        
-        .footer-links a {
-            color: #b3b3b3;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Arial', sans-serif;
-            font-size: clamp(13px, 2.8vw, 16px);
-            line-height: 1.5;
-            display: block;
-            padding: clamp(4px, 1vw, 8px) 0;
-            border-radius: 4px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-            transform: translateX(5px);
-            background-color: rgba(255, 255, 255, 0.05);
-            padding-left: clamp(8px, 2vw, 12px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: clamp(15px, 3vw, 25px);
-            border-top: 1px solid #444;
-            color: #b3b3b3;
-            font-family: 'Arial', sans-serif;
-            font-size: clamp(12px, 2.5vw, 14px);
-            margin-top: auto;
-            line-height: 1.4;
-        }
-        
-        .vulnerability-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .vulnerability-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .solution-card {
-            background-color: var(--light-gray);
-            border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .solution-card h4 {
-            margin-bottom: 10px;
-            color: var(--secondary-color);
-        }
-        
-        /* Common mobile breakpoints for various devices */
-        /* Extra small devices (phones, 320px - 480px) */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero h1 {
-                font-size: 24px;
-                line-height: 1.3;
-            }
-            
-            .hero p {
-                font-size: 14px;
-                line-height: 1.5;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-                min-height: 44px; /* Ensure touch target size */
-                display: inline-flex;
-                align-items: center;
-            }
-            
-            section {
-                padding: 40px 0;
-            }
-            
-            .section-title h2 {
-                font-size: 24px;
-            }
-            
-            .section-title p {
-                font-size: 14px;
-            }
-        }
-        
-        /* Small devices (landscape phones, 481px - 768px) */
-        @media (max-width: 768px) {
-            /* Mobile Navigation */
-            .mobile-menu-toggle {
-                display: block;
-                z-index: 102;
-                order: 2; /* Position hamburger on the right */
-                margin-left: auto;
-                margin-right: 0;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--white);
-                flex-direction: column;
-                padding: 80px 20px 20px;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                z-index: 99;
-                overflow-y: auto;
-            }
-            
-            /* Add close button for mobile menu */
-            .nav-links::before {
-                content: "✕";
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                font-size: 24px;
-                color: var(--dark-gray);
-                cursor: pointer;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                transition: all 0.2s ease;
-                z-index: 101;
-                user-select: none;
-            }
-            
-            .nav-links::before:hover {
-                background: var(--light-gray);
-                color: var(--primary-color);
-                transform: scale(1.1);
-            }
-            
-            .nav-links::before:active {
-                transform: scale(0.95);
-                background: rgba(151, 12, 28, 0.1);
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                width: 100%;
-                border-bottom: 1px solid rgba(0,0,0,0.08);
-                position: relative;
-            }
-            
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-            
-            .nav-links > li > a {
-                padding: 18px 20px;
-                font-size: 17px;
-                min-height: 56px;
-                width: 100%;
-                justify-content: space-between;
-                font-weight: 500;
-                letter-spacing: 0.3px;
-                transition: all 0.2s ease;
-                position: relative;
-            }
-            
-            .nav-links > li > a:hover {
-                background: rgba(151, 12, 28, 0.03);
-            }
-            
-            .nav-links > li > a.has-dropdown {
-                position: relative;
-                overflow: hidden;
-                cursor: pointer;
-            }
-            
-            .nav-links > li > a.has-dropdown::after {
-                content: "▼";
-                font-size: 12px;
-                margin-left: auto;
-                color: var(--primary-color);
-                transition: transform 0.3s ease;
-            }
-            
-            .nav-links > li.dropdown-open > a.has-dropdown::after {
-                transform: rotate(180deg);
-            }
-            
-            .nav-links > li.dropdown-open > a {
-                background: rgba(151, 12, 28, 0.04);
-                color: var(--primary-color);
-                border-bottom: 2px solid var(--primary-color);
-            }
-            
-            .nav-links .dropdown-menu {
-                position: static;
-                box-shadow: none;
-                max-height: 0;
-                padding-left: 0;
-                background: #f8f8f8;
-                min-width: 100%;
-                margin: 0;
-                border-radius: 6px;
-                overflow: hidden;
-                border-left: 3px solid var(--primary-color);
-                opacity: 0;
-                visibility: hidden;
-                transform: none;
-                transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                            margin 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                            opacity 0.3s ease-out,
-                            visibility 0.3s;
-            }
-            
-            .nav-links li.dropdown-open .dropdown-menu {
-                max-height: 400px;
-                margin: 8px 20px;
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            
-            .dropdown-menu li {
-                position: relative;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-            
-            .dropdown-menu li:last-child {
-                border-bottom: none;
-            }
-            
-            .dropdown-menu a {
-                font-size: 15px;
-                padding: 14px 20px 14px 30px;
-                display: block;
-                transition: background-color 0.2s ease, color 0.2s ease;
-                position: relative;
-                color: var(--secondary-color);
-                background: transparent;
-            }
-            
-            .dropdown-menu a:hover {
-                background: rgba(151, 12, 28, 0.05);
-                color: var(--primary-color);
-            }
-            
-            /* Header adjustments */
-            nav {
-                padding: 10px 0;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                position: relative;
-            }
-            
-            /* Logo positioning - center */
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(35%);
-                z-index: 98;
-            }
-            
-            .logo-text {
-                font-size: 20px;
-            }
-            
-            .logo-img {
-                width: 50px;
-            }
-            
-            /* Search and button positioning - left side */
-            .nav-right-section {
-                order: 1;
-                width: auto;
-                margin-right: 0;
-                margin-left: 0;
-                flex: 1;
-            }
-            
-            
-            .search-container {
-                display: none; /* Hide search on mobile for cleaner UI */
-            }
-            
-            .nav-right-section .btn {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-            
-            /* Content sections */
-            .content-section {
-                flex-direction: column;
-            }
-            
-            .content-image {
-                margin-top: 30px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero {
-                padding: 60px 0;
-            }
-            
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .section-title h2 {
-                font-size: 28px;
-            }
-            
-            .cta-content h2 {
-                font-size: 28px;
-            }
-            
-            .btn {
-                padding: 12px 20px;
-                font-size: 16px;
-            }
-            
-            /* Footer adjustments */
-            footer {
-                padding: clamp(30px, 6vw, 60px) 0 clamp(15px, 3vw, 25px);
-                min-height: 25vh;
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: clamp(12px, 3vw, 20px);
-                margin-bottom: clamp(15px, 3vw, 30px);
-            }
-            
-            .footer-col {
-                min-height: clamp(100px, 12vh, 150px);
-            }
-            
-            .footer-col h4 {
-                font-size: clamp(15px, 4vw, 18px);
-                margin-bottom: clamp(10px, 2vw, 18px);
-            }
-            
-            .footer-links a {
-                font-size: clamp(13px, 3.2vw, 15px);
-                padding: clamp(6px, 1.5vw, 10px) 0;
-            }
-        }
-        
-        /* Medium devices (tablets, 769px - 992px) */
-        @media (max-width: 992px) {
-            /* Ensure footer uses horizontal space on tablets */
-            .footer-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: clamp(15px, 2.5vw, 25px);
-            }
-        }
-        
-        /* Large tablets and small desktops (993px - 1200px) */
-        @media (min-width: 993px) and (max-width: 1200px) {
-            .footer-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: clamp(20px, 2vw, 30px);
-            }
-            
-            .footer-col h4 {
-                font-size: clamp(17px, 1.8vw, 20px);
-            }
-            
-            .footer-links a {
-                font-size: clamp(14px, 1.4vw, 16px);
-            }
-        }
-        
-        /* Medium desktops (1201px - 1400px) */
-        @media (min-width: 1201px) and (max-width: 1400px) {
-            .footer-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: clamp(25px, 2.2vw, 35px);
-            }
-        }
-        
-        /* Large desktops (1401px and above) */
-        @media (min-width: 1401px) {
-            .footer-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: clamp(30px, 2vw, 50px);
-                max-width: 1200px;
-                margin: 0 auto clamp(20px, 4vw, 50px) auto;
-            }
-            
-            .footer-col h4 {
-                font-size: clamp(18px, 1.5vw, 22px);
-            }
-            
-            .footer-links a {
-                font-size: clamp(15px, 1.2vw, 17px);
-            }
-            
-            .copyright {
-                font-size: clamp(14px, 1.1vw, 16px);
-            }
-        }
-        
-        /* Medium mobile devices footer optimization */
-        @media (min-width: 376px) and (max-width: 600px) {
-            footer {
-                padding: clamp(35px, 7vw, 50px) 0 clamp(15px, 3vw, 25px);
-                min-height: 28vh;
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: clamp(18px, 4vw, 28px);
-                align-items: stretch;
-            }
-            
-            .footer-col {
-                min-height: clamp(90px, 14vh, 140px);
-                text-align: left;
-            }
-            
-            .footer-col h4 {
-                font-size: clamp(15px, 4.2vw, 17px);
-                margin-bottom: clamp(10px, 2.5vw, 15px);
-            }
-            
-            .footer-links a {
-                font-size: clamp(13px, 3.5vw, 15px);
-                padding: clamp(6px, 1.8vw, 9px) 0;
-            }
-            
-            .copyright {
-                font-size: clamp(12px, 3.2vw, 14px);
-            }
-        }
-        
-        /* Extra mobile optimizations for smallest screens */
-        @media (max-width: 375px) {
-            /* Extra small footer optimizations */
-            footer {
-                padding: clamp(25px, 8vw, 40px) 0 clamp(12px, 4vw, 20px);
-                min-height: 30vh;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: clamp(12px, 5vw, 20px);
-                text-align: center;
-            }
-            
-            .footer-col {
-                min-height: clamp(80px, 15vh, 120px);
-                align-items: center;
-            }
-            
-            .footer-col h4 {
-                font-size: clamp(16px, 5vw, 20px);
-                margin-bottom: clamp(8px, 3vw, 15px);
-                text-align: center;
-            }
-            
-            .footer-links {
-                align-items: center;
-                width: 100%;
-            }
-            
-            .footer-links a {
-                font-size: clamp(14px, 4vw, 16px);
-                text-align: center;
-                padding: clamp(8px, 2vw, 12px) clamp(10px, 3vw, 20px);
-                margin: 0 auto;
-                width: fit-content;
-            }
-            
-            .copyright {
-                font-size: clamp(13px, 4vw, 15px);
-                padding-top: clamp(12px, 4vw, 20px);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/industry.css">
 </head>
 <body>
     <script>
@@ -1098,6 +193,12 @@
                     },
                     // Services
                     {
+                        title: 'Physical Security Consulting',
+                        category: 'Service',
+                        keywords: ['consulting', 'consultant', 'physical security', 'advisory'],
+                        url: '../services/physical-security-consulting.html'
+                    },
+                    {
                         title: 'Security Audits',
                         category: 'Service',
                         keywords: ['audit', 'assessment', 'vulnerability', 'evaluation', 'risk', 'security assessment', 'compliance', 'incident response'],
@@ -1121,6 +222,18 @@
                         keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
                         url: '../services/security-training.html'
                     },
+                    {
+                        title: 'Workplace Violence Prevention',
+                        category: 'Service',
+                        keywords: ['workplace violence', 'violence prevention', 'active shooter', 'sb 553', 'threat assessment'],
+                        url: '../services/workplace-violence-prevention.html'
+                    },
+                    {
+                        title: 'Security Expert Witness',
+                        category: 'Service',
+                        keywords: ['expert witness', 'negligent security', 'premises liability', 'litigation', 'attorney'],
+                        url: '../services/security-expert-witness.html'
+                    },
                     // Company Pages
                     {
                         title: 'Company History',
@@ -1139,6 +252,18 @@
                         category: 'Company',
                         keywords: ['case studies', 'breaches', 'examples', 'business security', 'how to secure'],
                         url: '../company/how-to-secure-your-business.html'
+                    },
+                    {
+                        title: 'Security Assessment Guide',
+                        category: 'Company',
+                        keywords: ['assessment', 'checklist', 'guide', 'risk assessment'],
+                        url: '../company/physical-security-assessment-guide.html'
+                    },
+                    {
+                        title: 'Why Hire a Security Consultant',
+                        category: 'Company',
+                        keywords: ['why hire', 'hiring', 'choose consultant'],
+                        url: '../company/why-hire-a-physical-security-consultant.html'
                     },
                     // Active Industries
                     {
@@ -1166,10 +291,59 @@
                         url: 'financial-services.html'
                     },
                     {
-                        title: 'Technology Security',
+                        title: 'Houses of Worship Security',
                         category: 'Industry',
-                        keywords: ['technology', 'tech', 'IT', 'software', 'hardware', 'startup'],
-                        url: 'technology.html'
+                        keywords: ['church', 'worship', 'congregation', 'ministry', 'faith'],
+                        url: 'houses-of-worship.html'
+                    },
+                    {
+                        title: 'High Net Worth & Estates Security',
+                        category: 'Industry',
+                        keywords: ['estate', 'executive protection', 'family office', 'high net worth', 'private client'],
+                        url: 'high-net-worth.html'
+                    },
+                    {
+                        title: 'Construction Security',
+                        category: 'Industry',
+                        keywords: ['construction', 'job site', 'contractor', 'equipment theft'],
+                        url: 'construction.html'
+                    },
+                    {
+                        title: 'Data Center Security',
+                        category: 'Industry',
+                        keywords: ['data center', 'datacenter', 'server', 'colocation'],
+                        url: 'data-centers.html'
+                    },
+                    {
+                        title: 'Cannabis & Dispensary Security',
+                        category: 'Industry',
+                        keywords: ['cannabis', 'dispensary', 'marijuana', 'cultivation'],
+                        url: 'cannabis.html'
+                    },
+                    // Locations
+                    {
+                        title: 'Miami Security Consulting',
+                        category: 'Location',
+                        keywords: ['miami', 'miami-dade', 'brickell', 'coral gables'],
+                        url: '../locations/miami.html'
+                    },
+                    {
+                        title: 'Fort Lauderdale Security Consulting',
+                        category: 'Location',
+                        keywords: ['fort lauderdale', 'broward', 'coral springs'],
+                        url: '../locations/fort-lauderdale.html'
+                    },
+                    {
+                        title: 'West Palm Beach Security Consulting',
+                        category: 'Location',
+                        keywords: ['west palm beach', 'palm beach', 'boca raton'],
+                        url: '../locations/west-palm-beach.html'
+                    },
+                    {
+                        title: 'Orlando Security Consulting',
+                        category: 'Location',
+                        keywords: ['orlando', 'central florida'],
+                        url: '../locations/orlando.html'
                     },
                     // Solutions/Concepts
                     {
@@ -1429,17 +603,20 @@
             <nav class="nav-container">
                 <div class="logo">
                     <a href="../index.html" class="logo-img">
-                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Security Logo" style="width: 60px; height: 60px;">
+                        <img src="../Images/Red Cell Security Logo - NO RCS.png" alt="Red Cell Solutions logo" width="60" height="60" style="width: 60px; height: 60px;">
                     </a>
                 </div>
                 <ul class="nav-links">
                     <li>
                         <a href="#services" class="has-dropdown" data-mobile-no-nav>Services</a>
                         <ul class="dropdown-menu">
+                            <li><a href="../services/physical-security-consulting.html">Physical Security Consulting</a></li>
                             <li><a href="../services/security-audits.html">Security Audits</a></li>
                             <li><a href="../services/penetration-testing.html">Penetration Testing</a></li>
                             <li><a href="../services/red-teaming.html">Red Teaming</a></li>
                             <li><a href="../services/security-training.html">Security Awareness Training</a></li>
+                            <li><a href="../services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                            <li><a href="../services/security-expert-witness.html">Security Expert Witness</a></li>
                             <li><a href="../services/qualification.html">Free Security Audit</a></li>
                         </ul>
                     </li>
@@ -1451,6 +628,20 @@
                             <li><a href="law-firms.html">Law Firms</a></li>
                             <li><a href="educational-institutions.html">Educational Institutions</a></li>
                             <li><a href="financial-services.html">Financial Services</a></li>
+                            <li><a href="houses-of-worship.html">Houses of Worship</a></li>
+                            <li><a href="high-net-worth.html">High Net Worth & Estates</a></li>
+                            <li><a href="construction.html">Construction</a></li>
+                            <li><a href="data-centers.html">Data Centers</a></li>
+                            <li><a href="cannabis.html">Cannabis & Dispensaries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#locations" class="has-dropdown" data-mobile-no-nav>Locations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../locations/miami.html">Miami</a></li>
+                            <li><a href="../locations/fort-lauderdale.html">Fort Lauderdale</a></li>
+                            <li><a href="../locations/west-palm-beach.html">West Palm Beach</a></li>
+                            <li><a href="../locations/orlando.html">Orlando</a></li>
                         </ul>
                     </li>
                     <!-- Resources tab removed -->
@@ -1461,6 +652,8 @@
                             <li><a href="../company/faq.html">FAQ</a></li>
                             <li><a href="../company/mission-values.html">Mission & Values</a></li>
                             <li><a href="../company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                            <li><a href="../company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                            <li><a href="../company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -1490,8 +683,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Law Firms Security Solutions</h1>
-                <p>Protecting legal organizations from social engineering threats without compromising client confidentiality or practice efficiency.</p>
+                <h1>Law Firm Physical Security &amp; Client Confidentiality</h1>
+                <p>Protecting legal organizations from social engineering and physical intrusion threats without compromising client confidentiality or practice efficiency.</p>
                 <a href="#vulnerabilities" class="btn">Explore Solutions</a>
             </div>
         </div>
@@ -1508,7 +701,7 @@
                 <div class="content-text">
                     <h3>Client Confidentiality Meets Compliance Pressure</h3>
                     <p>Law firms operate on attorney-client privilege and trust, creating perfect opportunities for social engineers. Your legal professionals work under strict deadlines and court pressure, making them vulnerable to urgency-based attacks, while document-heavy workflows and billable hour pressure lead to security shortcuts.</p>
-                    <p>At RCS Security, we understand the specific challenges that law firms face when it comes to cybersecurity and social engineering attacks.</p>
+                    <p>At Red Cell Solutions, we understand the specific challenges that law firms face when it comes to client security and social engineering attacks. Attorney-client privilege only holds if the people and spaces around it hold too, which is why our <a href="../services/security-audits.html">physical security audits</a> and <a href="../services/penetration-testing.html">social engineering penetration testing</a> focus on how privileged information could actually leave your firm.</p>
                     <ul>
                         <li><strong>Attorney-client privilege exploitation</strong>: Attackers leverage this trust relationship through targeted phishing attempts</li>
                         <li><strong>Deadline and court pressure</strong>: Legal professionals working under strict deadlines are vulnerable to urgency-based attacks</li>
@@ -1517,7 +710,7 @@
                     </ul>
                 </div>
                 <div class="content-image">
-                    <img src="../Images/Attourney Security.png" alt="Law Firms Security">
+                    <img src="../Images/Attourney Security.png" alt="Attorney reviewing law firm physical security and client confidentiality safeguards" width="940" height="675" loading="lazy">
                 </div>
             </div>
             <div class="stats-grid">
@@ -1584,7 +777,7 @@
             <div class="content-section">
                 <div class="content-text">
                     <h3>Tailored Protection for Legal Organizations</h3>
-                    <p>Our legal security solutions are built on deep understanding of law firm operations and the unique social engineering vulnerabilities they create.</p>
+                    <p>Our legal security solutions are built on deep understanding of law firm operations and the unique social engineering vulnerabilities they create. Every engagement is authorized in writing, scoped with firm leadership, and conducted with the discretion your clients expect from you.</p>
                     <ul>
                         <li><strong>Legal-Context Phishing</strong>: Using court notices and bar association communications to test staff awareness</li>
                         <li><strong>Document Delivery Testing</strong>: Simulating malicious attachments that mimic legitimate legal documents</li>
@@ -1592,14 +785,33 @@
                         <li><strong>Legal Research Platform Testing</strong>: Verifying security of eDiscovery and document repositories</li>
                         <li><strong>Court Filing Exploitation</strong>: Creating scenarios with imminent deadlines to test verification under pressure</li>
                     </ul>
+                    <p>Findings never sit in a report. We follow testing with <a href="../services/security-training.html">security awareness training</a> tailored to legal staff, so paralegals, associates, and front desk teams learn to verify identities and requests without slowing client service.</p>
                 </div>
                 <div class="content-image">
-                    <img src="../Images/Attourney Teaching.jpg" alt="Law Firm Solutions">
+                    <img src="../Images/Attourney Teaching.jpg" alt="Security awareness training session for law firm attorneys and staff" width="1024" height="642" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about law firm security and protecting client confidentiality</p>
+            </div>
+            <h3>Why do law firms need physical security?</h3>
+            <p>Law firms hold privileged client files, litigation strategy, and financial records that make them targets for corporate espionage and opportunistic theft. Physical security protects attorney-client privilege where it lives: file storage, workspaces, and document workflows. A single breach can damage client trust and expose the firm to serious liability.</p>
+            <h3>What is a law firm security assessment?</h3>
+            <p>A law firm security assessment is an authorized evaluation of how well your firm protects client information in the physical world, covering office access controls, document handling, visitor procedures, and staff response to social engineering. Red Cell Solutions delivers prioritized findings your firm can act on without disrupting billable work.</p>
+            <h3>How do social engineers target law firms?</h3>
+            <p>Social engineers target law firms by impersonating clients to request privileged information, creating urgent scenarios tied to court deadlines, and delivering malicious files disguised as court filings, discovery documents, or client communications. Each tactic exploits the trust, urgency, and document volume that define legal work.</p>
+            <h3>What physical safeguards protect client files?</h3>
+            <p>Client files are protected by locked and access-controlled storage, clean desk practices, secure disposal of printed material, visitor escort policies, and workstation screen locks. Testing those safeguards under realistic conditions shows whether confidential material is actually protected or simply assumed to be.</p>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
@@ -1618,10 +830,13 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul class="footer-links">
+                        <li><a href="../services/physical-security-consulting.html">Physical Security Consulting</a></li>
                         <li><a href="../services/security-audits.html">Security Audits</a></li>
                         <li><a href="../services/penetration-testing.html">Penetration Testing</a></li>
                         <li><a href="../services/red-teaming.html">Red Teaming</a></li>
                         <li><a href="../services/security-training.html">Security Training</a></li>
+                        <li><a href="../services/workplace-violence-prevention.html">Workplace Violence Prevention</a></li>
+                        <li><a href="../services/security-expert-witness.html">Security Expert Witness</a></li>
                         <li><a href="../services/qualification.html">Free Security Audit</a></li>
                     </ul>
                 </div>
@@ -1632,6 +847,11 @@
                         <li><a href="law-firms.html">Law Firms</a></li>
                         <li><a href="educational-institutions.html">Educational Institutions</a></li>
                         <li><a href="financial-services.html">Financial Services</a></li>
+                        <li><a href="houses-of-worship.html">Houses of Worship</a></li>
+                        <li><a href="high-net-worth.html">High Net Worth & Estates</a></li>
+                        <li><a href="construction.html">Construction</a></li>
+                        <li><a href="data-centers.html">Data Centers</a></li>
+                        <li><a href="cannabis.html">Cannabis & Dispensaries</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1641,19 +861,22 @@
                         <li><a href="../company/faq.html">FAQ</a></li>
                         <li><a href="../company/mission-values.html">Mission & Values</a></li>
                         <li><a href="../company/how-to-secure-your-business.html">Real-World Case Studies</a></li>
+                        <li><a href="../company/physical-security-assessment-guide.html">Security Assessment Guide</a></li>
+                        <li><a href="../company/why-hire-a-physical-security-consultant.html">Why Hire a Security Consultant</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
-                        <!-- Phone number removed -->
+                        <li><a href="tel:+19544960657">954-496-0657</a></li>
                         <li><a href="mailto:contact@redcellsolutions.com">contact@redcellsolutions.com</a></li>
                         <li><a href="../contact.html">Contact Us</a></li>
+                        <li>Coral Springs, FL | Serving South Florida and clients nationwide</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 RCS Security. All rights reserved.</p>
+                <p>&copy; 2026 Red Cell Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>
