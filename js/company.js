@@ -53,6 +53,18 @@
                         url: '../services/red-teaming.html'
                     },
                     {
+                        title: 'Corporate Counterintelligence',
+                        category: 'Service',
+                        keywords: ['counterintelligence', 'corporate espionage', 'trade secret', 'espionage protection', 'competitor'],
+                        url: '../services/corporate-counterintelligence.html'
+                    },
+                    {
+                        title: 'Insider Threat Programs',
+                        category: 'Service',
+                        keywords: ['insider threat', 'data exfiltration', 'employee theft', 'insider risk'],
+                        url: '../services/insider-threat.html'
+                    },
+                    {
                         title: 'Security Awareness Training',
                         category: 'Service',
                         keywords: ['training', 'awareness', 'education', 'security training', 'employee training'],
@@ -133,10 +145,22 @@
                         url: '../Industries/houses-of-worship.html'
                     },
                     {
-                        title: 'High Net Worth & Estates Security',
+                        title: 'Technology Industry Security',
                         category: 'Industry',
-                        keywords: ['estate', 'executive protection', 'family office', 'high net worth', 'private client'],
-                        url: '../Industries/high-net-worth.html'
+                        keywords: ['technology', 'tech', 'software', 'startup', 'ip theft', 'intellectual property'],
+                        url: '../Industries/technology.html'
+                    },
+                    {
+                        title: 'Biotech & Pharmaceutical Security',
+                        category: 'Industry',
+                        keywords: ['biotech', 'pharmaceutical', 'pharma', 'lab', 'laboratory', 'activist', 'research'],
+                        url: '../Industries/biotech-pharmaceutical.html'
+                    },
+                    {
+                        title: 'Manufacturing Security',
+                        category: 'Industry',
+                        keywords: ['manufacturing', 'plant', 'factory', 'industrial espionage', 'trade secret'],
+                        url: '../Industries/manufacturing.html'
                     },
                     {
                         title: 'Construction Security',
@@ -149,12 +173,6 @@
                         category: 'Industry',
                         keywords: ['data center', 'datacenter', 'server', 'colocation'],
                         url: '../Industries/data-centers.html'
-                    },
-                    {
-                        title: 'Cannabis & Dispensary Security',
-                        category: 'Industry',
-                        keywords: ['cannabis', 'dispensary', 'marijuana', 'cultivation'],
-                        url: '../Industries/cannabis.html'
                     },
                     // Locations
                     {
