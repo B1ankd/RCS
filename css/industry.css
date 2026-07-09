@@ -271,7 +271,7 @@
             background-color: var(--secondary-color);
             color: var(--white);
             padding: 80px 0;
-            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../Images/3 x 12 Web Banner - Medium Smooth.png');
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../Images/red-cell-solutions-banner.png');
             background-size: cover;
             background-position: center;
         }
