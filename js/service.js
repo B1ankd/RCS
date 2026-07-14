@@ -152,10 +152,10 @@
                         url: 'workplace-violence-prevention.html'
                     },
                     {
-                        title: 'Security Expert Witness',
+                        title: 'Security Advisory Witness',
                         category: 'Service',
-                        keywords: ['expert witness', 'negligent security', 'premises liability', 'litigation', 'attorney'],
-                        url: 'security-expert-witness.html'
+                        keywords: ['advisory witness', 'negligent security', 'premises liability', 'litigation', 'attorney'],
+                        url: 'security-advisory-witness.html'
                     },
                     // Company Pages
                     {
