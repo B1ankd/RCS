@@ -156,6 +156,13 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://redcellsolutions.com/company/privacy-policy.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
   <!-- Industry Pages -->
   <url>
     <loc>https://redcellsolutions.com/Industries/healthcare.html</loc>
