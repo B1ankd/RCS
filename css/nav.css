@@ -1,0 +1,341 @@
+/* Shared site navigation (desktop mega menu + mobile menu).
+   Loaded after each page's own styles; owns all nav layout.
+   Old per-page nav CSS targets classes that no longer exist in the markup. */
+
+:root {
+    --rcs-red: #970c1c;
+    --rcs-red-dark: #7a0916;
+    --rcs-ink: #171717;
+    --rcs-navy: #002d51;
+    --rcs-gray: #f4f4f4;
+    --rcs-border: #e0e0e0;
+    --rcs-white: #ffffff;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--rcs-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    /* Legacy per-page CSS sets .container { position: relative }, which would
+       make this centered 1200px box the positioning ancestor of .rcs-mega and
+       cap the panel at 1200px. Static restores .site-header as the ancestor
+       so panels span the full viewport. */
+    position: static;
+}
+
+.rcs-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    min-height: 70px;
+}
+
+.rcs-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.rcs-logo img {
+    width: 60px;
+    height: 60px;
+    display: block;
+}
+
+.rcs-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rcs-menu-item {
+    margin: 0;
+}
+
+.rcs-close-item {
+    display: none;
+}
+
+.rcs-toggle {
+    appearance: none;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--rcs-ink);
+    padding: 25px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.rcs-toggle::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: -4px;
+    transition: transform 0.2s;
+}
+
+.rcs-toggle:hover {
+    color: var(--rcs-red);
+}
+
+.rcs-menu-item.open > .rcs-toggle {
+    color: var(--rcs-red);
+    box-shadow: inset 0 -3px 0 var(--rcs-red);
+}
+
+.rcs-menu-item.open > .rcs-toggle::after {
+    transform: rotate(225deg);
+    margin-top: 4px;
+}
+
+/* Full-width mega panel. Positioned against .site-header (nearest positioned
+   ancestor), which spans the whole viewport. */
+.rcs-mega {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--rcs-white);
+    border-top: 1px solid var(--rcs-border);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    display: none;
+}
+
+.rcs-menu-item.open > .rcs-mega {
+    display: block;
+}
+
+.rcs-mega-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 20px 40px;
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.rcs-mega-links {
+    flex: 1;
+    min-width: 0;
+}
+
+.rcs-mega-heading {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6f6f6f;
+    margin: 0 0 16px;
+}
+
+.rcs-mega-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    column-gap: 32px;
+}
+
+.rcs-mega-links ul.rcs-cols-1 { columns: 1; }
+.rcs-mega-links ul.rcs-cols-2 { columns: 2; }
+.rcs-mega-links ul.rcs-cols-3 { columns: 3; }
+
+.rcs-mega-links li {
+    break-inside: avoid;
+    margin: 0;
+}
+
+.rcs-mega-links a {
+    display: block;
+    padding: 9px 10px;
+    color: var(--rcs-ink);
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1.35;
+    border-radius: 4px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.rcs-mega-links a:hover {
+    background: var(--rcs-gray);
+    color: var(--rcs-red);
+}
+
+.rcs-mega-cta {
+    width: 300px;
+    flex-shrink: 0;
+    background: var(--rcs-navy);
+    color: var(--rcs-white);
+    border-radius: 6px;
+    padding: 28px 26px;
+}
+
+.rcs-cta-title {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--rcs-white);
+}
+
+.rcs-cta-text {
+    font-size: 14.5px;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.rcs-cta-btn {
+    display: inline-block;
+    background: var(--rcs-red);
+    color: var(--rcs-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.rcs-cta-btn:hover {
+    background: var(--rcs-red-dark);
+}
+
+/* Dim the page while a mega panel is open. Injected by nav.js as a direct
+   child of <body>; sits below the sticky header (z-index 1000). */
+.rcs-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(23, 23, 23, 0.55);
+    z-index: 900;
+}
+
+.rcs-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.rcs-burger {
+    display: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.rcs-burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--rcs-ink);
+    margin: 5px 0;
+}
+
+/* ---------- Mobile (behavior preserved from the old menu) ---------- */
+@media (max-width: 768px) {
+    .rcs-burger {
+        display: block;
+    }
+
+    .rcs-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--rcs-white);
+        z-index: 1100;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 64px 24px 32px;
+        overflow-y: auto;
+    }
+
+    body.rcs-mobile-open .rcs-menu {
+        display: flex;
+    }
+
+    .rcs-close-item {
+        display: block;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+    }
+
+    .rcs-close {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .rcs-close::before,
+    .rcs-close::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 22px;
+        height: 2px;
+        background: var(--rcs-ink);
+    }
+
+    .rcs-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+    .rcs-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+    .rcs-toggle {
+        width: 100%;
+        justify-content: space-between;
+        padding: 16px 4px;
+        font-size: 17px;
+        border-bottom: 1px solid var(--rcs-border);
+    }
+
+    .rcs-mega {
+        position: static;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .rcs-mega-inner {
+        flex-direction: column;
+        gap: 18px;
+        padding: 6px 0 14px;
+    }
+
+    .rcs-mega-links ul.rcs-cols-1,
+    .rcs-mega-links ul.rcs-cols-2,
+    .rcs-mega-links ul.rcs-cols-3 {
+        columns: 1;
+    }
+
+    .rcs-mega-heading {
+        display: none;
+    }
+
+    .rcs-mega-cta {
+        width: 100%;
+    }
+
+    .rcs-overlay {
+        display: none;
+    }
+}
