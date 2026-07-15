@@ -176,46 +176,25 @@
 
 .rcs-mega-links a:hover {
     background: var(--rcs-gray);
+}
+
+.rcs-mega-links a:hover .rcs-link-title {
     color: var(--rcs-red);
 }
 
-.rcs-mega-cta {
-    width: 300px;
-    flex-shrink: 0;
-    background: var(--rcs-navy);
-    color: var(--rcs-white);
-    border-radius: 6px;
-    padding: 28px 26px;
-}
-
-.rcs-cta-title {
-    font-size: 19px;
-    font-weight: 700;
-    margin: 0 0 8px;
-    color: var(--rcs-white);
-}
-
-.rcs-cta-text {
-    font-size: 14.5px;
-    line-height: 1.5;
-    margin: 0 0 18px;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.rcs-cta-btn {
-    display: inline-block;
-    background: var(--rcs-red);
-    color: var(--rcs-white);
-    text-decoration: none;
+.rcs-link-title {
+    display: block;
     font-weight: 600;
-    font-size: 14.5px;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    color: var(--rcs-ink);
+    transition: color 0.15s;
 }
 
-.rcs-cta-btn:hover {
-    background: var(--rcs-red-dark);
+.rcs-link-desc {
+    display: block;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #6f6f6f;
+    margin-top: 2px;
 }
 
 /* Dim the page while a mega panel is open. Injected by nav.js as a direct
@@ -331,8 +310,9 @@
         display: none;
     }
 
-    .rcs-mega-cta {
-        width: 100%;
+    /* Keep the accordion compact: titles only on mobile. */
+    .rcs-link-desc {
+        display: none;
     }
 
     .rcs-overlay {
