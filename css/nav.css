@@ -160,7 +160,9 @@
 
 .rcs-mega-links li {
     break-inside: avoid;
-    margin: 0;
+    /* Dead space between selections so each title + description pair
+       reads as one distinct block at a glance. */
+    margin: 0 0 14px;
 }
 
 .rcs-mega-links a {
@@ -184,7 +186,7 @@
 
 .rcs-link-title {
     display: block;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--rcs-ink);
     transition: color 0.15s;
 }
@@ -192,9 +194,10 @@
 .rcs-link-desc {
     display: block;
     font-size: 13px;
+    font-weight: 400;
     line-height: 1.4;
     color: #6f6f6f;
-    margin-top: 2px;
+    margin-top: 3px;
 }
 
 /* Dim the page while a mega panel is open. Injected by nav.js as a direct
