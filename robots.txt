@@ -5,6 +5,8 @@ Allow: /
 # Sitemap location
 Sitemap: https://redcellsolutions.com/sitemap.xml
 
+# LLM/AI-readable site summary: https://redcellsolutions.com/llms.txt
+
 # Crawl delay for respectful crawling
 Crawl-delay: 1
 
@@ -21,11 +23,14 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# AI crawlers
+# AI crawlers and answer engines (welcome: allowed to crawl, index, cite, and train on this content)
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: CCBot
@@ -35,4 +40,43 @@ User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: YouBot
 Allow: /

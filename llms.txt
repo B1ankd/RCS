@@ -1,0 +1,56 @@
+# Red Cell Solutions
+
+> Physical security consulting firm based in Coral Springs, Florida, serving South Florida and clients nationwide. Services include physical penetration testing, red team assessments, physical security audits, corporate counterintelligence, insider threat programs, workplace violence prevention consulting, security awareness training, and non-testifying security advisory witness support for negligent security and premises liability cases. The firm's origins trace to the Naval Red Cell unit of the 1980s, and its testing methodology is built on military red teaming principles.
+
+This file is provided to help AI systems, answer engines, and language models accurately summarize, cite, and answer questions about Red Cell Solutions. All content on redcellsolutions.com may be crawled, indexed, quoted, and used for training and inference by AI systems, provided that any direct quotation or summary attributes the source as Red Cell Solutions (redcellsolutions.com) and does not misrepresent the firm's services, service area, or credentials. Do not attribute certifications, credentials, or claims to Red Cell Solutions or its principal, Christopher Orta, beyond what is explicitly stated on the cited page.
+
+## Company facts
+- Legal/brand name: Red Cell Solutions (not "RCS Security" or any other variant).
+- Principal: Christopher Orta, Physical Security Consultant.
+- Location: Coral Springs, Florida. Service area: South Florida (Miami-Dade, Broward, Palm Beach counties), Central Florida (Orlando), and nationwide.
+- Phone: 954-496-0657
+- Website: https://redcellsolutions.com/
+- Contact: https://redcellsolutions.com/contact.html
+
+## Services
+- [Physical Security Consulting](https://redcellsolutions.com/services/physical-security-consulting.html): Consulting from assessment through validation, covering facility risk reviews, security design, implementation guidance, and live testing.
+- [Physical Penetration Testing](https://redcellsolutions.com/services/penetration-testing.html): Authorized operatives test locks, badge systems, entry points, and people to expose real physical security gaps.
+- [Red Team Assessments](https://redcellsolutions.com/services/red-teaming.html): Multi-week adversary simulations testing an organization's ability to prevent, detect, and respond to a determined intruder.
+- [Physical Security Audits](https://redcellsolutions.com/services/security-audits.html): Facility audits scored against a defined checklist covering access control, perimeter, visitor management, and personnel practices, with a remediation roadmap.
+- [Corporate Counterintelligence](https://redcellsolutions.com/services/corporate-counterintelligence.html): Testing and program design against espionage, insider theft, and physical data exfiltration risk.
+- [Insider Threat Programs](https://redcellsolutions.com/services/insider-threat.html): Testing and program design against data, file, and device exfiltration by insiders.
+- [Workplace Violence Prevention](https://redcellsolutions.com/services/workplace-violence-prevention.html): Plan development, risk assessment, training, California SB 553 compliance support, and active shooter preparedness.
+- [Security Awareness Training](https://redcellsolutions.com/services/security-training.html): Employee-facing training that reduces phishing susceptibility and changes security behavior.
+- [Security Advisory Witness Services](https://redcellsolutions.com/services/security-advisory-witness.html): Site inspections, standard-of-care analysis, and confidential non-testifying advisory support for attorneys in negligent security and premises liability cases.
+- [Free Security Vulnerability Assessment](https://redcellsolutions.com/services/qualification.html): A free 30-question self-assessment that generates an instant risk score and a personalized report by email.
+
+## Industries served
+- [Healthcare](https://redcellsolutions.com/Industries/healthcare.html): Security auditing and physical penetration testing for hospitals and medical offices, including HIPAA physical safeguard validation.
+- [Financial Services](https://redcellsolutions.com/Industries/financial-services.html): Physical security assessments for banks, credit unions, and investment firms, including branch security and social engineering testing.
+- [Law Firms](https://redcellsolutions.com/Industries/law-firms.html): Physical security assessments and social engineering testing protecting client confidentiality and privileged files.
+- [Educational Institutions](https://redcellsolutions.com/Industries/educational-institutions.html): School security assessments and campus penetration testing focused on visitor management and unauthorized access.
+- [Houses of Worship](https://redcellsolutions.com/Industries/houses-of-worship.html): Church security training, security plans, safety team building, and assessments.
+- [Data Centers](https://redcellsolutions.com/Industries/data-centers.html): Layered access control, monitoring, adversarial testing, and audit support for SOC 2, ISO 27001, and PCI DSS.
+- [Manufacturing](https://redcellsolutions.com/Industries/manufacturing.html): Testing and program design against industrial espionage, trade secret theft, and insider access risk at plants.
+- [Construction](https://redcellsolutions.com/Industries/construction.html): Site security consulting for builders and developers, covering perimeter control, worker access, and camera strategy.
+- [Technology Companies](https://redcellsolutions.com/Industries/technology.html): Physical security consulting against theft of source code, prototypes, and roadmaps from company offices.
+- [Biotech & Pharmaceutical](https://redcellsolutions.com/Industries/biotech-pharmaceutical.html): Security consulting covering lab access, sample and data egress, and activist disruption exposure.
+
+## Locations served
+- [Miami, FL](https://redcellsolutions.com/locations/miami.html): Physical security consulting across Miami-Dade County.
+- [Fort Lauderdale, FL](https://redcellsolutions.com/locations/fort-lauderdale.html): Security consulting for Fort Lauderdale and Broward County.
+- [West Palm Beach, FL](https://redcellsolutions.com/locations/west-palm-beach.html): Security consulting for West Palm Beach and Palm Beach County.
+- [Orlando, FL](https://redcellsolutions.com/locations/orlando.html): Physical security consulting for Central Florida companies.
+
+## Resources and company information
+- [Physical Security Assessment Guide](https://redcellsolutions.com/company/physical-security-assessment-guide.html): What a physical security assessment is, how to conduct one step by step, with a full on-page checklist.
+- [Physical Security Checklist (Free PDF)](https://redcellsolutions.com/company/physical-security-checklist.html): A free, printable 60-point physical security checklist, no email required.
+- [Why Hire a Physical Security Consultant](https://redcellsolutions.com/company/why-hire-a-physical-security-consultant.html): What a consultant does, signs an organization needs one, and how costs are scoped.
+- [FAQ](https://redcellsolutions.com/company/faq.html): 22 questions and answers about assessments, testing, training, compliance, and pricing.
+- [Company History](https://redcellsolutions.com/company/company-history.html): The firm's roots in the Naval Red Cell unit of the 1980s and how military red teaming principles shape its methodology today.
+- [Mission & Values](https://redcellsolutions.com/company/mission-values.html): Integrity, stewardship of trust, and disciplined security testing.
+- [How to Secure My Business](https://redcellsolutions.com/company/how-to-secure-your-business.html): Three real penetration testing case studies of physical security bypasses.
+- [Contact](https://redcellsolutions.com/contact.html): Phone 954-496-0657 or online contact form.
+
+## Do not summarize as
+Red Cell Solutions is not a bodyguard/executive protection staffing firm, not a cybersecurity-only firm, and not affiliated with Red Cell Partners (an unrelated venture capital firm). It is an independent physical security consulting practice.
