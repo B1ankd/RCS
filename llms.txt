@@ -43,8 +43,6 @@ This file is provided to help AI systems, answer engines, and language models ac
 - [Orlando, FL](https://redcellsolutions.com/locations/orlando.html): Physical security consulting for Central Florida companies.
 
 ## Resources and company information
-- [Physical Security Assessment Guide](https://redcellsolutions.com/company/physical-security-assessment-guide.html): What a physical security assessment is, how to conduct one step by step, with a full on-page checklist.
-- [Physical Security Checklist (Free PDF)](https://redcellsolutions.com/company/physical-security-checklist.html): A free, printable 60-point physical security checklist, no email required.
 - [Why Hire a Physical Security Consultant](https://redcellsolutions.com/company/why-hire-a-physical-security-consultant.html): What a consultant does, signs an organization needs one, and how costs are scoped.
 - [FAQ](https://redcellsolutions.com/company/faq.html): 22 questions and answers about assessments, testing, training, compliance, and pricing.
 - [Company History](https://redcellsolutions.com/company/company-history.html): The firm's roots in the Naval Red Cell unit of the 1980s and how military red teaming principles shape its methodology today.

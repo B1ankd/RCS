@@ -102,12 +102,6 @@
                         url: 'how-to-secure-your-business.html'
                     },
                     {
-                        title: 'Security Assessment Guide',
-                        category: 'Company',
-                        keywords: ['assessment', 'checklist', 'guide', 'risk assessment'],
-                        url: 'physical-security-assessment-guide.html'
-                    },
-                    {
                         title: 'Why Hire a Security Consultant',
                         category: 'Company',
                         keywords: ['why hire', 'hiring', 'choose consultant'],
