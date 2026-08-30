@@ -6,20 +6,17 @@
     <title>Page Not Found | Red Cell Solutions</title>
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/png" href="/Images/red-cell-solutions-logo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { theme: { extend: {
-        colors: { ink:'#0a0b0e', crimson:{ DEFAULT:'#c1121f', deep:'#970c1c' } },
-        fontFamily: { display:['"Space Grotesk"','system-ui','sans-serif'], sans:['Inter','system-ui','sans-serif'], mono:['"IBM Plex Mono"','ui-monospace','monospace'] }
-      } } }
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
     <style>
-      html{background:#0a0b0e;}
-      .eyebrow{font-family:"IBM Plex Mono",monospace;letter-spacing:.28em;text-transform:uppercase;}
-      .grid-noise{background-image:radial-gradient(60% 60% at 50% 0%, rgba(193,18,31,.18), transparent 60%),linear-gradient(180deg,#0a0b0e,#0c0d11);}
+      html{ background:#0a0b0e; }
+      ::selection{ background:#c1121f; color:#fff; }
+      .eyebrow{ font-family:"IBM Plex Mono",monospace; letter-spacing:.28em; text-transform:uppercase; }
+      .grid-noise{ background-image:radial-gradient(60% 60% at 50% 0%,rgba(193,18,31,.18),transparent 60%),linear-gradient(180deg,#0a0b0e,#0c0d11); }
+      .btn{ transition:background-color .3s ease, border-color .3s ease, box-shadow .3s ease; }
+      .btn:hover{ box-shadow:0 14px 34px -14px rgba(193,18,31,.6); }
     </style>
 </head>
 <body class="bg-ink text-slate-200 font-sans antialiased min-h-screen grid-noise flex items-center justify-center px-6">
@@ -29,8 +26,8 @@
     <h1 class="font-display font-bold text-white text-5xl sm:text-6xl tracking-tight">No access here.</h1>
     <p class="mt-5 text-slate-400 text-lg">This route doesn't exist. Let's get you back to secured ground.</p>
     <div class="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/" class="rounded-sm bg-crimson px-7 py-3.5 text-white font-semibold hover:bg-crimson-deep transition-colors">Return Home</a>
-      <a href="/contact.html" class="rounded-sm border border-white/15 px-7 py-3.5 text-white font-semibold hover:border-white/40 transition-colors">Contact the Cell</a>
+      <a href="/" class="btn rounded-sm bg-crimson px-7 py-3.5 text-white font-semibold hover:bg-crimson-deep">Return Home</a>
+      <a href="/contact.html" class="btn rounded-sm border border-white/15 px-7 py-3.5 text-white font-semibold hover:border-white/40">Contact the Cell</a>
     </div>
   </div>
 </body>
