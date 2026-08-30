@@ -1,30 +1,32 @@
 # Red Cell Solutions
 
-> A private intelligence cell specializing in Corporate Sabotage & Infiltration Defense. We protect enterprise operations, supply chains, infrastructure, and reputations from coordinated infiltration, corporate espionage, hostile activist disruption, and malicious insider threats — primarily through tactical HUMINT, social engineering/pretexting, and physical red teaming.
+> Red Cell Solutions is a physical penetration testing and red team security firm. We help companies protect against corporate espionage, insider threats, social engineering, and physical break-ins by testing their people, buildings, and processes the way a real attacker would.
 
-Core thesis: We find the way they would get in, then build what stops them.
+Core thesis: We find the way they would get in, then help you shut it down.
 
-## Who we serve
-- Fortune 500 C-suite leadership
-- General Counsel and legal/privileged engagements
-- Global and enterprise Security Directors
+## Who we help
+- Fortune 500 and enterprise leadership (C-suite)
+- General Counsel and legal teams
+- Corporate and global security directors
 
-## Core Capabilities
-1. Adversarial Infiltration & Disruption Defense — full-scope simulation of a coordinated adversary against operations, supply chain, and business continuity, followed by a hardening roadmap.
-2. Tactical Physical Red Teaming & Penetration — covert facility entry, badge/credential exploitation, tailgating and guard bypass, sensitive-area penetration.
-3. Pretexting & Social Engineering Countermeasures — targeted pretexting, vishing/phishing/impersonation, insider-threat elicitation testing, executive protection, and human hardening.
+## Services
+1. Physical Penetration Testing & Red Teaming — covert building entry, badge cloning and access-control bypass, tailgating, guard bypass, and server room / data center penetration, with photo evidence and fixes.
+2. Social Engineering Testing (Phishing, Vishing & Pretexting) — phishing and spear-phishing email tests, phone (vishing) and text scams, in-person impersonation, executive protection, and security awareness training.
+3. Insider Threat & Corporate Espionage Defense — insider threat assessments and programs, data-theft and espionage investigations, supply chain and vendor reviews, employee offboarding and access reviews, and ongoing monitoring.
 
-## How we operate
-Reconnaissance → Infiltration → Debrief → Hardening. A disciplined cycle repeated until the client is a hard target.
+Related terms people search for: physical penetration testing, penetration testing company, red team assessment, social engineering testing, phishing testing, vishing, pretexting, insider threat assessment, corporate espionage, corporate counterintelligence, security risk assessment, physical security consultant, tailgating test, badge cloning.
+
+## How we work
+Reconnaissance, then a live attack, then a plain-language debrief, then hardening. We retest until you are the hard target.
 
 ## Pages
 - Home: https://redcellsolutions.com/
-- Capabilities: https://redcellsolutions.com/capabilities.html
-- Contact (secure channel): https://redcellsolutions.com/contact.html
+- Capabilities (services): https://redcellsolutions.com/capabilities.html
+- Contact: https://redcellsolutions.com/contact.html
 
 ## Contact
 - Phone: 954-496-0657
 - Email: contact@redcellsolutions.com
 - LinkedIn: https://www.linkedin.com/company/red-cell-solutions/
 
-All engagements are confidential. Red Cell Solutions does not disclose client relationships.
+All inquiries are confidential. Red Cell Solutions does not disclose client relationships.
