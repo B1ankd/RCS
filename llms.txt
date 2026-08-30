@@ -19,9 +19,13 @@ Related terms people search for: physical penetration testing, penetration testi
 ## How we work
 Reconnaissance, then a live attack, then a plain-language debrief, then hardening. We retest until you are the hard target.
 
+## Industries
+Our services are industry-agnostic, with dedicated guidance for houses of worship: church security assessments, safety team training, and active-threat planning at https://redcellsolutions.com/church/.
+
 ## Pages
 - Home: https://redcellsolutions.com/
 - Capabilities (services): https://redcellsolutions.com/capabilities.html
+- Church Security: https://redcellsolutions.com/church/
 - Contact: https://redcellsolutions.com/contact.html
 
 ## Contact

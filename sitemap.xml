@@ -25,10 +25,21 @@
   </url>
 
   <url>
-    <loc>https://redcellsolutions.com/contact.html</loc>
+    <loc>https://redcellsolutions.com/church/</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://redcellsolutions.com/Images/church-safety-team-training-session.jpg</image:loc>
+      <image:title>Church Security and Safety Team Training</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/contact.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
