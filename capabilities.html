@@ -72,9 +72,22 @@
           <img src="Images/red-cell-solutions-logo.png" alt="Red Cell Solutions" class="h-9 w-9 rounded-sm">
           <span class="font-display font-bold tracking-tight text-white text-base sm:text-lg leading-none">RED CELL SOLUTIONS</span>
         </a>
-        <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-slate-300">
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
           <a href="index.html" class="hover:text-white transition-colors underline-anim">Home</a>
-          <a href="capabilities.html" class="text-white underline-anim">Capabilities</a>
+          <div class="relative group">
+            <a href="capabilities.html" class="inline-flex items-center gap-1.5 text-white">Capabilities
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block group-focus-within:block">
+              <div class="w-64 rounded-sm border border-white/10 bg-ink/95 backdrop-blur p-2 shadow-xl shadow-black/40">
+                <a href="capabilities.html#penetration-testing" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Physical Penetration Testing</a>
+                <a href="capabilities.html#social-engineering" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Social Engineering Testing</a>
+                <a href="capabilities.html#insider-threat" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Insider Threat Defense</a>
+                <div class="my-1 border-t border-white/10"></div>
+                <a href="church/index.html" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Church Security</a>
+              </div>
+            </div>
+          </div>
           <a href="contact.html" class="hover:text-white transition-colors underline-anim">Contact</a>
           <a href="contact.html" class="btn inline-flex items-center gap-2 rounded-sm bg-crimson px-4 py-2.5 text-white font-semibold hover:bg-crimson-deep">Request Briefing</a>
         </nav>
@@ -87,6 +100,10 @@
       <div class="px-5 py-4 flex flex-col gap-1 text-slate-200">
         <a href="index.html" class="py-2.5">Home</a>
         <a href="capabilities.html" class="py-2.5 text-white font-medium">Capabilities</a>
+        <a href="capabilities.html#penetration-testing" class="py-2 pl-4 text-sm text-slate-400">Physical Penetration Testing</a>
+        <a href="capabilities.html#social-engineering" class="py-2 pl-4 text-sm text-slate-400">Social Engineering Testing</a>
+        <a href="capabilities.html#insider-threat" class="py-2 pl-4 text-sm text-slate-400">Insider Threat Defense</a>
+        <a href="church/index.html" class="py-2.5">Church Security</a>
         <a href="contact.html" class="py-2.5">Contact</a>
         <a href="contact.html" class="mt-2 text-center rounded-sm bg-crimson px-4 py-3 text-white font-semibold">Request Briefing</a>
       </div>
@@ -187,37 +204,37 @@
       <div class="max-w-2xl reveal">
         <p class="eyebrow text-xs text-crimson mb-4">Case Studies</p>
         <h2 class="font-display font-bold text-white text-3xl sm:text-4xl tracking-tight">How attackers actually get in.</h2>
-        <p class="mt-4 text-slate-400 text-lg">Representative scenarios based on the kinds of engagements we run. Details are illustrative.</p>
+        <p class="mt-4 text-slate-400 text-lg">Real engagements from the field. Client names and locations kept confidential.</p>
       </div>
       <div class="mt-12 grid md:grid-cols-3 gap-4">
         <div class="lift rounded-sm bg-panel border border-white/10 p-7 reveal">
-          <p class="eyebrow text-[10px] text-crimson mb-3">Social Engineering</p>
-          <h3 class="text-white font-semibold text-xl">The vendor who wasn't</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">A caller claiming to be from IT talked the front desk into a visitor badge in under ten minutes.</p>
+          <p class="eyebrow text-[10px] text-crimson mb-3">Physical Penetration Test</p>
+          <h3 class="text-white font-semibold text-xl">The $100 device vs. the medical clinic</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">We disabled a South Florida medical clinic's entire alarm system with a $100 pocket device, then had the run of the building.</p>
           <details class="mt-4 group">
             <summary class="cursor-pointer text-crimson font-semibold text-sm list-none inline-flex items-center gap-2">Read more <span class="transition-transform group-open:rotate-90">&rsaquo;</span></summary>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Posing as a managed-service vendor, our operator booked a maintenance visit, name-dropped a real employee found through OSINT (open source intelligence), and was escorted past reception to a network closet. We documented every step, then rebuilt the client's visitor and vendor verification so the next caller gets stopped at hello.</p>
-            <a href="capabilities.html#social-engineering" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See social engineering testing &rarr;</a>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed">The clinic's alarm, installed years earlier and never upgraded, ran on an outdated frequency that a cheap, off-the-shelf device could disrupt. Once it was down, we had unrestricted access to patient records, pharmaceutical storage, server rooms, and offices. The lesson: compliance is not security. A HIPAA-compliant alarm on ten-year-old technology is security theater, not protection.</p>
+            <a href="capabilities.html#penetration-testing" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See physical penetration testing &rarr;</a>
           </details>
         </div>
         <div class="lift rounded-sm bg-panel border border-white/10 p-7 reveal" data-d="1">
           <p class="eyebrow text-[10px] text-crimson mb-3">Physical Penetration Test</p>
-          <h3 class="text-white font-semibold text-xl">A badge from the parking lot</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">We cloned an employee access badge from a few feet away in a shared garage.</p>
+          <h3 class="text-white font-semibold text-xl">Four server rooms, no tools</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">We got into four server rooms and a power substation on a college campus without a single tool. We pulled on the doors.</p>
           <details class="mt-4 group">
             <summary class="cursor-pointer text-crimson font-semibold text-sm list-none inline-flex items-center gap-2">Read more <span class="transition-transform group-open:rotate-90">&rsaquo;</span></summary>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Using a concealed reader, our team captured a staff badge in a parking garage, cloned it, and walked onto a secured floor the same afternoon. The client believed their turnstiles were the perimeter. The real perimeter was the parking lot. We mapped every reader and closed the gap.</p>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Doors left unlocked for convenience, items wedged in frames to stop them latching, worn hardware where the latch never fully engaged. Physical penetration testing is not only about tools; it is about human habits and mechanical failure. You can run world-class cybersecurity, but if someone walks into your server room because a door was not closed, none of it matters.</p>
             <a href="capabilities.html#penetration-testing" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See physical penetration testing &rarr;</a>
           </details>
         </div>
         <div class="lift rounded-sm bg-panel border border-white/10 p-7 reveal" data-d="2">
-          <p class="eyebrow text-[10px] text-crimson mb-3">Insider Threat</p>
-          <h3 class="text-white font-semibold text-xl">The resignation nobody watched</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">A departing employee kept building and system access for weeks after their last day.</p>
+          <p class="eyebrow text-[10px] text-crimson mb-3">Social Engineering</p>
+          <h3 class="text-white font-semibold text-xl">The vest that opened every door</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Dressed as a maintenance worker, we walked through a private high school. No one stopped us, questioned us, or asked for ID.</p>
           <details class="mt-4 group">
             <summary class="cursor-pointer text-crimson font-semibold text-sm list-none inline-flex items-center gap-2">Read more <span class="transition-transform group-open:rotate-90">&rsaquo;</span></summary>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">During an offboarding review we found active badges and logins for people who had already left, including one with access to sensitive files. No alarm had ever fired. We built the client an offboarding and access-review process that runs the day notice is given.</p>
-            <a href="capabilities.html#insider-threat" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See insider threat defense &rarr;</a>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed">A high-visibility vest and a clipboard were enough to reach classrooms during instruction, server rooms holding student and staff data, offices, and a maintenance room full of keys and access cards. We were never questioned. People are wired to trust a vest and a tool, which is exactly why security awareness training that teaches staff to verify badges and stop tailgating is the fix.</p>
+            <a href="capabilities.html#social-engineering" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See social engineering testing &rarr;</a>
           </details>
         </div>
       </div>

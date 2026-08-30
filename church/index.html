@@ -60,9 +60,22 @@
           <img src="../Images/red-cell-solutions-logo.png" alt="Red Cell Solutions" class="h-9 w-9 rounded-sm">
           <span class="font-display font-bold tracking-tight text-white text-base sm:text-lg leading-none">RED CELL SOLUTIONS</span>
         </a>
-        <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-slate-300">
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
           <a href="../index.html" class="hover:text-white transition-colors underline-anim">Home</a>
-          <a href="../capabilities.html" class="hover:text-white transition-colors underline-anim">Capabilities</a>
+          <div class="relative group">
+            <a href="../capabilities.html" class="inline-flex items-center gap-1.5 hover:text-white transition-colors">Capabilities
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block group-focus-within:block">
+              <div class="w-64 rounded-sm border border-white/10 bg-ink/95 backdrop-blur p-2 shadow-xl shadow-black/40">
+                <a href="../capabilities.html#penetration-testing" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Physical Penetration Testing</a>
+                <a href="../capabilities.html#social-engineering" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Social Engineering Testing</a>
+                <a href="../capabilities.html#insider-threat" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Insider Threat Defense</a>
+                <div class="my-1 border-t border-white/10"></div>
+                <a href="index.html" class="block rounded-sm px-3 py-2.5 text-white hover:bg-white/5 transition-colors">Church Security</a>
+              </div>
+            </div>
+          </div>
           <a href="../contact.html" class="hover:text-white transition-colors underline-anim">Contact</a>
           <a href="../contact.html" class="btn inline-flex items-center gap-2 rounded-sm bg-crimson px-4 py-2.5 text-white font-semibold hover:bg-crimson-deep">Request Briefing</a>
         </nav>
@@ -75,6 +88,10 @@
       <div class="px-5 py-4 flex flex-col gap-1 text-slate-200">
         <a href="../index.html" class="py-2.5">Home</a>
         <a href="../capabilities.html" class="py-2.5">Capabilities</a>
+        <a href="../capabilities.html#penetration-testing" class="py-2 pl-4 text-sm text-slate-400">Physical Penetration Testing</a>
+        <a href="../capabilities.html#social-engineering" class="py-2 pl-4 text-sm text-slate-400">Social Engineering Testing</a>
+        <a href="../capabilities.html#insider-threat" class="py-2 pl-4 text-sm text-slate-400">Insider Threat Defense</a>
+        <a href="index.html" class="py-2.5 text-white font-medium">Church Security</a>
         <a href="../contact.html" class="py-2.5">Contact</a>
         <a href="../contact.html" class="mt-2 text-center rounded-sm bg-crimson px-4 py-3 text-white font-semibold">Request Briefing</a>
       </div>
