@@ -9,9 +9,9 @@ module.exports = {
         crimson: { DEFAULT: '#c1121f', deep: '#970c1c', dark: '#6d0812' }
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace']
+        display: ['Arial', '"Helvetica Neue"', 'Helvetica', 'sans-serif'],
+        sans: ['Arial', '"Helvetica Neue"', 'Helvetica', 'sans-serif'],
+        mono: ['Arial', '"Helvetica Neue"', 'Helvetica', 'sans-serif']
       }
     }
   },
