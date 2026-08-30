@@ -62,43 +62,48 @@
           <img src="Images/red-cell-solutions-logo.png" alt="Red Cell Solutions" class="h-9 w-9 rounded-sm">
           <span class="font-display font-bold tracking-tight text-white text-base sm:text-lg leading-none">RED CELL SOLUTIONS</span>
         </a>
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <a href="index.html" class="hover:text-white transition-colors underline-anim">Home</a>
-          <div class="relative group">
-            <a href="capabilities.html" class="inline-flex items-center gap-1.5 hover:text-white transition-colors">Capabilities
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
-            </a>
-            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block group-focus-within:block">
-              <div class="w-64 rounded-sm border border-white/10 bg-ink/95 backdrop-blur p-2 shadow-xl shadow-black/40">
-                <a href="capabilities.html#penetration-testing" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Physical Penetration Testing</a>
-                <a href="capabilities.html#social-engineering" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Social Engineering Testing</a>
-                <a href="capabilities.html#insider-threat" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Insider Threat Defense</a>
-                <div class="my-1 border-t border-white/10"></div>
-                <a href="church/index.html" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Church Security</a>
-              </div>
-            </div>
-          </div>
-          <a href="contact.html" class="text-white underline-anim">Contact</a>
-          <a href="tel:+19544960657" class="btn inline-flex items-center gap-2 rounded-sm bg-crimson px-4 py-2.5 text-white font-semibold hover:bg-crimson-deep">Call Now</a>
-        </nav>
-        <button id="menuBtn" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <button id="menuBtn" class="group inline-flex items-center gap-3 text-white" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+          <span class="hidden sm:inline eyebrow text-[11px] text-slate-300 group-hover:text-white transition-colors">Menu</span>
+          <span class="menu-burger relative block w-7 h-3.5" aria-hidden="true">
+            <span class="absolute left-0 top-0 block h-0.5 w-7 bg-white"></span>
+            <span class="absolute left-0 top-1/2 -translate-y-1/2 block h-0.5 w-5 bg-white group-hover:w-7 transition-all"></span>
+            <span class="absolute left-0 bottom-0 block h-0.5 w-7 bg-white"></span>
+          </span>
         </button>
       </div>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-ink/95 backdrop-blur">
-      <div class="px-5 py-4 flex flex-col gap-1 text-slate-200">
-        <a href="index.html" class="py-2.5">Home</a>
-        <a href="capabilities.html" class="py-2.5">Capabilities</a>
-        <a href="capabilities.html#penetration-testing" class="py-2 pl-4 text-sm text-slate-400">Physical Penetration Testing</a>
-        <a href="capabilities.html#social-engineering" class="py-2 pl-4 text-sm text-slate-400">Social Engineering Testing</a>
-        <a href="capabilities.html#insider-threat" class="py-2 pl-4 text-sm text-slate-400">Insider Threat Defense</a>
-        <a href="church/index.html" class="py-2.5">Church Security</a>
-        <a href="contact.html" class="py-2.5 text-white font-medium">Contact</a>
-        <a href="tel:+19544960657" class="mt-2 text-center rounded-sm bg-crimson px-4 py-3 text-white font-semibold">Call 954-496-0657</a>
+  </header>
+
+  <div id="menuOverlay" class="hidden fixed inset-0 z-[60]">
+    <div class="menu-panel absolute inset-0 bg-ink/95 backdrop-blur-sm">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 h-full flex flex-col">
+        <div class="flex items-center justify-between h-16 sm:h-20 shrink-0">
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="Images/red-cell-solutions-logo.png" alt="Red Cell Solutions" class="h-9 w-9 rounded-sm">
+            <span class="font-display font-bold tracking-tight text-white text-base sm:text-lg">RED CELL SOLUTIONS</span>
+          </a>
+          <button id="menuClose" class="text-slate-300 hover:text-white transition-colors" aria-label="Close menu">
+            <svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <nav class="flex-1 min-h-0 overflow-y-auto flex flex-col justify-center gap-1 py-8">
+          <a href="index.html" class="menu-link">Home</a>
+          <a href="capabilities.html" class="menu-link">Capabilities</a>
+          <div class="flex flex-col mb-2">
+            <a href="capabilities.html#penetration-testing" class="menu-sublink">Physical Penetration Testing</a>
+            <a href="capabilities.html#social-engineering" class="menu-sublink">Social Engineering Testing</a>
+            <a href="capabilities.html#insider-threat" class="menu-sublink">Insider Threat Defense</a>
+          </div>
+          <a href="church/index.html" class="menu-link">Church Security</a>
+          <a href="contact.html" class="menu-link">Contact</a>
+        </nav>
+        <div class="shrink-0 pb-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+          <a href="contact.html" class="btn inline-flex items-center justify-center gap-2 rounded-sm bg-crimson px-7 py-3.5 text-white font-semibold hover:bg-crimson-deep">Request a Secure Briefing</a>
+          <a href="tel:+19544960657" class="text-slate-300 hover:text-white font-semibold">954-496-0657</a>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <section class="relative grid-noise overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('Images/financial-services-office-security.jpg');opacity:.12"></div>
@@ -280,87 +285,30 @@
     </div>
   </footer>
 
+  <script src="js/site.js" defer></script>
   <script>
-    const progress = document.getElementById('progress');
-    const nav = document.getElementById('nav');
-    const onScroll = () => {
-      const st = window.scrollY;
-      const s = st > 24;
-      nav.classList.toggle('bg-ink/90', s);
-      nav.classList.toggle('backdrop-blur', s);
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    const menuBtn = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      const open = menu.classList.toggle('hidden');
-      menuBtn.setAttribute('aria-expanded', String(!open));
-    });
-
-    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby9qOkqH5L86VglcHsePrFG_hHBMa9HqM5ztFLWbdwszVXrffOkuIVhVWdm6Cvr_kx6bQ/exec';
-    const form = document.getElementById('briefForm');
-    const formError = document.getElementById('formError');
-    const submitBtn = document.getElementById('submitBtn');
-
-    const showError = (msg) => { formError.textContent = msg; formError.classList.remove('hidden'); };
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      formError.classList.add('hidden');
-
-      for (const id of ['firstName', 'lastName', 'email', 'message']) {
-        const el = document.getElementById(id);
-        if (!el.value.trim()) { showError('Please complete all required fields.'); el.focus(); return; }
-      }
-      const email = document.getElementById('email');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-        showError('Please enter a valid email address.'); email.focus(); return;
-      }
-
-      const original = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Transmitting…';
-
-      const payload = {
-        firstName: document.getElementById('firstName').value.trim(),
-        lastName: document.getElementById('lastName').value.trim(),
-        email: email.value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        companyName: document.getElementById('companyName').value.trim(),
-        role: document.getElementById('role').value.trim(),
-        threatType: document.getElementById('threatType').value,
-        message: document.getElementById('message').value.trim(),
-        source: 'redcellsolutions.com/contact'
-      };
-
-      try {
-        await fetch(WEB_APP_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        form.classList.add('hidden');
-        const success = document.getElementById('formSuccess');
-        success.classList.remove('hidden');
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } catch (err) {
-        showError('We could not transmit your message. Please try again, or call 954-496-0657.');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = original;
-      }
-    });
+    (function () {
+      var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby9qOkqH5L86VglcHsePrFG_hHBMa9HqM5ztFLWbdwszVXrffOkuIVhVWdm6Cvr_kx6bQ/exec';
+      var form = document.getElementById('briefForm');
+      if (!form) return;
+      var formError = document.getElementById('formError');
+      var submitBtn = document.getElementById('submitBtn');
+      function showError(m) { formError.textContent = m; formError.classList.remove('hidden'); }
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault(); formError.classList.add('hidden');
+        var req = ['firstName', 'lastName', 'email', 'message'];
+        for (var i = 0; i < req.length; i++) { var el = document.getElementById(req[i]); if (!el.value.trim()) { showError('Please complete all required fields.'); el.focus(); return; } }
+        var email = document.getElementById('email');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showError('Please enter a valid email address.'); email.focus(); return; }
+        var original = submitBtn.innerHTML; submitBtn.disabled = true; submitBtn.textContent = 'Transmitting…';
+        var payload = { firstName: document.getElementById('firstName').value.trim(), lastName: document.getElementById('lastName').value.trim(), email: email.value.trim(), phone: document.getElementById('phone').value.trim(), companyName: document.getElementById('companyName').value.trim(), role: document.getElementById('role').value.trim(), threatType: document.getElementById('threatType').value, message: document.getElementById('message').value.trim(), source: 'redcellsolutions.com/contact' };
+        try {
+          await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          form.classList.add('hidden');
+          var success = document.getElementById('formSuccess'); success.classList.remove('hidden'); success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) { showError('We could not transmit your message. Please try again, or call 954-496-0657.'); submitBtn.disabled = false; submitBtn.innerHTML = original; }
+      });
+    })();
   </script>
 </body>
 </html>

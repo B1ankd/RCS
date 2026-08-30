@@ -72,43 +72,48 @@
           <img src="Images/red-cell-solutions-logo.png" alt="Red Cell Solutions" class="h-9 w-9 rounded-sm">
           <span class="font-display font-bold tracking-tight text-white text-base sm:text-lg leading-none">RED CELL SOLUTIONS</span>
         </a>
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <a href="index.html" class="hover:text-white transition-colors underline-anim">Home</a>
-          <div class="relative group">
-            <a href="capabilities.html" class="inline-flex items-center gap-1.5 text-white">Capabilities
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
-            </a>
-            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block group-focus-within:block">
-              <div class="w-64 rounded-sm border border-white/10 bg-ink/95 backdrop-blur p-2 shadow-xl shadow-black/40">
-                <a href="capabilities.html#penetration-testing" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Physical Penetration Testing</a>
-                <a href="capabilities.html#social-engineering" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Social Engineering Testing</a>
-                <a href="capabilities.html#insider-threat" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Insider Threat Defense</a>
-                <div class="my-1 border-t border-white/10"></div>
-                <a href="church/index.html" class="block rounded-sm px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors">Church Security</a>
-              </div>
-            </div>
-          </div>
-          <a href="contact.html" class="hover:text-white transition-colors underline-anim">Contact</a>
-          <a href="contact.html" class="btn inline-flex items-center gap-2 rounded-sm bg-crimson px-4 py-2.5 text-white font-semibold hover:bg-crimson-deep">Request Briefing</a>
-        </nav>
-        <button id="menuBtn" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <button id="menuBtn" class="group inline-flex items-center gap-3 text-white" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+          <span class="hidden sm:inline eyebrow text-[11px] text-slate-300 group-hover:text-white transition-colors">Menu</span>
+          <span class="menu-burger relative block w-7 h-3.5" aria-hidden="true">
+            <span class="absolute left-0 top-0 block h-0.5 w-7 bg-white"></span>
+            <span class="absolute left-0 top-1/2 -translate-y-1/2 block h-0.5 w-5 bg-white group-hover:w-7 transition-all"></span>
+            <span class="absolute left-0 bottom-0 block h-0.5 w-7 bg-white"></span>
+          </span>
         </button>
       </div>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-ink/95 backdrop-blur">
-      <div class="px-5 py-4 flex flex-col gap-1 text-slate-200">
-        <a href="index.html" class="py-2.5">Home</a>
-        <a href="capabilities.html" class="py-2.5 text-white font-medium">Capabilities</a>
-        <a href="capabilities.html#penetration-testing" class="py-2 pl-4 text-sm text-slate-400">Physical Penetration Testing</a>
-        <a href="capabilities.html#social-engineering" class="py-2 pl-4 text-sm text-slate-400">Social Engineering Testing</a>
-        <a href="capabilities.html#insider-threat" class="py-2 pl-4 text-sm text-slate-400">Insider Threat Defense</a>
-        <a href="church/index.html" class="py-2.5">Church Security</a>
-        <a href="contact.html" class="py-2.5">Contact</a>
-        <a href="contact.html" class="mt-2 text-center rounded-sm bg-crimson px-4 py-3 text-white font-semibold">Request Briefing</a>
+  </header>
+
+  <div id="menuOverlay" class="hidden fixed inset-0 z-[60]">
+    <div class="menu-panel absolute inset-0 bg-ink/95 backdrop-blur-sm">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 h-full flex flex-col">
+        <div class="flex items-center justify-between h-16 sm:h-20 shrink-0">
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="Images/red-cell-solutions-logo.png" alt="Red Cell Solutions" class="h-9 w-9 rounded-sm">
+            <span class="font-display font-bold tracking-tight text-white text-base sm:text-lg">RED CELL SOLUTIONS</span>
+          </a>
+          <button id="menuClose" class="text-slate-300 hover:text-white transition-colors" aria-label="Close menu">
+            <svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <nav class="flex-1 min-h-0 overflow-y-auto flex flex-col justify-center gap-1 py-8">
+          <a href="index.html" class="menu-link">Home</a>
+          <a href="capabilities.html" class="menu-link">Capabilities</a>
+          <div class="flex flex-col mb-2">
+            <a href="capabilities.html#penetration-testing" class="menu-sublink">Physical Penetration Testing</a>
+            <a href="capabilities.html#social-engineering" class="menu-sublink">Social Engineering Testing</a>
+            <a href="capabilities.html#insider-threat" class="menu-sublink">Insider Threat Defense</a>
+          </div>
+          <a href="church/index.html" class="menu-link">Church Security</a>
+          <a href="contact.html" class="menu-link">Contact</a>
+        </nav>
+        <div class="shrink-0 pb-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+          <a href="contact.html" class="btn inline-flex items-center justify-center gap-2 rounded-sm bg-crimson px-7 py-3.5 text-white font-semibold hover:bg-crimson-deep">Request a Secure Briefing</a>
+          <a href="tel:+19544960657" class="text-slate-300 hover:text-white font-semibold">954-496-0657</a>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <section class="relative grid-noise overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('Images/server-room-access-control.jpeg');opacity:.1"></div>
@@ -207,36 +212,42 @@
         <p class="mt-4 text-slate-400 text-lg">Real engagements from the field. Client names and locations kept confidential.</p>
       </div>
       <div class="mt-12 grid md:grid-cols-3 gap-4">
-        <div class="lift rounded-sm bg-panel border border-white/10 p-7 reveal">
+        <article class="cs-card lift rounded-sm bg-panel border border-white/10 p-7 reveal" role="button" tabindex="0" aria-label="Read case study: The $100 device vs. the medical clinic"
+          data-cs-cat="Physical Penetration Test" data-cs-title="The $100 device vs. the medical clinic"
+          data-cs-link="capabilities.html#penetration-testing" data-cs-linklabel="See physical penetration testing">
           <p class="eyebrow text-[10px] text-crimson mb-3">Physical Penetration Test</p>
           <h3 class="text-white font-semibold text-xl">The $100 device vs. the medical clinic</h3>
           <p class="mt-3 text-slate-400 text-sm leading-relaxed">We disabled a South Florida medical clinic's entire alarm system with a $100 pocket device, then had the run of the building.</p>
-          <details class="mt-4 group">
-            <summary class="cursor-pointer text-crimson font-semibold text-sm list-none inline-flex items-center gap-2">Read more <span class="transition-transform group-open:rotate-90">&rsaquo;</span></summary>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">The clinic's alarm, installed years earlier and never upgraded, ran on an outdated frequency that a cheap, off-the-shelf device could disrupt. Once it was down, we had unrestricted access to patient records, pharmaceutical storage, server rooms, and offices. The lesson: compliance is not security. A HIPAA-compliant alarm on ten-year-old technology is security theater, not protection.</p>
-            <a href="capabilities.html#penetration-testing" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See physical penetration testing &rarr;</a>
-          </details>
-        </div>
-        <div class="lift rounded-sm bg-panel border border-white/10 p-7 reveal" data-d="1">
+          <span class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm">Read more <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="cs-body hidden">
+            <p>The clinic's alarm, installed years earlier and never upgraded, ran on an outdated frequency that a cheap, off-the-shelf device could disrupt. Once it was down, we had unrestricted access to patient records, pharmaceutical storage, server rooms, and offices.</p>
+            <p>The lesson: compliance is not security. A HIPAA-compliant alarm on ten-year-old technology is security theater, not protection. The gap between your security investment and an attacker's cost is your vulnerability.</p>
+          </div>
+        </article>
+        <article class="cs-card lift rounded-sm bg-panel border border-white/10 p-7 reveal" role="button" tabindex="0" aria-label="Read case study: Four server rooms, no tools" data-d="1"
+          data-cs-cat="Physical Penetration Test" data-cs-title="Four server rooms, no tools"
+          data-cs-link="capabilities.html#penetration-testing" data-cs-linklabel="See physical penetration testing">
           <p class="eyebrow text-[10px] text-crimson mb-3">Physical Penetration Test</p>
           <h3 class="text-white font-semibold text-xl">Four server rooms, no tools</h3>
           <p class="mt-3 text-slate-400 text-sm leading-relaxed">We got into four server rooms and a power substation on a college campus without a single tool. We pulled on the doors.</p>
-          <details class="mt-4 group">
-            <summary class="cursor-pointer text-crimson font-semibold text-sm list-none inline-flex items-center gap-2">Read more <span class="transition-transform group-open:rotate-90">&rsaquo;</span></summary>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Doors left unlocked for convenience, items wedged in frames to stop them latching, worn hardware where the latch never fully engaged. Physical penetration testing is not only about tools; it is about human habits and mechanical failure. You can run world-class cybersecurity, but if someone walks into your server room because a door was not closed, none of it matters.</p>
-            <a href="capabilities.html#penetration-testing" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See physical penetration testing &rarr;</a>
-          </details>
-        </div>
-        <div class="lift rounded-sm bg-panel border border-white/10 p-7 reveal" data-d="2">
+          <span class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm">Read more <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="cs-body hidden">
+            <p>Doors left unlocked for convenience, items wedged in frames to stop them latching, worn hardware where the latch never fully engaged. Physical penetration testing is not only about tools; it is about human habits and mechanical failure.</p>
+            <p>You can run world-class cybersecurity, but if someone walks into your server room because a door was not closed, none of it matters.</p>
+          </div>
+        </article>
+        <article class="cs-card lift rounded-sm bg-panel border border-white/10 p-7 reveal" role="button" tabindex="0" aria-label="Read case study: The vest that opened every door" data-d="2"
+          data-cs-cat="Social Engineering" data-cs-title="The vest that opened every door"
+          data-cs-link="capabilities.html#social-engineering" data-cs-linklabel="See social engineering testing">
           <p class="eyebrow text-[10px] text-crimson mb-3">Social Engineering</p>
           <h3 class="text-white font-semibold text-xl">The vest that opened every door</h3>
           <p class="mt-3 text-slate-400 text-sm leading-relaxed">Dressed as a maintenance worker, we walked through a private high school. No one stopped us, questioned us, or asked for ID.</p>
-          <details class="mt-4 group">
-            <summary class="cursor-pointer text-crimson font-semibold text-sm list-none inline-flex items-center gap-2">Read more <span class="transition-transform group-open:rotate-90">&rsaquo;</span></summary>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">A high-visibility vest and a clipboard were enough to reach classrooms during instruction, server rooms holding student and staff data, offices, and a maintenance room full of keys and access cards. We were never questioned. People are wired to trust a vest and a tool, which is exactly why security awareness training that teaches staff to verify badges and stop tailgating is the fix.</p>
-            <a href="capabilities.html#social-engineering" class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm hover:text-white">See social engineering testing &rarr;</a>
-          </details>
-        </div>
+          <span class="mt-4 inline-flex items-center gap-2 text-crimson font-semibold text-sm">Read more <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="cs-body hidden">
+            <p>A high-visibility vest and a clipboard were enough to reach classrooms during instruction, server rooms holding student and staff data, offices, and a maintenance room full of keys and access cards. We were never questioned.</p>
+            <p>People are wired to trust a vest and a tool, which is exactly why security awareness training that teaches staff to verify badges and stop tailgating is the fix.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -323,33 +334,6 @@
     </div>
   </footer>
 
-  <script>
-    const progress = document.getElementById('progress');
-    const nav = document.getElementById('nav');
-    const onScroll = () => {
-      const st = window.scrollY;
-      const s = st > 24;
-      nav.classList.toggle('bg-ink/90', s);
-      nav.classList.toggle('backdrop-blur', s);
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    const menuBtn = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      const open = menu.classList.toggle('hidden');
-      menuBtn.setAttribute('aria-expanded', String(!open));
-    });
-
-    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="js/site.js" defer></script>
 </body>
 </html>
