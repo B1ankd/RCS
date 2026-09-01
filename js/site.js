@@ -2,7 +2,7 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Inject component styles (menu overlay, scroll-lock background, case-study drawer)
+  // Component styles (menu overlay, disc-detainer background, case-study drawer)
   var css = document.createElement('style');
   css.textContent = [
     '#menuOverlay{opacity:0;transition:opacity .35s ease;}',
@@ -13,31 +13,81 @@
     '.menu-link:hover{color:#c1121f;transform:translateX(8px);}',
     '.menu-sublink{color:#94a3b8;font-size:1.05rem;padding:.4rem 0;transition:color .2s ease,transform .3s ease;width:max-content;}',
     '.menu-sublink:hover{color:#fff;transform:translateX(8px);}',
-    '.menu-burger span{transition:transform .3s ease,opacity .2s ease;}',
-    '.lock-bg{position:fixed;top:50%;right:-6%;transform:translateY(-50%);width:min(44vw,540px);z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:screen;will-change:transform;}',
-    '.lock-bg svg{width:100%;height:auto;display:block;}',
-    '.lock-shackle{transition:transform .15s linear;}',
-    '@media (max-width:768px){.lock-bg{opacity:.04;width:80vw;right:-20%;}}',
+    '.mech-bg{position:fixed;inset:0;z-index:1;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:.12;mix-blend-mode:screen;}',
+    '.mech-inner{position:relative;width:min(84vmin,680px);height:min(84vmin,680px);will-change:transform;transition:transform .25s cubic-bezier(.2,.7,.2,1);}',
+    '.mech-inner svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}',
+    '.mech-disc{transition:transform .25s linear;}',
+    '.mech-logo{position:absolute;top:50%;left:50%;width:9%;transform:translate(-50%,-50%);opacity:.55;transition:transform .25s linear;}',
+    '@media (max-width:768px){.mech-bg{opacity:.08;}}',
     '#csDrawer{position:fixed;inset:0;z-index:70;}',
     '#csDrawer .cs-backdrop{position:absolute;inset:0;background:rgba(3,4,6,.72);opacity:0;transition:opacity .35s ease;backdrop-filter:blur(2px);}',
     '#csDrawer.open .cs-backdrop{opacity:1;}',
     '#csDrawer .cs-panel{position:absolute;top:0;right:0;height:100%;width:min(480px,92vw);background:#111318;border-left:1px solid rgba(255,255,255,.10);box-shadow:-30px 0 60px -30px rgba(0,0,0,.8);transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);overflow-y:auto;padding:2rem 1.75rem 2.5rem;}',
     '#csDrawer.open .cs-panel{transform:none;}',
     '.cs-card{cursor:pointer;}',
-    reduce ? '.lock-shackle{transition:none;} #menuOverlay,#menuOverlay .menu-panel,#csDrawer .cs-backdrop,#csDrawer .cs-panel{transition:none;}' : ''
+    reduce ? '.mech-disc,.mech-logo,.mech-inner{transition:none;} #menuOverlay,#menuOverlay .menu-panel,#csDrawer .cs-backdrop,#csDrawer .cs-panel{transition:none;}' : ''
   ].join('');
   document.head.appendChild(css);
 
-  // Sticky nav background + scroll progress
+  // Disc-detainer mechanism background: concentric discs with gate cuts + index ticks,
+  // built around the actual logo as the spindle. Rotates and expands with scroll.
+  var discs = [], mechInner = null, mechLogo = null;
+  var DISCS = [
+    { r: 66, dash: '3 13', w: 3, speed: 1.00 },
+    { r: 100, dash: '2 20', w: 2.5, speed: -0.72 },
+    { r: 134, dash: '5 17', w: 3, speed: 0.52 },
+    { r: 168, dash: '2 26', w: 2.5, speed: -0.36 },
+    { r: 192, dash: '2 12', w: 1.5, speed: 0.16 }
+  ];
+  var svg = '<svg viewBox="0 0 400 400" fill="none" stroke="#c1121f" stroke-linecap="round">';
+  DISCS.forEach(function (d) {
+    svg += '<g class="mech-disc" data-speed="' + d.speed + '">';
+    svg += '<circle cx="200" cy="200" r="' + d.r + '" stroke-width="' + d.w + '" stroke-dasharray="' + d.dash + '"/>';
+    // gate cut: a bold radial notch at the disc rim (the "true gate")
+    svg += '<line x1="200" y1="' + (200 - d.r - 9) + '" x2="200" y2="' + (200 - d.r + 9) + '" stroke-width="' + (d.w + 1.5) + '"/>';
+    svg += '</g>';
+  });
+  // fixed sighting crosshair + spindle
+  svg += '<g stroke="#c1121f" stroke-width="1.5" opacity="0.9">' +
+    '<circle cx="200" cy="200" r="30"/>' +
+    '<line x1="200" y1="12" x2="200" y2="40"/><line x1="200" y1="360" x2="200" y2="388"/>' +
+    '<line x1="12" y1="200" x2="40" y2="200"/><line x1="360" y1="200" x2="388" y2="200"/>' +
+    '</g>';
+  svg += '</svg>';
+
+  var mech = document.createElement('div');
+  mech.className = 'mech-bg';
+  mech.setAttribute('aria-hidden', 'true');
+  var logoSrc = '';
+  var navImg = document.querySelector('#nav img');
+  if (navImg) logoSrc = navImg.getAttribute('src');
+  mech.innerHTML = '<div class="mech-inner">' + svg +
+    (logoSrc ? '<img class="mech-logo" src="' + logoSrc + '" alt="">' : '') + '</div>';
+  document.body.appendChild(mech);
+  mechInner = mech.querySelector('.mech-inner');
+  mechLogo = mech.querySelector('.mech-logo');
+  discs = Array.prototype.slice.call(mech.querySelectorAll('.mech-disc'));
+
+  function applyMech(p) {
+    if (reduce) return;
+    for (var i = 0; i < discs.length; i++) {
+      var sp = parseFloat(discs[i].getAttribute('data-speed')) || 0;
+      discs[i].setAttribute('transform', 'rotate(' + (sp * 360 * p).toFixed(2) + ' 200 200)');
+    }
+    if (mechInner) mechInner.style.transform = 'scale(' + (0.8 + 0.4 * p).toFixed(3) + ')';
+    if (mechLogo) mechLogo.style.transform = 'translate(-50%,-50%) rotate(' + (-60 * p).toFixed(2) + 'deg)';
+  }
+
+  // Sticky nav background + scroll progress + mechanism
   var nav = document.getElementById('nav');
   var progress = document.getElementById('progress');
   function onScroll() {
     var st = window.scrollY;
     if (nav) { var s = st > 24; nav.classList.toggle('bg-ink/90', s); nav.classList.toggle('backdrop-blur', s); }
     var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h > 0 ? st / h : 0;
+    var p = h > 0 ? Math.min(1, Math.max(0, st / h)) : 0;
     if (progress) progress.style.width = (p * 100) + '%';
-    if (lockShackle) lockShackle.setAttribute('transform', 'translate(0,' + (-34 * p).toFixed(1) + ')');
+    applyMech(p);
   }
 
   // Menu overlay
@@ -53,6 +103,7 @@
   // Case-study drawer
   var drawer = null, drawerCat, drawerTitle, drawerContent, drawerLink;
   var cards = document.querySelectorAll('.cs-card');
+  function closeDrawer() { if (!drawer) return; drawer.classList.remove('open'); document.body.style.overflow = ''; setTimeout(function () { drawer.classList.add('hidden'); }, 400); }
   if (cards.length) {
     drawer = document.createElement('div');
     drawer.id = 'csDrawer';
@@ -74,7 +125,7 @@
     drawer.querySelector('.cs-backdrop').addEventListener('click', closeDrawer);
     drawer.querySelector('.cs-close').addEventListener('click', closeDrawer);
 
-    function openFrom(card) {
+    var openFrom = function (card) {
       drawerCat.textContent = card.getAttribute('data-cs-cat') || '';
       drawerTitle.textContent = card.getAttribute('data-cs-title') || '';
       var body = card.querySelector('.cs-body');
@@ -85,30 +136,14 @@
       drawer.classList.remove('hidden');
       requestAnimationFrame(function () { drawer.classList.add('open'); });
       document.body.style.overflow = 'hidden';
-    }
+    };
     cards.forEach(function (card) {
       card.addEventListener('click', function () { openFrom(card); });
       card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFrom(card); } });
     });
   }
-  function closeDrawer() { if (!drawer) return; drawer.classList.remove('open'); document.body.style.overflow = ''; setTimeout(function () { drawer.classList.add('hidden'); }, 400); }
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); closeDrawer(); } });
-
-  // Scroll-reactive lock background (echoes the hexagon logo as a padlock)
-  var lockShackle = null;
-  var lock = document.createElement('div');
-  lock.className = 'lock-bg';
-  lock.setAttribute('aria-hidden', 'true');
-  lock.innerHTML =
-    '<svg viewBox="0 0 220 300" fill="none" stroke="#c1121f" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">' +
-    '<g class="lock-shackle"><path d="M72 128 L72 92 A38 38 0 0 1 148 92 L148 128"/></g>' +
-    '<path d="M110 120 L182 158 L182 236 L110 274 L38 236 L38 158 Z"/>' +
-    '<circle cx="110" cy="188" r="15"/>' +
-    '<path d="M110 203 L110 228"/>' +
-    '</svg>';
-  document.body.appendChild(lock);
-  lockShackle = lock.querySelector('.lock-shackle');
 
   // Scroll reveals
   if ('IntersectionObserver' in window) {
@@ -121,6 +156,7 @@
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
   var yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
