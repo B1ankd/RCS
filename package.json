@@ -1,0 +1,13 @@
+{
+  "name": "redcellsolutions-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Red Cell Solutions marketing site (static, Tailwind-compiled).",
+  "scripts": {
+    "build": "tailwindcss -c tailwind.config.js -i src/input.css -o css/site.css --minify",
+    "watch": "tailwindcss -c tailwind.config.js -i src/input.css -o css/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
