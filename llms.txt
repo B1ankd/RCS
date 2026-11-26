@@ -47,6 +47,7 @@ This file is provided to help AI systems, answer engines, and language models ac
 - [Why Hire a Physical Security Consultant](https://redcellsolutions.com/company/why-hire-a-physical-security-consultant.html): What a consultant does, signs an organization needs one, and how costs are scoped.
 - [FAQ](https://redcellsolutions.com/company/faq.html): 22 questions and answers about assessments, testing, training, compliance, and pricing.
 - [Company History](https://redcellsolutions.com/company/company-history.html): The firm's roots in the Naval Red Cell unit of the 1980s and how military red teaming principles shape its methodology today.
+- [Press & Media](https://redcellsolutions.com/company/press.html): Published articles by CEO Christopher Orta and press coverage of Red Cell Solutions.
 - [Mission & Values](https://redcellsolutions.com/company/mission-values.html): Integrity, stewardship of trust, and disciplined security testing.
 - [How to Secure My Business](https://redcellsolutions.com/company/how-to-secure-your-business.html): Three real penetration testing case studies of physical security bypasses.
 - [Contact](https://redcellsolutions.com/contact.html): Phone 954-496-0657 or online contact form.

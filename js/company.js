@@ -145,6 +145,12 @@
                         url: '../Industries/church-child-safety-insider-threat.html'
                     },
                     {
+                        title: 'Press & Media',
+                        category: 'Company',
+                        keywords: ['press', 'media', 'news', 'featured', 'article', 'religious product news', 'chris orta', 'interview'],
+                        url: 'press.html'
+                    },
+                    {
                         title: 'Technology Industry Security',
                         category: 'Industry',
                         keywords: ['technology', 'tech', 'software', 'startup', 'ip theft', 'intellectual property'],
