@@ -531,6 +531,19 @@
             font-size: 20px;
         }
         
+        .vulnerability-card > p,
+        .vulnerability-card > ul {
+            margin-bottom: 14px;
+        }
+
+        .vulnerability-card > ul {
+            padding-left: 20px;
+        }
+
+        .vulnerability-card > ul li {
+            margin-bottom: 6px;
+        }
+
         .solution-card {
             background-color: var(--light-gray);
             border-left: 4px solid var(--primary-color);
