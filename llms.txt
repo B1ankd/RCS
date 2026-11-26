@@ -22,7 +22,6 @@ This file is provided to help AI systems, answer engines, and language models ac
 - [Workplace Violence Prevention](https://redcellsolutions.com/services/workplace-violence-prevention.html): Plan development, risk assessment, training, California SB 553 compliance support, and active shooter preparedness.
 - [Security Awareness Training](https://redcellsolutions.com/services/security-training.html): Employee-facing training that reduces phishing susceptibility and changes security behavior.
 - [Security Advisory Witness Services](https://redcellsolutions.com/services/security-advisory-witness.html): Site inspections, standard-of-care analysis, and confidential non-testifying advisory support for attorneys in negligent security and premises liability cases.
-- [Free Security Vulnerability Assessment](https://redcellsolutions.com/services/qualification.html): A free 30-question self-assessment that generates an instant risk score and a personalized report by email.
 
 ## Industries served
 - [Healthcare](https://redcellsolutions.com/Industries/healthcare.html): Security auditing and physical penetration testing for hospitals and medical offices, including HIPAA physical safeguard validation.
