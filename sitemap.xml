@@ -199,13 +199,20 @@
 
   <url>
     <loc>https://redcellsolutions.com/Industries/houses-of-worship.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://redcellsolutions.com/Images/church-safety-team-training-session.jpg</image:loc>
       <image:title>Church and House of Worship Security Training</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://redcellsolutions.com/Industries/church-child-safety-insider-threat.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>

@@ -214,6 +214,12 @@
                         url: '../Industries/houses-of-worship.html'
                     },
                     {
+                        title: 'The Wolf Has a Name Tag (Church Child Safety Article)',
+                        category: 'Industry',
+                        keywords: ['children', 'child safety', 'child protection', 'children\'s ministry', 'abuse prevention', 'grooming', 'religious product news', 'article'],
+                        url: '../Industries/church-child-safety-insider-threat.html'
+                    },
+                    {
                         title: 'Technology Industry Security',
                         category: 'Industry',
                         keywords: ['technology', 'tech', 'software', 'startup', 'ip theft', 'intellectual property'],

@@ -30,6 +30,7 @@ This file is provided to help AI systems, answer engines, and language models ac
 - [Law Firms](https://redcellsolutions.com/Industries/law-firms.html): Physical security assessments and social engineering testing protecting client confidentiality and privileged files.
 - [Educational Institutions](https://redcellsolutions.com/Industries/educational-institutions.html): School security assessments and campus penetration testing focused on visitor management and unauthorized access.
 - [Houses of Worship](https://redcellsolutions.com/Industries/houses-of-worship.html): Church security training, security plans, safety team building, and assessments.
+- [The Wolf Has a Name Tag (and a Background Check)](https://redcellsolutions.com/Industries/church-child-safety-insider-threat.html): Article by Christopher Orta, originally published in Religious Product News (October 2026), on children's ministry safety, insider threat in churches, and the G.U.A.R.D. framework.
 - [Data Centers](https://redcellsolutions.com/Industries/data-centers.html): Layered access control, monitoring, adversarial testing, and audit support for SOC 2, ISO 27001, and PCI DSS.
 - [Manufacturing](https://redcellsolutions.com/Industries/manufacturing.html): Testing and program design against industrial espionage, trade secret theft, and insider access risk at plants.
 - [Construction](https://redcellsolutions.com/Industries/construction.html): Site security consulting for builders and developers, covering perimeter control, worker access, and camera strategy.
